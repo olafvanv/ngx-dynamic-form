@@ -1,0 +1,10 @@
+<form [formGroup]="group"
+  class="dynamic-form">
+  <div *ngFor="let row of formConfig"
+    class="dynamic-form-row">
+    <dynamic-form-field *ngFor="let field of row"
+      [group]="group"
+      [model]="field">
+    </dynamic-form-field>
+  </div>
+</form>

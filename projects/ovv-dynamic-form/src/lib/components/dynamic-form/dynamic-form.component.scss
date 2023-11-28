@@ -1,0 +1,17 @@
+.dynamic-form {
+  width: 100%;
+
+  .dynamic-form-row {
+    width: 100%;
+    display: flex;
+
+    dynamic-form-field {
+      flex: 1;
+      margin: 4px 0;
+
+      &:not(:last-of-type) {
+        margin-right: 1em;
+      }
+    }
+  }
+}

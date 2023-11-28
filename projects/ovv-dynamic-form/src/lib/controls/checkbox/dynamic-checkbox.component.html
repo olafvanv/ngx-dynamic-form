@@ -1,0 +1,17 @@
+<ng-container [formGroup]="group">
+
+  <mat-checkbox [checked]="model.checked"
+    [formControlName]="model.name"
+    [indeterminate]="model.indeterminate"
+    [labelPosition]="model.labelPosition"
+    [name]="model.name"
+    [id]="id"
+    (blur)="onBlur($event)"
+    (focus)="onFocus($event)"
+    (change)="onChange($event)">
+
+    <span class="checkbox-label">{{model.label}}</span>
+  </mat-checkbox>
+
+
+</ng-container>
