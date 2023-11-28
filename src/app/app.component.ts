@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
-import { DynamicCheckbox, DynamicFormConfig } from 'ngx-dynamic-form';
-import { DynamicInput } from 'projects/ngx-dynamic-form/src/lib/controls/input/dynamic-input.model';
+import { DynamicFormConfig } from 'ngx-dynamic-form';
+import { PERSOON_FORM } from './forms/persoon';
 
 @Component({
   selector: 'app-root',
@@ -9,43 +9,7 @@ import { DynamicInput } from 'projects/ngx-dynamic-form/src/lib/controls/input/d
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public formConfig: DynamicFormConfig = [
-    [
-      new DynamicInput({
-        name: 'firstname',
-        inputType: 'text',
-        label: 'Voornaam'
-      }),
-      new DynamicInput({
-        name: 'name',
-        inputType: 'text',
-        label: 'Achternaam'
-      })
-    ],
-    [
-      new DynamicInput({
-        name: 'email',
-        inputType: 'email',
-        label: 'E-mailadres'
-      })
-    ],
-    [
-      new DynamicInput({
-        name: 'telefoon',
-        inputType: 'tel',
-        label: 'Telefoonnummer',
-        prefix: '+'
-      })
-    ],
-    [
-      new DynamicCheckbox({
-        name: 'test',
-        label: 'Ik ben een mannetje',
-        labelPosition: 'before'
-      })
-    ]
-  ];
-
+  public formConfig: DynamicFormConfig = PERSOON_FORM;
   public formGroup!: UntypedFormGroup;
 
   constructor() {}

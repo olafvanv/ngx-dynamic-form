@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
@@ -9,7 +8,7 @@ import { DynamicCheckbox } from './dynamic-checkbox.model';
   selector: 'dynamic-checkbox',
   templateUrl: 'dynamic-checkbox.component.html',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatCheckboxModule]
+  imports: [ReactiveFormsModule, MatCheckboxModule]
 })
 export class DynamicCheckboxComponent extends DynamicFormFieldComponent {
   @Input() model!: DynamicCheckbox;
