@@ -16,7 +16,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "paths": {
-      "ovv-dynamic-form": ["dist/ovv-dynamic-form"]
+      "ngx-dynamic-form": ["dist/ngx-dynamic-form"]
     },
     "target": "es2020",
     "module": "es2020",

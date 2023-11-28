@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
-import { DynamicCheckbox, DynamicFormConfig } from 'ovv-dynamic-form';
-import { DynamicInput } from 'projects/ovv-dynamic-form/src/lib/controls/input/dynamic-input.model';
+import { DynamicCheckbox, DynamicFormConfig } from 'ngx-dynamic-form';
+import { DynamicInput } from 'projects/ngx-dynamic-form/src/lib/controls/input/dynamic-input.model';
 
 @Component({
   selector: 'app-root',

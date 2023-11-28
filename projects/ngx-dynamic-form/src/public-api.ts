@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ovv-dynamic-form
+ * Public API Surface of ngx-dynamic-form
  */
 export * from './lib/components/dynamic-form/dynamic-form.component';
 export * from './lib/dynamic-form.module';

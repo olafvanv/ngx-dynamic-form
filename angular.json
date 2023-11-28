@@ -99,23 +99,23 @@
         }
       }
     },
-    "ovv-dynamic-form": {
+    "ngx-dynamic-form": {
       "projectType": "library",
-      "root": "projects/ovv-dynamic-form",
-      "sourceRoot": "projects/ovv-dynamic-form/src",
+      "root": "projects/ngx-dynamic-form",
+      "sourceRoot": "projects/ngx-dynamic-form/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ovv-dynamic-form/ng-package.json"
+            "project": "projects/ngx-dynamic-form/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ovv-dynamic-form/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-dynamic-form/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ovv-dynamic-form/tsconfig.lib.json"
+              "tsConfig": "projects/ngx-dynamic-form/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -123,15 +123,15 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ovv-dynamic-form/src/test.ts",
-            "tsConfig": "projects/ovv-dynamic-form/tsconfig.spec.json",
-            "karmaConfig": "projects/ovv-dynamic-form/karma.conf.js"
+            "main": "projects/ngx-dynamic-form/src/test.ts",
+            "tsConfig": "projects/ngx-dynamic-form/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-dynamic-form/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/ovv-dynamic-form/**/*.ts", "projects/ovv-dynamic-form/**/*.html"]
+            "lintFilePatterns": ["projects/ngx-dynamic-form/**/*.ts", "projects/ngx-dynamic-form/**/*.html"]
           }
         }
       }

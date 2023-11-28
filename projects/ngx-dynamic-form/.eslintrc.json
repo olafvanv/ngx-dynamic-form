@@ -5,7 +5,7 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["projects/ovv-dynamic-form/tsconfig.lib.json", "projects/ovv-dynamic-form/tsconfig.spec.json"],
+        "project": ["projects/ngx-dynamic-form/tsconfig.lib.json", "projects/ngx-dynamic-form/tsconfig.spec.json"],
         "createDefaultProgram": true
       },
       "rules": {
