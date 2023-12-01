@@ -1,4 +1,5 @@
-import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/dynamic-form-field-model.model';
+import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/dynamic-form-field-config.model';
+import { isBoolean, isNumber } from '../../utils/methods.util';
 
 export const DYNAMIC_FORM_FIELD_TYPE_INPUT = 'input';
 
@@ -14,6 +15,7 @@ export interface DynamicInputConfig extends DynamicFormFieldValueConfig<string |
   pattern?: string | RegExp;
   autocomplete?: 'on' | 'off';
   prefix?: string | null;
+  showMaxLengthCount?: boolean;
 }
 
 export class DynamicInput extends DynamicFormFieldValueModel<string | number | Date | null> {
@@ -26,6 +28,7 @@ export class DynamicInput extends DynamicFormFieldValueModel<string | number | D
   public pattern: string | RegExp;
   public autocomplete: 'on' | 'off';
   public prefix: string | null;
+  public showMaxLengthCount: boolean;
 
   public readonly type = DYNAMIC_FORM_FIELD_TYPE_INPUT;
 
@@ -35,11 +38,12 @@ export class DynamicInput extends DynamicFormFieldValueModel<string | number | D
     this.inputType = config.inputType ?? 'text';
     this.max = config.max ?? null;
     this.min = config.min ?? null;
-    this.maxLength = typeof config.maxLength === 'number' ? config.maxLength : null;
-    this.minLength = typeof config.minLength === 'number' ? config.minLength : null;
+    this.maxLength = isNumber(config.maxLength) ? config.maxLength : null;
+    this.minLength = isNumber(config.minLength) ? config.minLength : null;
     this.step = config.step ?? null;
     this.pattern = config.pattern ?? '';
     this.autocomplete = config.autocomplete ?? 'off';
     this.prefix = config.prefix ?? null;
+    this.showMaxLengthCount = isBoolean(config.showMaxLengthCount) ? config.showMaxLengthCount : false;
   }
 }

@@ -16,5 +16,9 @@
     [pattern]="model.pattern"
     [autocomplete]="model.autocomplete" />
 
-  <mat-hint *ngIf="model.hint">{{model.hint}}</mat-hint>
+  <mat-hint *ngIf="model.hint"
+    align="start">{{model.hint}}</mat-hint>
+
+  <mat-hint *ngIf="showMaxCount"
+    align="end">{{maxCountText}}</mat-hint>
 </mat-form-field>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { DynamicFormConfig } from 'ngx-dynamic-form';
-import { PERSOON_FORM } from './forms/persoon';
+import { PERSOON_FORM, PersonFormModel } from './forms/persoon';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,13 @@ import { PERSOON_FORM } from './forms/persoon';
 })
 export class AppComponent implements OnInit {
   public formConfig: DynamicFormConfig = PERSOON_FORM;
-  public formGroup!: UntypedFormGroup;
+  public formGroup!: FormGroup<PersonFormModel>;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onDynamicFormReady(form: UntypedFormGroup) {
-    console.log(form);
+  onDynamicFormReady(form: FormGroup<PersonFormModel>) {
+    this.formGroup = form;
   }
 }

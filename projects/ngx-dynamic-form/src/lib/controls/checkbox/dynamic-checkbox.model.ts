@@ -1,4 +1,5 @@
-import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/dynamic-form-field-model.model';
+import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/dynamic-form-field-config.model';
+import { isBoolean } from '../../utils/methods.util';
 
 export const DYNAMIC_FORM_FIELD_TYPE_CHECKBOX = 'checkbox';
 
@@ -17,7 +18,7 @@ export class DynamicCheckbox extends DynamicFormFieldValueModel<boolean> {
     super(config);
 
     this.labelPosition = config.labelPosition ?? 'after';
-    this.indeterminate = typeof config.indeterminate === 'boolean' ? config.indeterminate : false;
+    this.indeterminate = isBoolean(config.indeterminate) ? config.indeterminate : false;
   }
 
   get checked(): boolean {

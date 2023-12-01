@@ -1,11 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, Input, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkbox.component';
 import { DYNAMIC_FORM_FIELD_TYPE_CHECKBOX } from '../../controls/checkbox/dynamic-checkbox.model';
 import { DynamicInputComponent } from '../../controls/input/dynamic-input.component';
 import { DYNAMIC_FORM_FIELD_TYPE_INPUT } from '../../controls/input/dynamic-input.model';
-import { DynamicFormFieldModel } from '../../models/dynamic-form-field-model.model';
+import { DynamicFormFieldModel, DynamicFormFieldValueModel } from '../../models/dynamic-form-field-config.model';
 import { DynamicFormField } from '../../models/dynamic-form-field.model';
 import { DynamicFormService } from '../../services/dynamic-form.service';
 
@@ -16,11 +17,13 @@ import { DynamicFormService } from '../../services/dynamic-form.service';
   standalone: true,
   imports: [NgClass, ReactiveFormsModule]
 })
-export class DynamicFormFieldComponent implements OnInit {
+export class DynamicFormFieldComponent implements OnInit, OnDestroy {
+  @ViewChild('componentViewContainer', { read: ViewContainerRef, static: true }) componentViewContainer!: ViewContainerRef;
+
   @Input() model!: DynamicFormFieldModel;
   @Input() group!: UntypedFormGroup;
 
-  @ViewChild('componentViewContainer', { read: ViewContainerRef, static: true }) componentViewContainer!: ViewContainerRef;
+  private _subs = new Subscription();
 
   get componentType(): Type<DynamicFormField> | null {
     return this.dynamicFormService.getCustomComponentType(this.model) || this.getControlComponentType();
@@ -30,6 +33,11 @@ export class DynamicFormFieldComponent implements OnInit {
 
   ngOnInit(): void {
     this.createFormControlComponent();
+    this.setSubscriptions();
+  }
+
+  ngOnDestroy(): void {
+    this._subs.unsubscribe();
   }
 
   private getControlComponentType(): Type<DynamicFormField> | null {
@@ -53,6 +61,17 @@ export class DynamicFormFieldComponent implements OnInit {
 
       componentInstance.group = this.group;
       componentInstance.model = this.model;
+    }
+  }
+
+  private setSubscriptions(): void {
+    const model = this.model as DynamicFormFieldValueModel<unknown>;
+    this._subs.add(model.valueChanges.subscribe((val) => this.onControlChanges(val)));
+  }
+
+  private onControlChanges(value: unknown): void {
+    if (this.model instanceof DynamicFormFieldValueModel && this.model.value !== value) {
+      this.model.value = value;
     }
   }
 }

@@ -1,3 +1,3 @@
-import { DynamicFormFieldModel } from '../dynamic-form-field-model.model';
+import { DynamicFormFieldModel } from '../dynamic-form-field-config.model';
 
 export type DynamicFormConfig = DynamicFormFieldModel[][];
