@@ -1,4 +1,5 @@
-import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/dynamic-form-field-config.model';
+import { DynamicFormFieldValueModel } from '../../models/dynamic-form-field-value.model';
+import { DynamicFormFieldValueConfig } from '../../models/interfaces/dynamic-form-field-value-config.interface';
 import { isBoolean } from '../../utils/methods.util';
 
 export const DYNAMIC_FORM_FIELD_TYPE_CHECKBOX = 'checkbox';

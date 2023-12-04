@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
-import { DynamicFormFieldComponent } from '../../models/dynamic-form-field.model';
+import { DynamicFormFieldComponent } from '../../models/dynamic-form-field-component.model';
 import { DynamicCheckbox } from './dynamic-checkbox.model';
 
 @Component({

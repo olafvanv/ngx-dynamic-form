@@ -6,3 +6,5 @@ export * from './lib/dynamic-form.module';
 export * from './lib/models/types/dynamic-form-config.type';
 
 export * from './lib/controls';
+
+export * from './lib/models/dynamic-form-validators.model';

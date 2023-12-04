@@ -6,8 +6,9 @@ import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkb
 import { DYNAMIC_FORM_FIELD_TYPE_CHECKBOX } from '../../controls/checkbox/dynamic-checkbox.model';
 import { DynamicInputComponent } from '../../controls/input/dynamic-input.component';
 import { DYNAMIC_FORM_FIELD_TYPE_INPUT } from '../../controls/input/dynamic-input.model';
-import { DynamicFormFieldModel, DynamicFormFieldValueModel } from '../../models/dynamic-form-field-config.model';
-import { DynamicFormField } from '../../models/dynamic-form-field.model';
+import { DynamicFormFieldValueModel } from '../../models/dynamic-form-field-value.model';
+import { DynamicFormFieldModel } from '../../models/dynamic-form-field.model';
+import { DynamicFormField } from '../../models/interfaces/dynamic-form-field.interface';
 import { DynamicFormService } from '../../services/dynamic-form.service';
 
 @Component({

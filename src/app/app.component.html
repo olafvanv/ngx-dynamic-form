@@ -1,4 +1,9 @@
 <div class="app-body">
-  <dynamic-form [formConfig]="formConfig"
-    (ready)="onDynamicFormReady($event)"></dynamic-form>
+  <dynamic-form [formConfig]="personFormConfig"
+    (ready)="onPersonReady($event)"></dynamic-form>
+
+  <!-- <dynamic-form [formConfig]="addressFormConfig"
+    (ready)="onAddressReady($event)"></dynamic-form> -->
+
+  <button (click)="logForm()">Log Form</button>
 </div>

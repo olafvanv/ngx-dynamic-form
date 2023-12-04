@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { DynamicCheckbox, DynamicFormConfig, DynamicInput } from 'ngx-dynamic-form';
+import { DynamicCheckbox, DynamicFormConfig, DynamicFormValidators, DynamicInput } from 'ngx-dynamic-form';
 
 export interface PersonFormModel {
   firstname: FormControl<string | null>;
@@ -16,7 +16,7 @@ export const PERSOON_FORM: DynamicFormConfig = [
       inputType: 'text',
       label: 'Voornaam',
       maxLength: 40,
-      showMaxLengthCount: true
+      validators: [DynamicFormValidators.required()]
     }),
     new DynamicInput({
       name: 'name',
@@ -43,7 +43,8 @@ export const PERSOON_FORM: DynamicFormConfig = [
     new DynamicCheckbox({
       name: 'sex',
       label: 'Ik ben een mannetje',
-      labelPosition: 'before'
+      labelPosition: 'before',
+      validators: [DynamicFormValidators.requiredTrue()]
     })
   ]
 ];

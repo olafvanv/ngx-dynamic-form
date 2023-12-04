@@ -1,7 +1,9 @@
 import { Inject, Injectable, InjectionToken, Optional, Type } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControlOptions, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { DynamicFormFieldModel, DynamicFormFieldValueConfig } from '../models/dynamic-form-field-config.model';
-import { DynamicFormField } from '../models/dynamic-form-field.model';
+import { AbstractControl, FormBuilder, FormControlOptions, UntypedFormControl, UntypedFormGroup, ValidatorFn } from '@angular/forms';
+import { DynamicFormFieldModel } from '../models/dynamic-form-field.model';
+import { DynamicFormFieldValueConfig } from '../models/interfaces/dynamic-form-field-value-config.interface';
+import { DynamicFormField } from '../models/interfaces/dynamic-form-field.interface';
+import { DynamicFormValidator } from '../models/interfaces/dynamic-form-validator.interface';
 import { DynamicFormConfig } from '../models/types/dynamic-form-config.type';
 import { isFunction } from '../utils/methods.util';
 
@@ -36,11 +38,23 @@ export class DynamicFormService {
     config.forEach((row) => {
       row.forEach((controlConfig) => {
         const controlValueConfig = controlConfig as DynamicFormFieldValueConfig<unknown>;
-        const controlOptions: FormControlOptions = {};
+        const controlOptions: FormControlOptions = {
+          updateOn: controlConfig.updateOn,
+          validators: this.getValidators(controlConfig.validators)
+        };
+
+        console.log(controlConfig);
 
         controls[controlValueConfig.name] = new UntypedFormControl(controlValueConfig.value, controlOptions);
       });
     });
+
     return new UntypedFormGroup(controls);
+  }
+
+  private getValidators(validators: DynamicFormValidator[]): ValidatorFn[] {
+    return validators.map((m) => {
+      return m.validator;
+    });
   }
 }

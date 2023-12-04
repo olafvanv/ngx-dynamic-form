@@ -1,53 +1,28 @@
-import { EventEmitter } from '@angular/core';
-import { AbstractControl, UntypedFormGroup } from '@angular/forms';
-import { DynamicFormFieldModel } from './dynamic-form-field-config.model';
+import { isBoolean } from '../utils/methods.util';
+import { DynamicFormFieldConfig } from './interfaces/dynamic-form-field-config.interface';
+import { DynamicFormValidator } from './interfaces/dynamic-form-validator.interface';
+import { DynamicFormHook } from './types/dynamic-form-hook.type';
 
-export interface DynamicFormField {
-  group: UntypedFormGroup;
-  model: DynamicFormFieldModel;
-  blur: EventEmitter<any>;
-  change: EventEmitter<any>;
-  focus: EventEmitter<any>;
-}
+export abstract class DynamicFormFieldModel {
+  public disabled: boolean;
+  public hidden: boolean;
+  public id: string | null;
+  public label: string | null;
+  public name: string;
+  public hint: string | null;
+  public validators: DynamicFormValidator[];
+  public updateOn: DynamicFormHook;
 
-export abstract class DynamicFormFieldComponent implements DynamicFormField {
-  group!: UntypedFormGroup;
-  model!: DynamicFormFieldModel;
+  abstract readonly type: string;
 
-  blur!: EventEmitter<any>;
-  change!: EventEmitter<any>;
-  focus!: EventEmitter<any>;
-
-  get id(): string {
-    return this.model.id ?? this.model.name;
-  }
-
-  get control(): AbstractControl {
-    const ctrl = this.group.get(this.model.name);
-
-    if (!ctrl) {
-      throw new Error(`Provided FormGroup does not contain a control with the name ${this.model.name}`);
-    }
-    return ctrl;
-  }
-
-  get isValid(): boolean {
-    return this.control.valid;
-  }
-
-  get isInvalid(): boolean {
-    return this.control.invalid;
-  }
-
-  onBlur(ev: any) {
-    this.blur.emit(ev);
-  }
-
-  onChange(ev: any) {
-    this.change.emit(ev);
-  }
-
-  onFocus(ev: any) {
-    this.focus.emit(ev);
+  constructor(config: DynamicFormFieldConfig) {
+    this.disabled = isBoolean(config.disabled) ? config.disabled : false;
+    this.hidden = isBoolean(config.hidden) ? config.hidden : false;
+    this.id = config.id ?? null;
+    this.label = config.label ?? null;
+    this.name = config.name;
+    this.hint = config.hint ?? null;
+    this.validators = config.validators ?? [];
+    this.updateOn = config.updateOn ?? 'change';
   }
 }
