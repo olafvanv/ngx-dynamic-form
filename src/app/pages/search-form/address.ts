@@ -20,13 +20,15 @@ export const ADDRESS_FORM: DynamicFormConfig = [
   [
     new DynamicInput({
       name: 'street',
-      label: 'Straatnaam'
+      label: 'Straatnaam',
+      disabled: true
     })
   ],
   [
     new DynamicInput({
       name: 'city',
-      label: 'Stad'
+      label: 'Stad',
+      disabled: true
     })
   ]
 ];

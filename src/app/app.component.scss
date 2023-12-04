@@ -1,3 +1,31 @@
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  nav {
+    display: flex;
+
+    a {
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 4px 8px;
+
+      &.active {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+  .log-button {
+    margin-left: auto;
+  }
+}
+
 .app-body {
+  flex: 1;
+  background-color: #f0f0f0;
   padding: 16px;
 }

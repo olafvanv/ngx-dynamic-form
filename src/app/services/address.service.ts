@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, delay, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AddressService {
@@ -9,10 +9,7 @@ export class AddressService {
   getAddressByPostcode(postcode: string): Observable<Address | null> {
     const url = `https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?q=${postcode}`;
 
-    return this.httpClient.get<PdokResponse>(url).pipe(
-      delay(1400),
-      map((data) => data.response.docs[0] ?? null)
-    );
+    return this.httpClient.get<PdokResponse>(url).pipe(map((data) => data.response.docs[0] ?? null));
   }
 }
 export interface PdokResponse {

@@ -1,9 +1,17 @@
+<mat-toolbar class="header"
+  color="primary">
+  <nav>
+    <a routerLink="simple-form"
+      routerLinkActive="active">Simple Form</a>
+    <a routerLink="search-form"
+      routerLinkActive="active">Search Form</a>
+  </nav>
+
+  <button mat-button
+    class="log-button"
+    (click)="onLogForm()">Log Form</button>
+</mat-toolbar>
+
 <div class="app-body">
-  <dynamic-form [formConfig]="personFormConfig"
-    (ready)="onPersonReady($event)"></dynamic-form>
-
-  <!-- <dynamic-form [formConfig]="addressFormConfig"
-    (ready)="onAddressReady($event)"></dynamic-form> -->
-
-  <button (click)="logForm()">Log Form</button>
+  <router-outlet></router-outlet>
 </div>

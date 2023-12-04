@@ -43,9 +43,10 @@ export class DynamicFormService {
           validators: this.getValidators(controlConfig.validators)
         };
 
-        console.log(controlConfig);
-
-        controls[controlValueConfig.name] = new UntypedFormControl(controlValueConfig.value, controlOptions);
+        controls[controlValueConfig.name] = new UntypedFormControl(
+          { value: controlValueConfig.value, disabled: controlValueConfig.disabled },
+          controlOptions
+        );
       });
     });
 

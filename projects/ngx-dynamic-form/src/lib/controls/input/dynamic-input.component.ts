@@ -33,6 +33,6 @@ export class DynamicInputComponent extends DynamicFormFieldComponent {
   }
 
   get showClear(): boolean {
-    return !!this.group.get(this.model.name)?.value;
+    return !!this.control.value && !this.control.disabled;
   }
 }
