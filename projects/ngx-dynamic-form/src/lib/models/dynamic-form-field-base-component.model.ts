@@ -3,7 +3,7 @@ import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { DynamicFormFieldModel } from './dynamic-form-field.model';
 import { DynamicFormField } from './interfaces/dynamic-form-field.interface';
 
-export abstract class DynamicFormFieldComponent implements DynamicFormField {
+export abstract class DynamicFormFieldBaseComponent implements DynamicFormField {
   group!: UntypedFormGroup;
   model!: DynamicFormFieldModel;
 

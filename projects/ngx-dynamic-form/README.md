@@ -1,25 +1,49 @@
 # NgxDynamicForm
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.
+## Custom Form Controls
 
-## Code scaffolding
+### Create a model
 
-Run `ng generate component component-name --project ngx-dynamic-form` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-dynamic-form`.
+First step is to create a model and interface for the custom control containing the control specific properties for the configuration definitions, extending the base interface/model from the library.
+Also, you need to create an (unique) name for the type of the
 
-> Note: Don't forget to add `--project ngx-dynamic-form` or else it will be added to the default project in your `angular.json` file.
+For example if you're creating a control with a slider to select a value between 0 and 10:
 
-## Build
+#### Interface:
 
-Run `ng build ngx-dynamic-form` to build the project. The build artifacts will be stored in the `dist/` directory.
+The interface extends the base interface `DynamicFormFieldValueConfig` and expects a generic type describing the possible value(s) of the field. In this case that would be a number or null value.
 
-## Publishing
+```typescript
+export interface SliderInputConfig extends DynamicFormFieldValueConfig<number | null> {
+  min: number;
+  max: number;
+  step: number;
+}
+```
 
-After building your library with `ng build ngx-dynamic-form`, go to the dist folder `cd dist/ngx-dynamic-form` and run `npm publish`.
+#### Model
 
-## Running unit tests
+The model is what is called when creating the form config (e.g. `new SliderInput(sliderConfig)`).
+The model contains the same properties defined in the configuration interface, and provides them with a value from the config or a default value.
 
-Run `ng test ngx-dynamic-form` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Also, you need to create a field type token which we can later use to map the used model to the control component. In this case we created the token with the name `DYNAMIC_FORM_FIELD_TYPE_SLIDER` with the value `slider`. The value HAS to be unique.
 
-## Further help
+```typescript
+export const DYNAMIC_FORM_FIELD_TYPE_SLIDER = 'slider';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+export class SliderInput extends DynamicFormFieldValueModel<number | null> {
+  public min: number;
+  public max: number;
+  public step: number;
+
+  readonly type = DYNAMIC_FORM_FIELD_TYPE_SLIDER;
+
+  constructor(config: SliderInputConfig) {
+    super(config);
+
+    this.min = config.min ?? 0;
+    this.max = config.max ?? 10;
+    this.step = config.step ?? 1;
+  }
+}
+```

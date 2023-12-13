@@ -32,9 +32,6 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit() {
     this.group = this.dynamicFormService.createFormGroup(this.formConfig);
-    //TODO: niet gewenst, maar hierdoor hoef je in de app niet meer een handmatige detectChanges te gooien om de onChange te gebruiken.
-    //Zonder dit en die detectChanges, is het dynamic form component undefined om het moment van onChange.
-    // setTimeout(() => this.ready.emit(this.group));
     this.ready.emit(this.group);
   }
 
