@@ -3,4 +3,8 @@
   <mat-card-subtitle>Fill in the postcode to search the address</mat-card-subtitle>
   <dynamic-form [formConfig]="searchFormConfig"
     (ready)="onFormReady($event)"></dynamic-form>
+  <button type="submit"
+    mat-raised-button
+    color="primary"
+    (click)="onSubmit()">Submit</button>
 </mat-card>

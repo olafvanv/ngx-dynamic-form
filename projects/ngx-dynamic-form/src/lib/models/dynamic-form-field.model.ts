@@ -12,6 +12,8 @@ export abstract class DynamicFormFieldModel {
   public hint: string | null;
   public validators: DynamicFormValidator[];
   public updateOn: DynamicFormHook;
+  public parseValue: ((val: any) => any) | null;
+  public reverseParseValue: ((val: any) => any) | null;
 
   abstract readonly type: string;
 
@@ -24,5 +26,7 @@ export abstract class DynamicFormFieldModel {
     this.hint = config.hint ?? null;
     this.validators = config.validators ?? [];
     this.updateOn = config.updateOn ?? 'change';
+    this.parseValue = config.parseValue ?? null;
+    this.reverseParseValue = config.reverseParseValue ?? null;
   }
 }
