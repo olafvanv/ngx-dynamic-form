@@ -26,6 +26,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
 
   private _subs = new Subscription();
 
+  /** Get the instance of a control component using theinjected custom method or local method */
   get componentType(): Type<DynamicFormField> | null {
     return this.dynamicFormService.getCustomComponentType(this.model) || this.getControlComponentType();
   }
@@ -41,6 +42,10 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
     this._subs.unsubscribe();
   }
 
+  /**
+   * Finds the instance of a control component by type
+   * @returns
+   */
   private getControlComponentType(): Type<DynamicFormField> | null {
     switch (this.model.type) {
       case DYNAMIC_FORM_FIELD_TYPE_CHECKBOX:
@@ -55,7 +60,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   private createFormControlComponent(): void {
     const component = this.componentType;
 
-    if (!!component) {
+    if (component != null) {
       let componentRef = this.componentViewContainer.createComponent(component);
 
       const componentInstance = componentRef.instance;

@@ -1,6 +1,12 @@
 # NgxDynamicForm
 
-## Custom Form Controls
+## Create a custom Form Control
+
+Other than the build-in form controls, it is possible to plug in you own custom controls. Start out with creating a custom form control component:
+
+> https://blog.angular-university.io/angular-custom-form-controls/
+
+After that follow the following steps.
 
 ### Create a model
 

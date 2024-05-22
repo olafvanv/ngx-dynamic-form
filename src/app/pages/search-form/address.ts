@@ -1,5 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { DynamicFormConfig, DynamicInput } from 'ngx-dynamic-form';
+import { SliderInput } from 'src/app/shared/slider-input/slider-input.model';
 
 export interface AddressFormModel {
   postcode: FormControl<string | null>;
@@ -30,6 +31,15 @@ export const ADDRESS_FORM: DynamicFormConfig = [
       name: 'city',
       label: 'Stad',
       disabled: true
+    })
+  ],
+  [
+    new SliderInput({
+      name: 'rating',
+      label: 'Rating',
+      min: 0,
+      max: 10,
+      step: 1
     })
   ]
 ];

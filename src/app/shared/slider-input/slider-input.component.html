@@ -1,0 +1,8 @@
+<div class="slider-wrapper"
+  [formGroup]="group">
+  <div class="label">{{model.label}}</div>
+  <app-slider-input-control [min]="model.min"
+    [max]="model.max"
+    [step]="model.step"
+    [formControlName]="model.name"></app-slider-input-control>
+</div>
