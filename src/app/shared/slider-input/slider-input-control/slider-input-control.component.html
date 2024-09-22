@@ -1,7 +1,8 @@
 <mat-slider [max]="max"
   [min]="min"
-  [step]="step"
-  [(value)]="value">
+  [step]="step">
+  <input matSliderThumb
+    [(value)]="value" />
 </mat-slider>
 <button (click)="onRemove()">-</button>
 <button (click)="onAdd()">+</button>
