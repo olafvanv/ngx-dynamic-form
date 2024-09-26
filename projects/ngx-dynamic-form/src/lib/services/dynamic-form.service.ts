@@ -44,7 +44,7 @@ export class DynamicFormService {
         };
 
         controls[controlValueConfig.name] = new UntypedFormControl(
-          { value: controlValueConfig.value, disabled: controlValueConfig.disabled },
+          { value: controlValueConfig.value ?? controlValueConfig.defaultValue, disabled: controlValueConfig.disabled },
           controlOptions
         );
       });

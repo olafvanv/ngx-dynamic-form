@@ -5,11 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicFormFieldModel } from 'dist/ngx-dynamic-form/lib/models/dynamic-form-field.model';
 import { DynamicFormField } from 'dist/ngx-dynamic-form/lib/models/interfaces/dynamic-form-field.interface';
-import { DYNAMIC_FORM_FIELD_TYPE_MAP_FN, DynamicFormModule } from 'ngx-dynamic-form';
+import { DYNAMIC_FORM_FIELD_TYPE_MAP_FN, DynamicFormComponent } from 'ngx-dynamic-form';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './pages/search-form/search-form.component';
@@ -25,12 +26,16 @@ import { DYNAMIC_FORM_FIELD_TYPE_SLIDER } from './shared/slider-input/slider-inp
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    DynamicFormModule,
     MatToolbarModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    DynamicFormComponent
   ],
   providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' }
+    },
     {
       provide: DYNAMIC_FORM_FIELD_TYPE_MAP_FN,
       useValue: (model: DynamicFormFieldModel): Type<DynamicFormField> | null => {

@@ -2,7 +2,6 @@
  * Public API Surface of ngx-dynamic-form
  */
 export * from './lib/components/dynamic-form/dynamic-form.component';
-export * from './lib/dynamic-form.module';
 
 export * from './lib/models/dynamic-form-field-base-component.model';
 export * from './lib/models/dynamic-form-field-value.model';

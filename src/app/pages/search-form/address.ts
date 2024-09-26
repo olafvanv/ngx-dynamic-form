@@ -6,7 +6,7 @@ export interface AddressFormModel {
   postcode: FormControl<string | null>;
   street: FormControl<string | null>;
   city: FormControl<string | null>;
-  province: FormControl<string | null>;
+  rating: FormControl<number | null>;
 }
 
 export const ADDRESS_FORM: DynamicFormConfig = [
@@ -15,6 +15,7 @@ export const ADDRESS_FORM: DynamicFormConfig = [
       name: 'postcode',
       label: 'Postcode',
       maxLength: 6,
+      defaultValue: '2518',
       pattern: new RegExp('[0-9]{4}[a-zA-Z]{2}'),
       parseValue: (val: string) => val?.toUpperCase()
     })
@@ -39,7 +40,8 @@ export const ADDRESS_FORM: DynamicFormConfig = [
       label: 'Rating',
       min: 0,
       max: 10,
-      step: 1
+      step: 1,
+      startValue: 8
     })
   ]
 ];

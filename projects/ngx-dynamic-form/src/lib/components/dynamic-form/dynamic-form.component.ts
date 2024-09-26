@@ -21,18 +21,18 @@ export class DynamicFormComponent implements OnInit {
 
   public group!: UntypedFormGroup;
 
-  /**
-   * Get the formConfig as flat array.
-   */
-  public get flatFormConfig(): DynamicFormFieldModel[] {
-    return this.formConfig.reduce((acc, curr) => acc.concat(curr), []);
-  }
-
   constructor(private dynamicFormService: DynamicFormService) {}
 
   ngOnInit() {
     this.group = this.dynamicFormService.createFormGroup(this.formConfig);
     this.ready.emit(this.group);
+  }
+
+  /**
+   * Get the formConfig as flat array.
+   */
+  public get flatFormConfig(): DynamicFormFieldModel[] {
+    return this.formConfig.reduce((acc, curr) => acc.concat(curr), []);
   }
 
   /**

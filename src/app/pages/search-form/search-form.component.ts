@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormComponent, DynamicFormConfig } from 'ngx-dynamic-form';
 import { Subscription, distinctUntilChanged, filter } from 'rxjs';
@@ -20,8 +20,7 @@ export class SearchFormComponent implements AfterViewInit, OnDestroy {
   private subs = new Subscription();
   constructor(
     private appService: AppService,
-    private addressService: AddressService,
-    private cdRef: ChangeDetectorRef
+    private addressService: AddressService
   ) {
     this.subs.add(this.appService.logClicked.subscribe(() => console.log(this.searchForm)));
   }

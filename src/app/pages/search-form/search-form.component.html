@@ -1,10 +1,14 @@
-<mat-card appearance="outlined">
-  <mat-card-title>Search Form</mat-card-title>
-  <mat-card-subtitle>Fill in the postcode to search the address</mat-card-subtitle>
-  <dynamic-form [formConfig]="searchFormConfig"
-    (ready)="onFormReady($event)"></dynamic-form>
-  <button type="submit"
-    mat-raised-button
-    color="primary"
-    (click)="onSubmit()">Submit</button>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Search Form</mat-card-title>
+    <mat-card-subtitle>Fill in the postcode to search the address</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <dynamic-form [formConfig]="searchFormConfig"
+      (ready)="onFormReady($event)"></dynamic-form>
+    <button type="submit"
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()">Submit</button>
+  </mat-card-content>
 </mat-card>
