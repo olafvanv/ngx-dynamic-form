@@ -2,7 +2,7 @@ import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-fi
 import { DynamicFormFieldValueConfig } from '../../models/interfaces/dynamic-form-field-value-config.interface';
 import { isNumber } from '../../utils/methods.util';
 
-export const DYNAMIC_FORM_FIELD_TYPE_INPUT = 'input';
+export const DYNAMIC_FORM_FIELD_INPUT = 'input';
 
 export type HtmlInputType = 'text' | 'number' | 'tel' | 'email' | 'password' | 'date' | 'time' | 'color';
 
@@ -29,7 +29,7 @@ export class DynamicInput extends DynamicFormFieldValueModel<string | number | D
   public autocomplete: 'on' | 'off';
   public prefix: string | null;
 
-  public readonly type = DYNAMIC_FORM_FIELD_TYPE_INPUT;
+  public readonly type = DYNAMIC_FORM_FIELD_INPUT;
 
   constructor(config: DynamicInputConfig) {
     super(config);

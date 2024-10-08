@@ -3,11 +3,13 @@ import { Component, inject, Input, OnDestroy, OnInit, Type, ViewChild, ViewConta
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkbox.component';
-import { DYNAMIC_FORM_FIELD_TYPE_CHECKBOX } from '../../controls/checkbox/dynamic-checkbox.model';
+import { DYNAMIC_FORM_FIELD_CHECKBOX } from '../../controls/checkbox/dynamic-checkbox.model';
 import { DynamicInputComponent } from '../../controls/input/dynamic-input.component';
-import { DYNAMIC_FORM_FIELD_TYPE_INPUT } from '../../controls/input/dynamic-input.model';
+import { DYNAMIC_FORM_FIELD_INPUT } from '../../controls/input/dynamic-input.model';
+import { DynamicReadonlyComponent } from '../../controls/readonly/dynamic-readonly.component';
+import { DYNAMIC_FORM_FIELD_READONLY } from '../../controls/readonly/dynamic-readonly.model';
 import { DynamicTextareaComponent } from '../../controls/textarea/dynamic-textarea.component';
-import { DYNAMIC_FORM_FIELD_TYPE_TEXTAREA } from '../../controls/textarea/dynamic-textarea.model';
+import { DYNAMIC_FORM_FIELD_TEXTAREA } from '../../controls/textarea/dynamic-textarea.model';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 import { DynamicFormField } from '../../models/interfaces/dynamic-form-field.interface';
@@ -49,12 +51,14 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    */
   private getControlComponentType(): Type<DynamicFormField> | null {
     switch (this.model.type) {
-      case DYNAMIC_FORM_FIELD_TYPE_CHECKBOX:
+      case DYNAMIC_FORM_FIELD_CHECKBOX:
         return DynamicCheckboxComponent;
-      case DYNAMIC_FORM_FIELD_TYPE_INPUT:
+      case DYNAMIC_FORM_FIELD_INPUT:
         return DynamicInputComponent;
-      case DYNAMIC_FORM_FIELD_TYPE_TEXTAREA:
+      case DYNAMIC_FORM_FIELD_TEXTAREA:
         return DynamicTextareaComponent;
+      case DYNAMIC_FORM_FIELD_READONLY:
+        return DynamicReadonlyComponent;
       default:
         console.warn(
           `Model of type 'dynamic-${this.model.type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`

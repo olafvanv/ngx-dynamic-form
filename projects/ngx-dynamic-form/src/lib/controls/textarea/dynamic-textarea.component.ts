@@ -9,7 +9,7 @@ import { DynamicTextarea } from './dynamic-textarea.model';
 @Component({
   standalone: true,
   imports: [NgIf, NgFor, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
-  selector: 'app-dynamic-textarea',
+  selector: 'dynamic-textarea',
   templateUrl: './dynamic-textarea.component.html',
   styles: ['mat-form-field {width: 100%;}']
 })

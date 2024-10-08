@@ -1,7 +1,7 @@
 import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 import { DynamicFormFieldValueConfig } from '../../models/interfaces/dynamic-form-field-value-config.interface';
 
-export const DYNAMIC_FORM_FIELD_TYPE_TEXTAREA = 'textarea';
+export const DYNAMIC_FORM_FIELD_TEXTAREA = 'textarea';
 export type DynamicTextareaValue = string | null;
 
 export interface DynamicTextareaConfig extends DynamicFormFieldValueConfig<DynamicTextareaValue> {
@@ -21,7 +21,7 @@ export class DynamicTextarea extends DynamicFormFieldValueModel<DynamicTextareaV
   public resize: boolean;
   public resizeMaxRows: number | null;
 
-  public readonly type = DYNAMIC_FORM_FIELD_TYPE_TEXTAREA;
+  public readonly type = DYNAMIC_FORM_FIELD_TEXTAREA;
 
   constructor(config: DynamicTextareaConfig) {
     super(config);

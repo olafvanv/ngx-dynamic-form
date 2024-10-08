@@ -2,7 +2,7 @@ import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-fi
 import { DynamicFormFieldValueConfig } from '../../models/interfaces/dynamic-form-field-value-config.interface';
 import { isBoolean } from '../../utils/methods.util';
 
-export const DYNAMIC_FORM_FIELD_TYPE_CHECKBOX = 'checkbox';
+export const DYNAMIC_FORM_FIELD_CHECKBOX = 'checkbox';
 
 export interface DynamicCheckboxConfig extends DynamicFormFieldValueConfig<boolean> {
   labelPosition?: 'before' | 'after';
@@ -13,7 +13,7 @@ export class DynamicCheckbox extends DynamicFormFieldValueModel<boolean> {
   public labelPosition: 'before' | 'after';
   public indeterminate: boolean;
 
-  public readonly type: string = DYNAMIC_FORM_FIELD_TYPE_CHECKBOX;
+  public readonly type: string = DYNAMIC_FORM_FIELD_CHECKBOX;
 
   constructor(config: DynamicCheckboxConfig) {
     super(config);

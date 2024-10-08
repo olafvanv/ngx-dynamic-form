@@ -1,6 +1,6 @@
 import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from 'ngx-dynamic-form';
 
-export const DYNAMIC_FORM_FIELD_TYPE_SLIDER = 'slider';
+export const DYNAMIC_FORM_FIELD_SLIDER = 'slider';
 
 export interface SliderInputConfig extends DynamicFormFieldValueConfig<number> {
   min: number;
@@ -15,7 +15,7 @@ export class SliderInput extends DynamicFormFieldValueModel<number> {
   public step: number;
   public startValue: number;
 
-  public readonly type: string = DYNAMIC_FORM_FIELD_TYPE_SLIDER;
+  public readonly type: string = DYNAMIC_FORM_FIELD_SLIDER;
 
   constructor(config: SliderInputConfig) {
     super(config);

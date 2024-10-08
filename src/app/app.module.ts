@@ -8,16 +8,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicFormFieldModel } from 'dist/ngx-dynamic-form/lib/models/dynamic-form-field.model';
-import { DynamicFormField } from 'dist/ngx-dynamic-form/lib/models/interfaces/dynamic-form-field.interface';
-import { DYNAMIC_FORM_FIELD_TYPE_MAP_FN, DynamicFormComponent } from 'ngx-dynamic-form';
+import { DYNAMIC_FORM_FIELD_MAP_FN, DynamicFormComponent, DynamicFormField, DynamicFormFieldModel } from 'ngx-dynamic-form';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NonDynamicFormComponent } from './pages/non-dynamic-form/non-dynamic-form.component';
 import { SearchFormComponent } from './pages/search-form/search-form.component';
 import { SimpleFormComponent } from './pages/simple-form/simple-form.component';
 import { SliderInputComponent } from './shared/slider-input/slider-input.component';
-import { DYNAMIC_FORM_FIELD_TYPE_SLIDER } from './shared/slider-input/slider-input.model';
+import { DYNAMIC_FORM_FIELD_SLIDER } from './shared/slider-input/slider-input.model';
 
 @NgModule({
   declarations: [AppComponent, SimpleFormComponent, SearchFormComponent],
@@ -39,10 +37,10 @@ import { DYNAMIC_FORM_FIELD_TYPE_SLIDER } from './shared/slider-input/slider-inp
       useValue: { appearance: 'outline' }
     },
     {
-      provide: DYNAMIC_FORM_FIELD_TYPE_MAP_FN,
+      provide: DYNAMIC_FORM_FIELD_MAP_FN,
       useValue: (model: DynamicFormFieldModel): Type<DynamicFormField> | null => {
         switch (model.type) {
-          case DYNAMIC_FORM_FIELD_TYPE_SLIDER:
+          case DYNAMIC_FORM_FIELD_SLIDER:
             return SliderInputComponent;
           default:
             return null;

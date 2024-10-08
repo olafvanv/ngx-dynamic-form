@@ -1,5 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { DynamicCheckbox, DynamicFormConfig, DynamicFormValidators, DynamicInput } from 'ngx-dynamic-form';
+import { DynamicReadonly } from 'projects/ngx-dynamic-form/src/lib/controls/readonly/dynamic-readonly.model';
 import { DynamicTextarea } from 'projects/ngx-dynamic-form/src/lib/controls/textarea/dynamic-textarea.model';
 
 export interface PersonFormModel {
@@ -38,6 +39,13 @@ export const PERSOON_FORM: DynamicFormConfig = [
       inputType: 'tel',
       label: 'Telefoonnummer',
       prefix: '+'
+    })
+  ],
+  [
+    new DynamicReadonly({
+      name: 'readonlyfield',
+      label: 'instructie',
+      value: 'Dit is een readonly'
     })
   ],
   [

@@ -32,17 +32,17 @@ export interface SliderInputConfig extends DynamicFormFieldValueConfig<number | 
 The model is what is called when creating the form config (e.g. `new SliderInput(sliderConfig)`).
 The model contains the same properties defined in the configuration interface, and provides them with a value from the config or a default value.
 
-Also, you need to create a field type token which we can later use to map the used model to the control component. In this case we created the token with the name `DYNAMIC_FORM_FIELD_TYPE_SLIDER` with the value `slider`. The value HAS to be unique.
+Also, you need to create a field type token which we can later use to map the used model to the control component. In this case we created the token with the name `DYNAMIC_FORM_FIELD_SLIDER` with the value `slider`. The value HAS to be unique.
 
 ```typescript
-export const DYNAMIC_FORM_FIELD_TYPE_SLIDER = 'slider';
+export const DYNAMIC_FORM_FIELD_SLIDER = 'slider';
 
 export class SliderInput extends DynamicFormFieldValueModel<number | null> {
   public min: number;
   public max: number;
   public step: number;
 
-  readonly type = DYNAMIC_FORM_FIELD_TYPE_SLIDER;
+  readonly type = DYNAMIC_FORM_FIELD_SLIDER;
 
   constructor(config: SliderInputConfig) {
     super(config);
