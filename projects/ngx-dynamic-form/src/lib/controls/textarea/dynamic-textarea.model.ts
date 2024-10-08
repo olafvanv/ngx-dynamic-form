@@ -1,4 +1,4 @@
-import { DynamicFormFieldValueModel } from '../../models/dynamic-form-field-value.model';
+import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 import { DynamicFormFieldValueConfig } from '../../models/interfaces/dynamic-form-field-value-config.interface';
 
 export const DYNAMIC_FORM_FIELD_TYPE_TEXTAREA = 'textarea';

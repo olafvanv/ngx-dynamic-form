@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkbox.component';
@@ -8,8 +8,8 @@ import { DynamicInputComponent } from '../../controls/input/dynamic-input.compon
 import { DYNAMIC_FORM_FIELD_TYPE_INPUT } from '../../controls/input/dynamic-input.model';
 import { DynamicTextareaComponent } from '../../controls/textarea/dynamic-textarea.component';
 import { DYNAMIC_FORM_FIELD_TYPE_TEXTAREA } from '../../controls/textarea/dynamic-textarea.model';
-import { DynamicFormFieldValueModel } from '../../models/dynamic-form-field-value.model';
-import { DynamicFormFieldModel } from '../../models/dynamic-form-field.model';
+import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
+import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 import { DynamicFormField } from '../../models/interfaces/dynamic-form-field.interface';
 import { DynamicFormService } from '../../services/dynamic-form.service';
 
@@ -27,13 +27,12 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   @Input() group!: UntypedFormGroup;
 
   private _subs = new Subscription();
+  private dynamicFormService = inject(DynamicFormService);
 
-  /** Get the instance of a control component using theinjected custom method or local method */
-  get componentType(): Type<DynamicFormField> | null {
-    return this.dynamicFormService.getCustomComponentType(this.model) || this.getControlComponentType();
+  /** Get the instance of a control component using the injected custom method or local method */
+  private get componentType(): Type<DynamicFormField> | null {
+    return this.dynamicFormService.getCustomControlComponentType(this.model) || this.getControlComponentType();
   }
-
-  constructor(private dynamicFormService: DynamicFormService) {}
 
   ngOnInit(): void {
     this.createFormControlComponent();

@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DynamicFormFieldModel } from './dynamic-form-field.model';
-import { DynamicFormFieldValueConfig } from './interfaces/dynamic-form-field-value-config.interface';
+import { DynamicFormFieldValueConfig } from '../interfaces/dynamic-form-field-value-config.interface';
+import { DynamicFormFieldModel } from './dynamic-form-field-model';
 
 export abstract class DynamicFormFieldValueModel<T> extends DynamicFormFieldModel {
   public valueChanges: Observable<T | null>;

@@ -1,5 +1,5 @@
 import { Validators } from '@angular/forms';
-import { DynamicFormValidator } from './interfaces/dynamic-form-validator.interface';
+import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.interface';
 
 export class DynamicFormValidators {
   /**

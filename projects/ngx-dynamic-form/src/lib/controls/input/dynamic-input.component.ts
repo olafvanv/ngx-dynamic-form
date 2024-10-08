@@ -4,7 +4,7 @@ import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
-import { DynamicFormFieldBaseComponent } from '../../models/dynamic-form-field-base-component.model';
+import { DynamicFormFieldBaseComponent } from '../../models/classes/dynamic-form-field-base-component';
 import { DynamicInput } from './dynamic-input.model';
 
 @Component({

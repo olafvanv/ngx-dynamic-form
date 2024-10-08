@@ -1,6 +1,6 @@
 import { Inject, Injectable, InjectionToken, Optional, Type } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControlOptions, UntypedFormControl, UntypedFormGroup, ValidatorFn } from '@angular/forms';
-import { DynamicFormFieldModel } from '../models/dynamic-form-field.model';
+import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldValueConfig } from '../models/interfaces/dynamic-form-field-value-config.interface';
 import { DynamicFormField } from '../models/interfaces/dynamic-form-field.interface';
 import { DynamicFormValidator } from '../models/interfaces/dynamic-form-validator.interface';
@@ -11,7 +11,7 @@ export type DynamicFormFieldTypeMapFn = (field: DynamicFormFieldModel) => Type<D
 
 export const DYNAMIC_FORM_FIELD_TYPE_MAP_FN = new InjectionToken('DYNAMIC_FORM_FIELD_TYPE_MAP_FN');
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class DynamicFormService {
   constructor(
     private fb: FormBuilder,
@@ -23,7 +23,7 @@ export class DynamicFormService {
    * @param model
    * @returns
    */
-  public getCustomComponentType(model: DynamicFormFieldModel): Type<DynamicFormField> | null {
+  public getCustomControlComponentType(model: DynamicFormFieldModel): Type<DynamicFormField> | null {
     return isFunction(this.DYNAMIC_FORM_FIELD_TYPE_MAP_FN) ? this.DYNAMIC_FORM_FIELD_TYPE_MAP_FN(model) : null;
   }
 

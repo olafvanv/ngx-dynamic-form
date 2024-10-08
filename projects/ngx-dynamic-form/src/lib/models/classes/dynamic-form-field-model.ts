@@ -1,7 +1,7 @@
-import { isBoolean } from '../utils/methods.util';
-import { DynamicFormFieldConfig } from './interfaces/dynamic-form-field-config.interface';
-import { DynamicFormValidator } from './interfaces/dynamic-form-validator.interface';
-import { DynamicFormHook } from './types/dynamic-form-hook.type';
+import { isBoolean } from '../../utils/methods.util';
+import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.interface';
+import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.interface';
+import { DynamicFormHook } from '../types/dynamic-form-hook.type';
 
 export abstract class DynamicFormFieldModel {
   public disabled: boolean;
