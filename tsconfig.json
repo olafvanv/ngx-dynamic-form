@@ -17,23 +17,12 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "paths": {
-      "ngx-dynamic-form": [
-        "dist/ngx-dynamic-form"
-      ],
-      "@badeball/cypress-cucumber-preprocessor/*": [
-        "./node_modules/@badeball/cypress-cucumber-preprocessor/dist/subpath-entrypoints/*"
-      ]
+      "ngx-dynamic-form": ["dist/ngx-dynamic-form"]
     },
     "target": "ES2022",
     "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
-    "typeRoots": [
-      "node_modules/@angular/material",
-      "node_modules/@types"
-    ],
+    "lib": ["es2020", "dom"],
+    "typeRoots": ["node_modules/@angular/material", "node_modules/@types"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
