@@ -15,7 +15,7 @@ import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-fi
   imports: [NgFor, DynamicFormFieldComponent, ReactiveFormsModule]
 })
 export class DynamicFormComponent implements OnInit {
-  @Input() formConfig!: DynamicFormConfig;
+  @Input({ required: true }) formConfig!: DynamicFormConfig;
 
   @Output() ready: EventEmitter<UntypedFormGroup> = new EventEmitter();
 
@@ -33,6 +33,10 @@ export class DynamicFormComponent implements OnInit {
    */
   public get flatFormConfig(): DynamicFormFieldModel[] {
     return this.formConfig.reduce((acc, curr) => acc.concat(curr), []);
+  }
+
+  public trackByFn(_index: number, field: DynamicFormFieldModel): string {
+    return field.name;
   }
 
   /**

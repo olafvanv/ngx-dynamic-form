@@ -13,6 +13,7 @@ import { DynamicFormField } from 'dist/ngx-dynamic-form/lib/models/interfaces/dy
 import { DYNAMIC_FORM_FIELD_TYPE_MAP_FN, DynamicFormComponent } from 'ngx-dynamic-form';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NonDynamicFormComponent } from './pages/non-dynamic-form/non-dynamic-form.component';
 import { SearchFormComponent } from './pages/search-form/search-form.component';
 import { SimpleFormComponent } from './pages/simple-form/simple-form.component';
 import { SliderInputComponent } from './shared/slider-input/slider-input.component';
@@ -29,7 +30,8 @@ import { DYNAMIC_FORM_FIELD_TYPE_SLIDER } from './shared/slider-input/slider-inp
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    DynamicFormComponent
+    DynamicFormComponent,
+    NonDynamicFormComponent
   ],
   providers: [
     {

@@ -6,6 +6,8 @@ import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkb
 import { DYNAMIC_FORM_FIELD_TYPE_CHECKBOX } from '../../controls/checkbox/dynamic-checkbox.model';
 import { DynamicInputComponent } from '../../controls/input/dynamic-input.component';
 import { DYNAMIC_FORM_FIELD_TYPE_INPUT } from '../../controls/input/dynamic-input.model';
+import { DynamicTextareaComponent } from '../../controls/textarea/dynamic-textarea.component';
+import { DYNAMIC_FORM_FIELD_TYPE_TEXTAREA } from '../../controls/textarea/dynamic-textarea.model';
 import { DynamicFormFieldValueModel } from '../../models/dynamic-form-field-value.model';
 import { DynamicFormFieldModel } from '../../models/dynamic-form-field.model';
 import { DynamicFormField } from '../../models/interfaces/dynamic-form-field.interface';
@@ -52,7 +54,12 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
         return DynamicCheckboxComponent;
       case DYNAMIC_FORM_FIELD_TYPE_INPUT:
         return DynamicInputComponent;
+      case DYNAMIC_FORM_FIELD_TYPE_TEXTAREA:
+        return DynamicTextareaComponent;
       default:
+        console.warn(
+          `Model of type 'dynamic-${this.model.type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`
+        );
         return null;
     }
   }

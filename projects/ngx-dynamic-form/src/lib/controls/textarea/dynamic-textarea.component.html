@@ -2,26 +2,17 @@
   color="primary">
   <mat-label *ngIf="model.label">{{model.label}}</mat-label>
 
-  <span matTextPrefix
-    *ngIf="model.prefix">{{model.prefix}}</span>
-
-  <input matInput
-    [type]="model.inputType"
+  <textarea matInput
+    [cdkTextareaAutosize]="model.resize"
+    [cdkAutosizeMinRows]="model.rows"
+    [cdkAutosizeMaxRows]="model.resizeMaxRows"
     [id]="id"
     [formControlName]="model.name"
-    [attr.min]="model.min"
-    [attr.max]="model.max"
     [attr.minLength]="model.minLength"
     [attr.maxLength]="model.maxLength"
-    [pattern]="model.pattern"
-    [autocomplete]="model.autocomplete" />
-
-  <button matSuffix
-    mat-icon-button
-    *ngIf="showClear"
-    (click)="resetControl()">
-    <i class="material-icons">clear</i>
-  </button>
+    [rows]="model.rows"
+    [autocomplete]="model.autocomplete">
+  </textarea>
 
   <mat-hint *ngIf="model.hint"
     align="start">{{model.hint}}</mat-hint>

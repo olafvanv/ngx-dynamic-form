@@ -2,7 +2,7 @@
   class="dynamic-form">
   <div *ngFor="let row of formConfig"
     class="dynamic-form-row">
-    <dynamic-form-field *ngFor="let field of row"
+    <dynamic-form-field *ngFor="let field of row; trackBy: trackByFn"
       [group]="group"
       [model]="field">
     </dynamic-form-field>

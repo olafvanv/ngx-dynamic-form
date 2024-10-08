@@ -1,5 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { DynamicCheckbox, DynamicFormConfig, DynamicFormValidators, DynamicInput } from 'ngx-dynamic-form';
+import { DynamicTextarea } from 'projects/ngx-dynamic-form/src/lib/controls/textarea/dynamic-textarea.model';
 
 export interface PersonFormModel {
   firstname: FormControl<string | null>;
@@ -45,6 +46,14 @@ export const PERSOON_FORM: DynamicFormConfig = [
       label: 'Ik ben een mannetje',
       labelPosition: 'before',
       validators: [DynamicFormValidators.requiredTrue()]
+    })
+  ],
+  [
+    new DynamicTextarea({
+      name: 'verhaal',
+      label: 'Verhaal',
+      maxLength: 140,
+      rows: 5
     })
   ]
 ];
