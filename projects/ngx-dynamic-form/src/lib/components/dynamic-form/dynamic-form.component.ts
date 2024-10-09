@@ -1,5 +1,5 @@
-import { NgFor } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgClass, NgFor } from '@angular/common';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
@@ -12,7 +12,7 @@ import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-fi
   templateUrl: 'dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss'],
   standalone: true,
-  imports: [NgFor, DynamicFormFieldComponent, ReactiveFormsModule],
+  imports: [NgFor, NgClass, DynamicFormFieldComponent, ReactiveFormsModule],
   providers: [DynamicFormService]
 })
 export class DynamicFormComponent implements OnInit {
@@ -20,20 +20,20 @@ export class DynamicFormComponent implements OnInit {
 
   @Output() ready: EventEmitter<UntypedFormGroup> = new EventEmitter();
 
+  private dynamicFormService = inject(DynamicFormService);
+
   public group!: UntypedFormGroup;
-
-  constructor(private dynamicFormService: DynamicFormService) {}
-
-  ngOnInit() {
-    this.group = this.dynamicFormService.createFormGroup(this.formConfig);
-    this.ready.emit(this.group);
-  }
 
   /**
    * Get the formConfig as flat array.
    */
   public get flatFormConfig(): DynamicFormFieldModel[] {
     return this.formConfig.reduce((acc, curr) => acc.concat(curr), []);
+  }
+
+  ngOnInit() {
+    this.group = this.dynamicFormService.createFormGroup(this.formConfig);
+    this.ready.emit(this.group);
   }
 
   public trackByFn(_index: number, field: DynamicFormFieldModel): string {

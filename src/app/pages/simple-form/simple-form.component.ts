@@ -33,5 +33,7 @@ export class SimpleFormComponent implements OnDestroy {
     console.log(form);
   }
 
-  submit() {}
+  submit() {
+    console.log(this.personForm.value);
+  }
 }

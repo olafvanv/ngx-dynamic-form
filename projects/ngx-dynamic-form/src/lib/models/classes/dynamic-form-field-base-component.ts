@@ -32,15 +32,15 @@ export abstract class DynamicFormFieldBaseComponent implements DynamicFormField 
     return this.control.invalid;
   }
 
-  onBlur(ev: any) {
+  public onBlur(ev: any) {
     this.blur.emit(ev);
   }
 
-  onChange(ev: any) {
+  public onChange(ev: any) {
     this.change.emit(ev);
   }
 
-  onFocus(ev: any) {
+  public onFocus(ev: any) {
     this.focus.emit(ev);
   }
 

@@ -3,6 +3,8 @@
   <div *ngFor="let row of formConfig"
     class="dynamic-form-row">
     <dynamic-form-field *ngFor="let field of row; trackBy: trackByFn"
+      class="dynamic-form-field"
+      [ngClass]="field.type"
       [group]="group"
       [model]="field">
     </dynamic-form-field>

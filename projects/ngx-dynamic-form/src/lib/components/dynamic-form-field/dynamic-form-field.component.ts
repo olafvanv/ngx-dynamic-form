@@ -2,6 +2,8 @@ import { NgClass } from '@angular/common';
 import { Component, inject, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { DynamicButtonComponent } from '../../controls/button/dynamic-button.component';
+import { DYNAMIC_FORM_FIELD_BUTTON } from '../../controls/button/dynamic-button.model';
 import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkbox.component';
 import { DYNAMIC_FORM_FIELD_CHECKBOX } from '../../controls/checkbox/dynamic-checkbox.model';
 import { DynamicInputComponent } from '../../controls/input/dynamic-input.component';
@@ -63,6 +65,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
         return DynamicReadonlyComponent;
       case DYNAMIC_FORM_FIELD_SELECT:
         return DynamicSelectComponent;
+      case DYNAMIC_FORM_FIELD_BUTTON:
+        return DynamicButtonComponent;
       default:
         console.warn(
           `Model of type 'dynamic-${this.model.type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`

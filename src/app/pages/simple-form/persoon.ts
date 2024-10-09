@@ -1,8 +1,14 @@
 import { FormControl } from '@angular/forms';
-import { DynamicCheckbox, DynamicFormConfig, DynamicFormValidators, DynamicInput } from 'ngx-dynamic-form';
-import { DynamicReadonly } from 'projects/ngx-dynamic-form/src/lib/controls/readonly/dynamic-readonly.model';
-import { DynamicSelect } from 'projects/ngx-dynamic-form/src/lib/controls/select/dynamic-select.model';
-import { DynamicTextarea } from 'projects/ngx-dynamic-form/src/lib/controls/textarea/dynamic-textarea.model';
+import {
+  DynamicButton,
+  DynamicCheckbox,
+  DynamicFormConfig,
+  DynamicFormValidators,
+  DynamicInput,
+  DynamicReadonly,
+  DynamicSelect,
+  DynamicTextarea
+} from 'ngx-dynamic-form';
 
 export interface PersonFormModel {
   firstname: FormControl<string | null>;
@@ -32,6 +38,13 @@ export const PERSOON_FORM: DynamicFormConfig = [
       name: 'email',
       inputType: 'email',
       label: 'E-mailadres'
+    }),
+    new DynamicButton({
+      name: 'button',
+      text: 'Info',
+      onClick: () => {
+        alert('info');
+      }
     })
   ],
   [
