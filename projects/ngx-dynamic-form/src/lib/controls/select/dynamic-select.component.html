@@ -1,0 +1,30 @@
+<mat-form-field [formGroup]="group"
+  color="primary">
+  <mat-label>{{model.label}}</mat-label>
+
+  <ng-container *ngIf="!model.native else nativeSelect">
+    <mat-select [formControlName]="model.name">
+      <mat-option *ngFor="let option of model.options$ | async"
+        [value]="option.value">
+        {{option.title}}
+      </mat-option>
+    </mat-select>
+  </ng-container>
+
+  <ng-template #nativeSelect>
+    <select matNativeControl>
+      <option *ngFor="let option of model.options$ | async"
+        [value]="option.value">
+        {{option.title}}
+      </option>
+    </select>
+  </ng-template>
+
+  <mat-hint *ngIf="model.hint"
+    align="start">{{model.hint}}</mat-hint>
+
+  <ng-container *ngFor="let validator of model.validators"
+    ngProjectAs="mat-error">
+    <mat-error *ngIf="hasError(validator.name)">{{validator.message}}</mat-error>
+  </ng-container>
+</mat-form-field>

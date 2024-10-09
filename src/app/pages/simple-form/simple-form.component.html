@@ -5,5 +5,10 @@
   <mat-card-content>
     <dynamic-form [formConfig]="personFormConfig"
       (ready)="onPersonReady($event)"></dynamic-form>
+
+    <button mat-raised-button
+      color="primary"
+      (click)="submit()"
+      [disabled]="!personForm.valid">Submit</button>
   </mat-card-content>
 </mat-card>

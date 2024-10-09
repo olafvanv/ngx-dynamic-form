@@ -8,6 +8,8 @@ import { DynamicInputComponent } from '../../controls/input/dynamic-input.compon
 import { DYNAMIC_FORM_FIELD_INPUT } from '../../controls/input/dynamic-input.model';
 import { DynamicReadonlyComponent } from '../../controls/readonly/dynamic-readonly.component';
 import { DYNAMIC_FORM_FIELD_READONLY } from '../../controls/readonly/dynamic-readonly.model';
+import { DynamicSelectComponent } from '../../controls/select/dynamic-select.component';
+import { DYNAMIC_FORM_FIELD_SELECT } from '../../controls/select/dynamic-select.model';
 import { DynamicTextareaComponent } from '../../controls/textarea/dynamic-textarea.component';
 import { DYNAMIC_FORM_FIELD_TEXTAREA } from '../../controls/textarea/dynamic-textarea.model';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
@@ -59,6 +61,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
         return DynamicTextareaComponent;
       case DYNAMIC_FORM_FIELD_READONLY:
         return DynamicReadonlyComponent;
+      case DYNAMIC_FORM_FIELD_SELECT:
+        return DynamicSelectComponent;
       default:
         console.warn(
           `Model of type 'dynamic-${this.model.type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`

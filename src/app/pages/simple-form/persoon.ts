@@ -1,6 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { DynamicCheckbox, DynamicFormConfig, DynamicFormValidators, DynamicInput } from 'ngx-dynamic-form';
 import { DynamicReadonly } from 'projects/ngx-dynamic-form/src/lib/controls/readonly/dynamic-readonly.model';
+import { DynamicSelect } from 'projects/ngx-dynamic-form/src/lib/controls/select/dynamic-select.model';
 import { DynamicTextarea } from 'projects/ngx-dynamic-form/src/lib/controls/textarea/dynamic-textarea.model';
 
 export interface PersonFormModel {
@@ -42,6 +43,24 @@ export const PERSOON_FORM: DynamicFormConfig = [
     })
   ],
   [
+    new DynamicSelect<string>({
+      name: 'gender',
+      label: 'Gender',
+      native: false,
+      options: [
+        {
+          title: 'Man',
+          value: 'M'
+        },
+        {
+          title: 'Vrouw',
+          value: 'V'
+        }
+      ],
+      validators: [DynamicFormValidators.required()]
+    })
+  ],
+  [
     new DynamicReadonly({
       name: 'readonlyfield',
       label: 'instructie',
@@ -49,19 +68,19 @@ export const PERSOON_FORM: DynamicFormConfig = [
     })
   ],
   [
-    new DynamicCheckbox({
-      name: 'sex',
-      label: 'Ik ben een mannetje',
-      labelPosition: 'before',
-      validators: [DynamicFormValidators.requiredTrue()]
+    new DynamicTextarea({
+      name: 'verhaal',
+      label: 'Biografie',
+      maxLength: 140,
+      rows: 5
     })
   ],
   [
-    new DynamicTextarea({
-      name: 'verhaal',
-      label: 'Verhaal',
-      maxLength: 140,
-      rows: 5
+    new DynamicCheckbox({
+      name: 'agree',
+      label: 'Ik ga akkoord',
+      labelPosition: 'before',
+      validators: [DynamicFormValidators.requiredTrue()]
     })
   ]
 ];
