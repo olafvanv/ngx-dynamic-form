@@ -9,6 +9,7 @@ import {
   DynamicSelect,
   DynamicTextarea
 } from 'ngx-dynamic-form';
+import { SliderInput } from '../../shared/slider-input/slider-input.model';
 
 export interface PersonFormModel {
   firstname: FormControl<string | null>;
@@ -31,6 +32,14 @@ export const PERSOON_FORM: DynamicFormConfig = [
       name: 'name',
       inputType: 'text',
       label: 'Achternaam'
+    })
+  ],
+  [
+    new SliderInput({
+      name: 'age',
+      label: 'Age',
+      max: 100,
+      validators: [DynamicFormValidators.min(18, 'Minimale leeftijd is 18 jaar')]
     })
   ],
   [
