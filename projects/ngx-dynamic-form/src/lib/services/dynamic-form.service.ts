@@ -1,5 +1,5 @@
 import { Inject, Injectable, Optional, Type } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControlOptions, UntypedFormControl, UntypedFormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControlOptions, UntypedFormControl, UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldValueConfig } from '../models/interfaces/dynamic-form-field-value-config.interface';
 import { DynamicFormField } from '../models/interfaces/dynamic-form-field.interface';
@@ -12,10 +12,7 @@ export type DynamicFormFieldTypeMapFn = (field: DynamicFormFieldModel) => Type<D
 
 @Injectable()
 export class DynamicFormService {
-  constructor(
-    private fb: FormBuilder,
-    @Inject(DYNAMIC_FORM_FIELD_MAP_FN) @Optional() private DYNAMIC_FORM_FIELD_MAP_FN: DynamicFormFieldTypeMapFn
-  ) {}
+  constructor(@Inject(DYNAMIC_FORM_FIELD_MAP_FN) @Optional() private DYNAMIC_FORM_FIELD_MAP_FN: DynamicFormFieldTypeMapFn) {}
 
   /**
    * Check if there is a function provided to use custom form controls

@@ -3,7 +3,8 @@
   <mat-label>{{model.label}}</mat-label>
 
   <ng-container *ngIf="!model.native else nativeSelect">
-    <mat-select [formControlName]="model.name">
+    <mat-select [formControlName]="model.name"
+      [multiple]="model.multiple">
       <mat-option *ngFor="let option of model.options$ | async"
         [value]="option.value">
         {{option.title}}
