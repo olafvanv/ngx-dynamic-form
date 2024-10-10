@@ -1,6 +1,7 @@
 <ng-container *ngIf="model.raised else stroked">
   <button mat-raised-button
     color="primary"
+    [id]="id"
     (click)="onClick()">
     <span>{{model.text}}</span>
   </button>
@@ -9,6 +10,7 @@
 <ng-template #stroked>
   <button mat-stroked-button
     color="primary"
+    [id]="id"
     (click)="onClick()">
     <span>{{model.text}}</span>
   </button>

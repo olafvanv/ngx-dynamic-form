@@ -3,17 +3,20 @@ import { DynamicFormValidator } from './dynamic-form-validator.interface';
 
 export interface DynamicFormFieldConfig {
   /**
-   * Whether the control has to be disabled
+   * Whether the control has to be disabled.
+   * Default value is false.
    * @optional
    */
   disabled?: boolean;
   /**
-   * Whether the control should be hidden
+   * Whether the control should be hidden.
+   * Default value is false
    * @optional
    */
   hidden?: boolean;
   /**
-   * Added as id attribute to the FormControl
+   * Adds an id attribute to the FormControl.
+   * When not provided, the required 'name' property is used as id
    * @optional
    */
   id?: string;
@@ -37,6 +40,11 @@ export interface DynamicFormFieldConfig {
    * @optional
    */
   validators?: DynamicFormValidator[];
+  /**
+   * Array of Dynamic Form Relations
+   * @optional
+   */
+  relations?: any[];
   /**
    * Event name for the control to update on.
    * Possible values: 'update', 'blur' or 'submit'.

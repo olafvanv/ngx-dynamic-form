@@ -11,7 +11,7 @@ After that follow the following steps.
 ### Create a model
 
 First step is to create a model and interface for the custom control containing the control specific properties for the configuration definitions, extending the base interface/model from the library.
-Also, you need to create an (unique) name for the type of the
+Also, you need to create an (unique) name for the type of the model/.
 
 For example if you're creating a control with a slider to select a value between 0 and 10:
 

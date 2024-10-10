@@ -12,6 +12,7 @@ export abstract class DynamicFormFieldModel {
   public hint: string | null;
   public validators: DynamicFormValidator[];
   public updateOn: DynamicFormHook;
+  public relations = [];
   public parseValue: ((val: any) => any) | null;
   public reverseParseValue: ((val: any) => any) | null;
 
@@ -20,7 +21,7 @@ export abstract class DynamicFormFieldModel {
   constructor(config: DynamicFormFieldConfig) {
     this.disabled = isBoolean(config.disabled) ? config.disabled : false;
     this.hidden = isBoolean(config.hidden) ? config.hidden : false;
-    this.id = config.id ?? null;
+    this.id = config.id ?? config.name;
     this.label = config.label ?? null;
     this.name = config.name;
     this.hint = config.hint ?? null;

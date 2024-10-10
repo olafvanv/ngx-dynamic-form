@@ -20,11 +20,11 @@ import { DynamicFormField } from '../../models/interfaces/dynamic-form-field.int
 import { DynamicFormService } from '../../services/dynamic-form.service';
 
 @Component({
+  standalone: true,
+  imports: [NgClass, ReactiveFormsModule],
   selector: 'dynamic-form-field',
   templateUrl: 'dynamic-form-field.component.html',
-  styleUrls: ['./dynamic-form-field.component.scss'],
-  standalone: true,
-  imports: [NgClass, ReactiveFormsModule]
+  styleUrls: ['./dynamic-form-field.component.scss']
 })
 export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   @ViewChild('componentViewContainer', { read: ViewContainerRef, static: true }) componentViewContainer!: ViewContainerRef;
