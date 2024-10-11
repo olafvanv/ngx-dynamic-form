@@ -23,8 +23,7 @@ import { DynamicFormService } from '../../services/dynamic-form.service';
   standalone: true,
   imports: [NgClass, ReactiveFormsModule],
   selector: 'dynamic-form-field',
-  templateUrl: 'dynamic-form-field.component.html',
-  styleUrls: ['./dynamic-form-field.component.scss']
+  templateUrl: 'dynamic-form-field.component.html'
 })
 export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   @ViewChild('componentViewContainer', { read: ViewContainerRef, static: true }) componentViewContainer!: ViewContainerRef;
