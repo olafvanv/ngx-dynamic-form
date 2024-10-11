@@ -4,7 +4,7 @@
     class="dynamic-form-row">
     <dynamic-form-field *ngFor="let field of row; trackBy: trackByFn"
       class="dynamic-form-field"
-      [ngClass]="field.type"
+      [ngClass]="[field.type, 'form-field-width-'+field.width]"
       [group]="group"
       [model]="field">
     </dynamic-form-field>

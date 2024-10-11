@@ -21,6 +21,11 @@ export interface DynamicFormFieldConfig {
    */
   id?: string;
   /**
+   * Sets the width of the field, based on percentages. Default value is 100.
+   * @optional
+   */
+  width?: number;
+  /**
    * Used as mat-label when provided
    * @optional
    */

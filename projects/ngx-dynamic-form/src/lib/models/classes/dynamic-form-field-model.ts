@@ -7,6 +7,7 @@ export abstract class DynamicFormFieldModel {
   public disabled: boolean;
   public hidden: boolean;
   public id: string | null;
+  public width: number;
   public label: string | null;
   public name: string;
   public hint: string | null;
@@ -22,6 +23,7 @@ export abstract class DynamicFormFieldModel {
     this.disabled = isBoolean(config.disabled) ? config.disabled : false;
     this.hidden = isBoolean(config.hidden) ? config.hidden : false;
     this.id = config.id ?? config.name;
+    this.width = config.width ?? 100;
     this.label = config.label ?? null;
     this.name = config.name;
     this.hint = config.hint ?? null;

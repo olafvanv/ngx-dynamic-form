@@ -6,7 +6,7 @@
     display: flex;
 
     .dynamic-form-field {
-      flex: 1;
+      width: 100%;
       margin: 4px 0;
 
       &:not(:last-of-type) {
@@ -15,6 +15,12 @@
 
       &.button {
         flex: 0;
+      }
+    }
+
+    @for $i from 1 through 100 {
+      .form-field-width-#{$i} {
+        width: 1% * $i;
       }
     }
   }
