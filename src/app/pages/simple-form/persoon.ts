@@ -63,7 +63,18 @@ export const PERSOON_FORM: DynamicFormConfig = [
       name: 'telefoon',
       inputType: 'tel',
       label: 'Telefoonnummer',
-      prefix: '+'
+      prefix: '+',
+      relations: [
+        {
+          actionType: RelationActionType.DISABLED,
+          conditions: [
+            {
+              fieldName: 'age',
+              value: (val: number) => !!val && val < 18
+            }
+          ]
+        }
+      ]
     })
   ],
   [
@@ -104,11 +115,11 @@ export const PERSOON_FORM: DynamicFormConfig = [
           conditions: [
             {
               fieldName: 'firstname',
-              value: 'Olaf'
+              value: (val: string) => val === 'Olaf'
             },
             {
               fieldName: 'gender',
-              value: 'M'
+              value: (val: string) => val === 'M'
             }
           ]
         }

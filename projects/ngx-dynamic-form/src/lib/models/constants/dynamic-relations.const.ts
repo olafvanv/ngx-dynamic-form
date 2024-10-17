@@ -17,7 +17,7 @@ export enum RelationOperator {
 
 export interface RelationCondition {
   fieldName: string;
-  value: any;
+  value: (val: any) => boolean;
 }
 
 export interface DynamicFormFieldRelation {
@@ -26,13 +26,13 @@ export interface DynamicFormFieldRelation {
   conditions: RelationCondition[];
 }
 
-export interface RelationAction {
+export interface DynamicRelationAction {
   type: RelationActionType;
   reversedType?: string;
   change(hasMatch: boolean, model: DynamicFormFieldModel, control: UntypedFormControl): void;
 }
 
-const DISABLE_ACTION: RelationAction = {
+const DISABLE_ACTION: DynamicRelationAction = {
   type: RelationActionType.DISABLED,
   reversedType: RelationActionType.ENABLED,
   change(hasMatch, model) {
@@ -40,7 +40,7 @@ const DISABLE_ACTION: RelationAction = {
   }
 };
 
-const HIDDEN_ACTION: RelationAction = {
+const HIDDEN_ACTION: DynamicRelationAction = {
   type: RelationActionType.HIDDEN,
   reversedType: RelationActionType.VISIBLE,
   change(hasMatch, model) {
@@ -48,7 +48,7 @@ const HIDDEN_ACTION: RelationAction = {
   }
 };
 
-const REQUIRED_ACTION: RelationAction = {
+const REQUIRED_ACTION: DynamicRelationAction = {
   type: RelationActionType.REQUIRED,
   reversedType: RelationActionType.OPTIONAL,
   change(hasMatch, model, control) {
@@ -60,4 +60,4 @@ const REQUIRED_ACTION: RelationAction = {
   }
 };
 
-export const RELATION_ACTIONS: RelationAction[] = [DISABLE_ACTION, HIDDEN_ACTION];
+export const RELATION_ACTIONS: DynamicRelationAction[] = [DISABLE_ACTION, HIDDEN_ACTION];
