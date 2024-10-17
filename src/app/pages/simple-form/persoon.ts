@@ -7,7 +7,9 @@ import {
   DynamicInput,
   DynamicReadonly,
   DynamicSelect,
-  DynamicTextarea
+  DynamicTextarea,
+  RelationActionType,
+  RelationOperator
 } from 'ngx-dynamic-form';
 import { SliderInput } from '../../shared/slider-input/slider-input.model';
 
@@ -94,7 +96,23 @@ export const PERSOON_FORM: DynamicFormConfig = [
       name: 'verhaal',
       label: 'Biografie',
       maxLength: 140,
-      rows: 5
+      rows: 5,
+      relations: [
+        {
+          actionType: RelationActionType.DISABLED,
+          operator: RelationOperator.OR,
+          conditions: [
+            {
+              fieldName: 'firstname',
+              value: 'Olaf'
+            },
+            {
+              fieldName: 'gender',
+              value: 'M'
+            }
+          ]
+        }
+      ]
     })
   ],
   [

@@ -3,6 +3,8 @@ export * from './classes/dynamic-form-field-model';
 export * from './classes/dynamic-form-field-value-model';
 export * from './classes/dynamic-form-validators';
 
+export * from './constants/dynamic-relations.const';
+
 export * from './interfaces/dynamic-form-field-value-config.interface';
 export * from './interfaces/dynamic-form-field.interface';
 

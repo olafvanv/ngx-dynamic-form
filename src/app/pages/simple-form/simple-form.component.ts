@@ -30,7 +30,6 @@ export class SimpleFormComponent implements OnDestroy {
 
   onPersonReady(form: FormGroup<PersonFormModel>) {
     this.personForm = form;
-    console.log(form);
   }
 
   submit() {
