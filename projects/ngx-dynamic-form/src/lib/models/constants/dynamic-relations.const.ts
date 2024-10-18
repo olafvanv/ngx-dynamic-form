@@ -4,7 +4,7 @@ import { DynamicFormFieldModel } from '../classes/dynamic-form-field-model';
 export enum RelationActionType {
   DISABLED = 'DISABLED',
   ENABLED = 'ENABLED',
-  HIDDEN = 'HIDE',
+  HIDDEN = 'HIDDEN',
   VISIBLE = 'VISIBLE',
   REQUIRED = 'REQUIRED',
   OPTIONAL = 'OPTIONAL'
@@ -51,13 +51,7 @@ const HIDDEN_ACTION: DynamicRelationAction = {
 const REQUIRED_ACTION: DynamicRelationAction = {
   type: RelationActionType.REQUIRED,
   reversedType: RelationActionType.OPTIONAL,
-  change(hasMatch, model, control) {
-    const validators = model.validators ? [...model.validators] : [];
-
-    // if(hasMatch) {
-    //   validators.push
-    // }
-  }
+  change(hasMatch, model, control) {}
 };
 
 export const RELATION_ACTIONS: DynamicRelationAction[] = [DISABLE_ACTION, HIDDEN_ACTION];

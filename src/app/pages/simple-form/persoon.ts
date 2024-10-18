@@ -63,25 +63,13 @@ export const PERSOON_FORM: DynamicFormConfig = [
       name: 'telefoon',
       inputType: 'tel',
       label: 'Telefoonnummer',
-      prefix: '+',
-      relations: [
-        {
-          actionType: RelationActionType.DISABLED,
-          conditions: [
-            {
-              fieldName: 'age',
-              value: (val: number) => !!val && val < 18
-            }
-          ]
-        }
-      ]
+      prefix: '+'
     })
   ],
   [
     new DynamicSelect<string>({
       name: 'gender',
       label: 'Gender',
-      native: false,
       options: [
         {
           title: 'Man',
@@ -93,6 +81,24 @@ export const PERSOON_FORM: DynamicFormConfig = [
         }
       ],
       validators: [DynamicFormValidators.required()]
+    })
+  ],
+  [
+    new DynamicInput({
+      name: 'parentName',
+      label: 'Name of parent',
+      hidden: true,
+      relations: [
+        {
+          actionType: RelationActionType.VISIBLE,
+          conditions: [
+            {
+              fieldName: 'age',
+              value: (age: number) => !!age && age < 18
+            }
+          ]
+        }
+      ]
     })
   ],
   [

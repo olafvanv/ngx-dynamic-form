@@ -1,16 +1,5 @@
 import { NgClass } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  inject,
-  Input,
-  OnDestroy,
-  OnInit,
-  Type,
-  ViewChild,
-  ViewContainerRef
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicButtonComponent } from '../../controls/button/dynamic-button.component';
@@ -50,7 +39,6 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
 
   private dynamicFormService = inject(DynamicFormService);
   private relationService = inject(DynamicFormRelationService);
-  private cdRef = inject(ChangeDetectorRef);
 
   /** Get the instance of a control component using the injected custom method or local method */
   private get componentType(): Type<DynamicFormField> | null {

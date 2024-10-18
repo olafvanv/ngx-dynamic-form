@@ -18,7 +18,7 @@ export class DynamicFormValidators {
    */
   static requiredTrue(msg?: string): DynamicFormValidator {
     const message: string = msg ?? 'Dit veld is verplicht';
-    return { name: 'required', validator: Validators.requiredTrue, message };
+    return { name: 'requiredTrue', validator: Validators.requiredTrue, message };
   }
 
   /**
