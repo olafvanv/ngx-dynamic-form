@@ -28,7 +28,7 @@ export const PERSOON_FORM: DynamicFormConfig = [
       inputType: 'text',
       label: 'Voornaam',
       maxLength: 40,
-      validators: [DynamicFormValidators.required()]
+      validators: []
     }),
     new DynamicInput({
       name: 'name',
@@ -80,7 +80,20 @@ export const PERSOON_FORM: DynamicFormConfig = [
           value: 'V'
         }
       ],
-      validators: [DynamicFormValidators.required()]
+      validators: [],
+      relations: [
+        {
+          actionType: RelationActionType.REQUIRED,
+          conditions: [
+            {
+              fieldName: 'agree',
+              value: (val: boolean) => {
+                return val === true;
+              }
+            }
+          ]
+        }
+      ]
     })
   ],
   [
@@ -89,6 +102,15 @@ export const PERSOON_FORM: DynamicFormConfig = [
       label: 'Name of parent',
       hidden: true,
       relations: [
+        {
+          actionType: RelationActionType.REQUIRED,
+          conditions: [
+            {
+              fieldName: 'age',
+              value: (age: number) => !!age && age < 18
+            }
+          ]
+        },
         {
           actionType: RelationActionType.VISIBLE,
           conditions: [
@@ -136,8 +158,7 @@ export const PERSOON_FORM: DynamicFormConfig = [
     new DynamicCheckbox({
       name: 'agree',
       label: 'Ik ga akkoord',
-      labelPosition: 'before',
-      validators: [DynamicFormValidators.requiredTrue()]
+      labelPosition: 'before'
     })
   ]
 ];

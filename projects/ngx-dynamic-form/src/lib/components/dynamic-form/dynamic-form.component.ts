@@ -1,5 +1,5 @@
 import { NgClass, NgFor } from '@angular/common';
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
@@ -8,12 +8,13 @@ import { DynamicFormService } from '../../services/dynamic-form.service';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 
 @Component({
+  standalone: true,
+  imports: [NgFor, NgClass, DynamicFormFieldComponent, ReactiveFormsModule],
   selector: 'dynamic-form',
   templateUrl: 'dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss'],
-  standalone: true,
-  imports: [NgFor, NgClass, DynamicFormFieldComponent, ReactiveFormsModule],
-  providers: [DynamicFormService]
+  providers: [DynamicFormService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFormComponent implements OnInit {
   @Input({ required: true }) formConfig!: DynamicFormConfig;

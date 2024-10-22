@@ -18,6 +18,8 @@ export class DynamicCheckbox extends DynamicFormFieldValueModel<boolean> {
   constructor(config: DynamicCheckboxConfig) {
     super(config);
 
+    this.value = config.value ?? false;
+
     this.labelPosition = config.labelPosition ?? 'after';
     this.indeterminate = isBoolean(config.indeterminate) ? config.indeterminate : false;
   }

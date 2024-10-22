@@ -14,7 +14,6 @@ export abstract class DynamicFormFieldValueModel<T> extends DynamicFormFieldMode
 
     this._defaultValue = config.defaultValue ?? null;
     this._value = config.value ?? null;
-
     this._value$ = new BehaviorSubject(this._value);
     this.valueChanges = this._value$.asObservable();
   }

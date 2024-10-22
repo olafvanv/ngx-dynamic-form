@@ -18,7 +18,7 @@ import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-m
 import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 import { DynamicFormField } from '../../models/interfaces/dynamic-form-field.interface';
 import { RelatedFormControls } from '../../models/types/related-form-controls.type';
-import { DynamicFormRelationService } from '../../services/dynamic-form-relation.service';
+import { DynamicFormRelationsService } from '../../services/dynamic-form-relations.service';
 import { DynamicFormService } from '../../services/dynamic-form.service';
 
 @Component({
@@ -38,7 +38,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   private _subs = new Subscription();
 
   private dynamicFormService = inject(DynamicFormService);
-  private relationService = inject(DynamicFormRelationService);
+  private relationService = inject(DynamicFormRelationsService);
+  // private validationService = inject()
 
   /** Get the instance of a control component using the injected custom method or local method */
   private get componentType(): Type<DynamicFormField> | null {
@@ -109,6 +110,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
     // Subscribe to the disabled change inside the model to change the disabled state of the FormControl
     this._subs.add(model.disabledChange.subscribe((disabled) => this.onDisabledChange(disabled)));
 
+    // Setup subscriptions for any possible relation
     if (this.model.relations?.length) {
       this.setUpRelations();
     }
@@ -120,8 +122,9 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   private setUpRelations(): void {
     // Array of all FormControls the current model has a relation to
     const relatedFormControls: RelatedFormControls = this.relationService.findRelatedFormField(this.model, this.group);
-    const subs = this.relationService.getRelationSubscriptions(relatedFormControls, this.model);
+    const subs = this.relationService.getRelationSubscriptions(relatedFormControls, this.model, this._control);
 
+    // Add all relations as subscription to the main Subscription object
     subs.forEach((sub) => this._subs.add(sub));
   }
 

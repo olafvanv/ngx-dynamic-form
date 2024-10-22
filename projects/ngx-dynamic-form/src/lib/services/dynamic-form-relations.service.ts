@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { FormGroup, UntypedFormControl } from '@angular/forms';
+import { inject, Injectable, Injector } from '@angular/core';
+import { FormControl, FormGroup, UntypedFormControl } from '@angular/forms';
 import { distinctUntilChanged, startWith, Subscription } from 'rxjs';
 import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
 import {
@@ -14,7 +14,8 @@ import { RelatedFormControls } from '../models/types/related-form-controls.type'
 @Injectable({
   providedIn: 'root'
 })
-export class DynamicFormRelationService {
+export class DynamicFormRelationsService {
+  private _injector = inject(Injector);
   /**
    * Get an object with all FormField the provided model has a relation with
    * @param model
@@ -41,13 +42,17 @@ export class DynamicFormRelationService {
     return model.relations!.reduce(relationsReducer, {});
   }
 
-  public getRelationSubscriptions(relatedFormControls: RelatedFormControls, model: DynamicFormFieldModel): Subscription[] {
+  public getRelationSubscriptions(
+    relatedFormControls: RelatedFormControls,
+    model: DynamicFormFieldModel,
+    control: FormControl
+  ): Subscription[] {
     const subs: Subscription[] = [];
 
     // Subscribe to value changes of all FormControls, provide the current value inside the startWith
-    Object.values(relatedFormControls).forEach((control) => {
+    Object.values(relatedFormControls).forEach((relatedControl) => {
       subs.push(
-        control.valueChanges.pipe(startWith(control.value), distinctUntilChanged()).subscribe(() => {
+        relatedControl.valueChanges.pipe(startWith(relatedControl.value), distinctUntilChanged()).subscribe(() => {
           model.relations!.forEach((relation) => {
             // Find the RelationAction object based on the actionType passed inside the DynamicFormConfig
             const action = RELATION_ACTIONS.find(
@@ -57,7 +62,7 @@ export class DynamicFormRelationService {
             if (action) {
               const shouldTrigger = this.checkRelationCondition(relation, relatedFormControls, action);
 
-              action.change(shouldTrigger, model, control);
+              action.change(shouldTrigger, model, control, this._injector);
             }
           });
         })
