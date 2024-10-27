@@ -26,7 +26,9 @@ export const PERSOON_FORM: DynamicFormConfig = [
     new DynamicInput({
       name: 'firstname',
       inputType: 'text',
+      id: 'first-name',
       label: 'Voornaam',
+      defaultValue: 'Olaf',
       maxLength: 40,
       validators: []
     }),

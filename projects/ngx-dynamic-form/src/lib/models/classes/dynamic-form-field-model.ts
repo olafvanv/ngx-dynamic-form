@@ -7,7 +7,7 @@ import { DynamicFormHook } from '../types/dynamic-form-hook.type';
 
 export abstract class DynamicFormFieldModel {
   public hidden: boolean;
-  public id: string | null;
+  public id: string;
   public width: number;
   public label: string | null;
   public name: string;

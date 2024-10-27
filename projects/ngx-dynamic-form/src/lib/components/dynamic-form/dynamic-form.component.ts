@@ -38,7 +38,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   public trackByFn(_index: number, field: DynamicFormFieldModel): string {
-    return field.name;
+    return field.id;
   }
 
   /**

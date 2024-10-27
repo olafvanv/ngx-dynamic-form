@@ -6,6 +6,10 @@
     <dynamic-form [formConfig]="personFormConfig"
       (ready)="onPersonReady($event)"></dynamic-form>
 
+    <button mat-stroked-button
+      color="primary"
+      (click)="resetForm()">Reset
+    </button>
     <button mat-raised-button
       color="primary"
       (click)="submit()"

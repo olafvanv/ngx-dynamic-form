@@ -35,4 +35,8 @@ export class SimpleFormComponent implements OnDestroy {
   submit() {
     console.log(this.personForm.value);
   }
+
+  resetForm() {
+    this.personForm.reset();
+  }
 }
