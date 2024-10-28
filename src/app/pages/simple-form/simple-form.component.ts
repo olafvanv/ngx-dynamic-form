@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormConfig } from 'ngx-dynamic-form';
 import { Subscription } from 'rxjs';
-import { PersonFormModel, PERSOON_FORM } from 'src/app/pages/simple-form/persoon';
+import { PersonFormModel, Persoon } from 'src/app/pages/simple-form/persoon';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AppService } from 'src/app/services/app.service';
   styleUrls: ['./simple-form.component.scss']
 })
 export class SimpleFormComponent implements OnDestroy {
-  public personFormConfig: DynamicFormConfig = PERSOON_FORM;
+  public personFormConfig: DynamicFormConfig = new Persoon().formConfig;
   public personForm!: FormGroup<PersonFormModel>;
 
   private subs = new Subscription();

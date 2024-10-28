@@ -5,6 +5,7 @@ export * from './classes/dynamic-form-validators';
 
 export * from './constants/dynamic-relations.const';
 
+export * from './interfaces/dynamic-form-field-option.interface';
 export * from './interfaces/dynamic-form-field-value-config.interface';
 export * from './interfaces/dynamic-form-field.interface';
 

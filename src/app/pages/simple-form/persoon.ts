@@ -1,8 +1,10 @@
+import { inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   DynamicButton,
   DynamicCheckbox,
   DynamicFormConfig,
+  DynamicFormService,
   DynamicFormValidators,
   DynamicInput,
   DynamicReadonly,
@@ -11,6 +13,7 @@ import {
   RelationActionType,
   RelationOperator
 } from 'ngx-dynamic-form';
+import { DataService, Gender } from '../../services/data.service';
 import { SliderInput } from '../../shared/slider-input/slider-input.model';
 
 export interface PersonFormModel {
@@ -21,146 +24,166 @@ export interface PersonFormModel {
   sex: FormControl<boolean | null>;
 }
 
-export const PERSOON_FORM: DynamicFormConfig = [
-  [
-    new DynamicInput({
-      name: 'firstname',
-      inputType: 'text',
-      id: 'first-name',
-      label: 'Voornaam',
-      defaultValue: 'Olaf',
-      maxLength: 40,
-      validators: []
-    }),
-    new DynamicInput({
-      name: 'name',
-      inputType: 'text',
-      label: 'Achternaam'
-    })
-  ],
-  [
-    new SliderInput({
-      name: 'age',
-      label: 'Age',
-      max: 100,
-      validators: [DynamicFormValidators.min(18, 'Minimale leeftijd is 18 jaar')]
-    })
-  ],
-  [
-    new DynamicInput({
-      name: 'email',
-      inputType: 'email',
-      label: 'E-mailadres'
-    }),
-    new DynamicButton({
-      name: 'button',
-      text: 'Info',
-      onClick: () => {
-        alert('info');
-      }
-    })
-  ],
-  [
-    new DynamicInput({
-      name: 'telefoon',
-      inputType: 'tel',
-      label: 'Telefoonnummer',
-      prefix: '+'
-    })
-  ],
-  [
-    new DynamicSelect<string>({
-      name: 'gender',
-      label: 'Gender',
-      options: [
-        {
-          title: 'Man',
-          value: 'M'
-        },
-        {
-          title: 'Vrouw',
-          value: 'V'
+export class Persoon {
+  private _dataService = inject(DataService);
+  private _dynamicFormService = inject(DynamicFormService);
+
+  public formConfig: DynamicFormConfig = [
+    [
+      new DynamicInput({
+        name: 'firstname',
+        inputType: 'text',
+        id: 'first-name',
+        label: 'Voornaam',
+        defaultValue: 'Olaf',
+        maxLength: 40,
+        validators: []
+      }),
+      new DynamicInput({
+        name: 'name',
+        inputType: 'text',
+        label: 'Achternaam'
+      })
+    ],
+    [
+      new SliderInput({
+        name: 'age',
+        label: 'Age',
+        max: 100,
+        validators: [DynamicFormValidators.min(18, 'Minimale leeftijd is 18 jaar')]
+      })
+    ],
+    [
+      new DynamicInput({
+        name: 'email',
+        inputType: 'email',
+        label: 'E-mailadres'
+      }),
+      new DynamicButton({
+        name: 'button',
+        text: 'Info',
+        onClick: () => {
+          alert('info');
         }
-      ],
-      validators: [],
-      relations: [
-        {
-          actionType: RelationActionType.REQUIRED,
-          conditions: [
-            {
-              fieldName: 'agree',
-              value: (val: boolean) => {
-                return val === true;
+      })
+    ],
+    [
+      new DynamicInput({
+        name: 'telefoon',
+        inputType: 'tel',
+        label: 'Telefoonnummer',
+        prefix: '+'
+      })
+    ],
+    [
+      new DynamicSelect<string>({
+        name: 'gender',
+        label: 'Gender',
+        options: this._dynamicFormService.toDynamicOptionListObs<Gender, string>(
+          this._dataService.getGenders(),
+          (gender: Gender) => gender.name,
+          (gender: Gender) => gender.value
+        ),
+        validators: [],
+        relations: [
+          {
+            actionType: RelationActionType.REQUIRED,
+            conditions: [
+              {
+                fieldName: 'agree',
+                value: (val: boolean) => {
+                  return val === true;
+                }
               }
-            }
-          ]
-        }
-      ]
-    })
-  ],
-  [
-    new DynamicInput({
-      name: 'parentName',
-      label: 'Name of parent',
-      hidden: true,
-      relations: [
-        {
-          actionType: RelationActionType.REQUIRED,
-          conditions: [
-            {
-              fieldName: 'age',
-              value: (age: number) => !!age && age < 18
-            }
-          ]
-        },
-        {
-          actionType: RelationActionType.VISIBLE,
-          conditions: [
-            {
-              fieldName: 'age',
-              value: (age: number) => !!age && age < 18
-            }
-          ]
-        }
-      ]
-    })
-  ],
-  [
-    new DynamicReadonly({
-      name: 'readonlyfield',
-      label: 'instructie',
-      value: 'Dit is een readonly'
-    })
-  ],
-  [
-    new DynamicTextarea({
-      name: 'verhaal',
-      label: 'Biografie',
-      maxLength: 140,
-      rows: 5,
-      relations: [
-        {
-          actionType: RelationActionType.DISABLED,
-          operator: RelationOperator.OR,
-          conditions: [
-            {
-              fieldName: 'firstname',
-              value: (val: string) => val === 'Olaf'
-            },
-            {
-              fieldName: 'gender',
-              value: (val: string) => val === 'M'
-            }
-          ]
-        }
-      ]
-    })
-  ],
-  [
-    new DynamicCheckbox({
-      name: 'agree',
-      label: 'Ik ga akkoord',
-      labelPosition: 'before'
-    })
-  ]
-];
+            ]
+          }
+        ]
+      }),
+      new DynamicSelect({
+        name: 'gender-advanced',
+        label: 'Gender v2',
+        groupedOptions: [
+          {
+            name: 'Klassiek',
+            options: [
+              { value: 'M', label: 'Man' },
+              { value: 'V', label: 'Vrouw' }
+            ]
+          },
+          {
+            name: 'Inclusief',
+            options: [
+              { value: 'X', label: 'Onbekend' },
+              { value: 'XX', label: 'Gewenst niet aan te geven' }
+            ]
+          }
+        ]
+      })
+    ],
+    [
+      new DynamicInput({
+        name: 'parentName',
+        label: 'Name of parent',
+        hidden: true,
+        relations: [
+          {
+            actionType: RelationActionType.REQUIRED,
+            conditions: [
+              {
+                fieldName: 'age',
+                value: (age: number) => !!age && age < 18
+              }
+            ]
+          },
+          {
+            actionType: RelationActionType.VISIBLE,
+            conditions: [
+              {
+                fieldName: 'age',
+                value: (age: number) => !!age && age < 18
+              }
+            ]
+          }
+        ]
+      })
+    ],
+    [
+      new DynamicReadonly({
+        name: 'readonlyfield',
+        label: 'instructie',
+        value: 'Dit is een readonly'
+      })
+    ],
+    [
+      new DynamicTextarea({
+        name: 'verhaal',
+        label: 'Biografie',
+        maxLength: 140,
+        rows: 5,
+        relations: [
+          {
+            actionType: RelationActionType.DISABLED,
+            operator: RelationOperator.OR,
+            conditions: [
+              {
+                fieldName: 'firstname',
+                value: (val: string) => val === 'Olaf'
+              },
+              {
+                fieldName: 'gender',
+                value: (val: string) => val === 'M'
+              }
+            ]
+          }
+        ]
+      })
+    ],
+    [
+      new DynamicCheckbox({
+        name: 'agree',
+        label: 'Ik ga akkoord',
+        labelPosition: 'before'
+      })
+    ]
+  ];
+}

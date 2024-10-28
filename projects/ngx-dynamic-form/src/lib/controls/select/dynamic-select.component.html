@@ -3,24 +3,54 @@
   color="primary">
   <mat-label>{{model.label}}</mat-label>
 
-  <ng-container *ngIf="!model.native else nativeSelect">
-    <mat-select [formControlName]="model.name"
-      [multiple]="model.multiple">
-      <mat-option *ngFor="let option of model.options$ | async"
-        [value]="option.value">
-        {{option.title}}
-      </mat-option>
-    </mat-select>
+  <!-- Template for select without grouped options -->
+  <ng-container *ngIf="model.options$ | async as options">
+    <ng-container *ngIf="!model.native else nativeSelect">
+      <mat-select [formControlName]="model.name"
+        [multiple]="model.multiple">
+        <mat-option *ngFor="let option of options; trackBy: trackByFn"
+          [value]="option.value">
+          {{option.label}}
+        </mat-option>
+      </mat-select>
+    </ng-container>
+
+    <ng-template #nativeSelect>
+      <select matNativeControl>
+        <option *ngFor="let option of options"
+          [value]="option.value">
+          {{option.label}}
+        </option>
+      </select>
+    </ng-template>
   </ng-container>
 
-  <ng-template #nativeSelect>
-    <select matNativeControl>
-      <option *ngFor="let option of model.options$ | async"
-        [value]="option.value">
-        {{option.title}}
-      </option>
-    </select>
-  </ng-template>
+  <!-- Template for select with grouped options -->
+  <ng-container *ngIf="model.groupedOptions$ | async as groupedOptions">
+    <ng-container *ngIf="!model.native else nativeSelectGrouped">
+      <mat-select [formControlName]="model.name">
+        <mat-optgroup *ngFor="let group of groupedOptions"
+          [label]="group.name">
+          <mat-option *ngFor="let option of group.options; trackBy: trackByFn"
+            [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </ng-container>
+
+    <ng-template #nativeSelectGrouped>
+      <select matNativeControl>
+        <optgroup *ngFor="let group of groupedOptions"
+          [label]="group.name">
+          <option *ngFor="let option of group.options"
+            [value]="option.value">
+            {{option.label}}
+          </option>
+        </optgroup>
+      </select>
+    </ng-template>
+  </ng-container>
 
   <mat-hint *ngIf="model.hint"
     align="start">{{model.hint}}</mat-hint>
