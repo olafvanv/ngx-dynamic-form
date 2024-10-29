@@ -3,8 +3,8 @@ import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.
 import { DynamicFormFieldModel } from './dynamic-form-field-model';
 
 export interface DynamicFormFieldValueConfig<T> extends DynamicFormFieldConfig {
-  value?: T | null;
-  defaultValue?: T | null;
+  value?: T;
+  defaultValue?: T;
 }
 
 export abstract class DynamicFormFieldValueModel<T> extends DynamicFormFieldModel {

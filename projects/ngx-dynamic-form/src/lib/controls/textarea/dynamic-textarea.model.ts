@@ -4,8 +4,8 @@ export const DYNAMIC_FORM_FIELD_TEXTAREA = 'textarea';
 export type DynamicTextareaValue = string | null;
 
 export interface DynamicTextareaConfig extends DynamicFormFieldValueConfig<DynamicTextareaValue> {
-  minLength?: number | null;
-  maxLength?: number | null;
+  minLength?: number;
+  maxLength?: number;
   autocomplete?: 'on' | 'off';
   rows?: number;
   resize?: boolean;
