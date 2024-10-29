@@ -14,9 +14,9 @@ import { DynamicSelectComponent } from '../../controls/select/dynamic-select.com
 import { DYNAMIC_FORM_FIELD_SELECT } from '../../controls/select/dynamic-select.model';
 import { DynamicTextareaComponent } from '../../controls/textarea/dynamic-textarea.component';
 import { DYNAMIC_FORM_FIELD_TEXTAREA } from '../../controls/textarea/dynamic-textarea.model';
+import { DynamicFormField } from '../../models/classes/dynamic-form-field-base-component';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
-import { DynamicFormField } from '../../models/interfaces/dynamic-form-field.interface';
 import { RelatedFormControls } from '../../models/types/related-form-controls.type';
 import { DynamicFormRelationsService } from '../../services/dynamic-form-relations.service';
 import { DynamicFormService } from '../../services/dynamic-form.service';
@@ -39,7 +39,6 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
 
   private dynamicFormService = inject(DynamicFormService);
   private relationService = inject(DynamicFormRelationsService);
-  // private validationService = inject()
 
   /** Get the instance of a control component using the injected custom method or local method */
   private get componentType(): Type<DynamicFormField> | null {

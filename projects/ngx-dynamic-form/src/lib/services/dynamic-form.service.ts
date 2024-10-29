@@ -1,13 +1,12 @@
 import { Inject, Injectable, Optional, Type } from '@angular/core';
 import { FormBuilder, FormControlOptions, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { map, Observable } from 'rxjs';
-import { DynamicFormFieldOption } from '../models';
+import { DynamicFormField } from '../models/classes/dynamic-form-field-base-component';
 import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
-import { DynamicFormFieldValueConfig } from '../models/interfaces/dynamic-form-field-value-config.interface';
-import { DynamicFormField } from '../models/interfaces/dynamic-form-field.interface';
+import { DynamicFormFieldOption } from '../models/classes/dynamic-form-field-option-model';
+import { DynamicFormFieldValueConfig } from '../models/classes/dynamic-form-field-value-model';
 import { DYNAMIC_FORM_FIELD_MAP_FN } from '../models/tokens/dynamic-form-field-map-fn.token';
 import { DynamicFormConfig } from '../models/types/dynamic-form-config.type';
-import { isFunction } from '../utils/methods.util';
 import { DynamicFormValidationsService } from './dynamic-validations.service';
 
 export type DynamicFormFieldTypeMapFn = (field: DynamicFormFieldModel) => Type<DynamicFormField> | null;
@@ -28,11 +27,12 @@ export class DynamicFormService {
    * @returns
    */
   public getCustomControlComponentType(model: DynamicFormFieldModel): Type<DynamicFormField> | null {
-    return isFunction(this.DYNAMIC_FORM_FIELD_MAP_FN) ? this.DYNAMIC_FORM_FIELD_MAP_FN(model) : null;
+    return typeof this.DYNAMIC_FORM_FIELD_MAP_FN === 'function' ? this.DYNAMIC_FORM_FIELD_MAP_FN(model) : null;
   }
 
   /**
-   * Create a FormGroup from the provided form configuration
+   * Create a FormGroup from the provided form configuration.
+   * Returns a FormGroup.
    * @param config
    * @returns
    */
@@ -59,17 +59,21 @@ export class DynamicFormService {
     return group;
   }
 
-  public toDynamicOptionListObs<T, K>(
+  /**
+   * Transform any list (Observable) to a list of DynamicFormFieldOption which is used in any Dynamic Form Field with options (e.g. DynamicSelect).
+   * Generic types:
+   * T = The type of the items in the provided list
+   * K = The type of the value inside an DynamicFormFieldOption
+   * @param listObs
+   * @param labelCb
+   * @param valueCb
+   * @returns
+   */
+  public toDynamicOptionListObs<T, K = string>(
     listObs: Observable<T[]>,
     labelCb: (item: T) => string,
     valueCb: (item: T) => K
   ): Observable<DynamicFormFieldOption<K>[]> {
-    // return list.pipe(map((item) => {
-    //   return {
-    //     label: labelCb(item),
-    //     value: valueCb(item)
-    //   };
-    // });
     return listObs.pipe(
       map((list) => {
         return list.map((item) => {

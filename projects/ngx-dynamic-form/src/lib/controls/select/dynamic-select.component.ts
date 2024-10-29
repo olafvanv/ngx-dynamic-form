@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { DynamicFormFieldBaseComponent } from '../../models/classes/dynamic-form-field-base-component';
-import { DynamicFormFieldOption } from '../../models/interfaces/dynamic-form-field-option.interface';
+import { DynamicFormFieldOption } from '../../models/classes/dynamic-form-field-option-model';
 import { DynamicSelect } from './dynamic-select.model';
 
 @Component({

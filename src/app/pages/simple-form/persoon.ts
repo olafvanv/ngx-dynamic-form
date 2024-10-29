@@ -36,8 +36,7 @@ export class Persoon {
         id: 'first-name',
         label: 'Voornaam',
         defaultValue: 'Olaf',
-        maxLength: 40,
-        validators: []
+        maxLength: 40
       }),
       new DynamicInput({
         name: 'name',
