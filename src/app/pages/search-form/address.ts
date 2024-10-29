@@ -16,8 +16,7 @@ export const ADDRESS_FORM: DynamicFormConfig = [
       label: 'Postcode',
       maxLength: 6,
       defaultValue: '2518',
-      pattern: new RegExp('[0-9]{4}[a-zA-Z]{2}'),
-      parseValue: (val: string) => val?.toUpperCase()
+      pattern: new RegExp('[0-9]{4}[a-zA-Z]{2}')
     })
   ],
   [

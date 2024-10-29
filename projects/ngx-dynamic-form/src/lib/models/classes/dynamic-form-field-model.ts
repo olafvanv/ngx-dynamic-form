@@ -15,8 +15,6 @@ export abstract class DynamicFormFieldModel {
   public validators: DynamicFormValidator[];
   public updateOn: DynamicFormHook;
   public relations: DynamicFormFieldRelation[] | null;
-  public parseValue: ((val: any) => any) | null;
-  public reverseParseValue: ((val: any) => any) | null;
   public disabledChange: Observable<boolean>;
 
   abstract readonly type: string;
@@ -33,8 +31,6 @@ export abstract class DynamicFormFieldModel {
     this.validators = config.validators ?? [];
     this.updateOn = config.updateOn ?? 'change';
     this.relations = config.relations ?? null;
-    this.parseValue = config.parseValue ?? null;
-    this.reverseParseValue = config.reverseParseValue ?? null;
 
     // Create a disabled Subject and Observable to change the state of the FormControl inside DynamicFormFieldComponent by subscribing to disabledChange
     this.disabled$ = new BehaviorSubject(config.disabled ?? false);

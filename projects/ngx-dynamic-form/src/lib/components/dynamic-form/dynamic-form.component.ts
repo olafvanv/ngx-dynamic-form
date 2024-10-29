@@ -45,18 +45,9 @@ export class DynamicFormComponent implements OnInit {
    * Get the current value of the form.
    * @param includeDisabledFields Include the disabled fields of the form, is enabled by default
    */
-  public getFormValue<T = any>(includeDisabledFields = true): T {
+  public getFormValue<T = unknown>(includeDisabledFields = true): T {
     const formValue = includeDisabledFields ? this.group.getRawValue() : this.group.value;
 
-    // Loop through the fields to check if the value needs to be parsed
-    Object.keys(formValue).forEach((key) => {
-      const config = this.flatFormConfig.find((f) => f.name === key);
-      if (config?.parseValue) {
-        const currVal = formValue[key];
-        const newVal = config.parseValue(currVal);
-        formValue[key] = newVal;
-      }
-    });
     return formValue;
   }
 

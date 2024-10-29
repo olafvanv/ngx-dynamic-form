@@ -58,16 +58,4 @@ export interface DynamicFormFieldConfig {
    * @optional
    */
   updateOn?: DynamicFormHook;
-  /**
-   * Parse method to parse the value of the form field to a specific format the application/API needs.
-   * Is called when using the DynamicFormComponent method 'getFormValue()'
-   * @optional
-   */
-  parseValue?: (val: any) => any;
-  /**
-   * Parses a value from the application/API to a value the form field expects.
-   * Is called when initializing the form.
-   * @optional
-   */
-  reverseParseValue?: (val: any) => any;
 }
