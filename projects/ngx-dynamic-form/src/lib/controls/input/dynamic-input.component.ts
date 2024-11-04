@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { DynamicFormFieldBaseComponent } from '../../models/classes/dynamic-form-field-base-component';
 import { DynamicInput } from './dynamic-input.model';
@@ -12,7 +13,7 @@ import { DynamicInput } from './dynamic-input.model';
   templateUrl: 'dynamic-input.component.html',
   styles: ['mat-form-field {width: 100%;}'],
   standalone: true,
-  imports: [NgIf, NgFor, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule]
+  imports: [NgIf, NgFor, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule]
 })
 export class DynamicInputComponent extends DynamicFormFieldBaseComponent {
   @ViewChild(MatInput, { static: true }) input!: MatInput;

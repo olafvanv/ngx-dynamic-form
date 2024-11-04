@@ -15,6 +15,7 @@ import {
 } from 'ngx-dynamic-form';
 import { DataService, Gender } from '../../services/data.service';
 import { SliderInput } from '../../shared/slider-input/slider-input.model';
+import { minTimeValidator } from './min-time.validator';
 
 export interface PersonFormModel {
   firstname: FormControl<string | null>;
@@ -42,6 +43,14 @@ export class Persoon {
         name: 'name',
         inputType: 'text',
         label: 'Achternaam'
+      })
+    ],
+    [
+      new DynamicInput({
+        name: 'time',
+        inputType: 'time',
+        label: 'Tijd',
+        validators: [minTimeValidator('11:00')]
       })
     ],
     [

@@ -30,9 +30,7 @@ export class SliderInputControl implements ControlValueAccessor {
   onTouched = () => {};
 
   writeValue(value: number): void {
-    if (value !== null) {
-      this.value = value;
-    }
+    this.value = value;
   }
 
   registerOnChange(fn: (_: number | null) => void): void {
