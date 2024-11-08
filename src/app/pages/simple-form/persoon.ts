@@ -80,7 +80,8 @@ export class Persoon {
         name: 'telefoon',
         inputType: 'tel',
         label: 'Telefoonnummer',
-        prefix: '+'
+        prefix: '+',
+        validators: [DynamicFormValidators.pattern('[0-9]{11}', 'Geen geldig telfoonnummer')]
       })
     ],
     [

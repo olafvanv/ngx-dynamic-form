@@ -8,6 +8,7 @@
     "lib:build": "ng build ngx-dynamic-form --configuration production",
     "lib:watch": "ng build ngx-dynamic-form --watch",
     "watch": "ng build --watch --configuration development",
+    "lib:release": "npm run lib:build && cd dist/ngx-dynamic-form && npm publish",
     "test": "ng test",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix"
