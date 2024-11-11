@@ -5,7 +5,8 @@
   <app-slider-input-control [min]="model.min"
     [max]="model.max"
     [step]="model.step"
-    [formControlName]="model.name">
+    [formControlName]="model.name"
+    (change)="change.emit($event)">
   </app-slider-input-control>
 
   <div class="slider-subscript-wrapper">

@@ -3,8 +3,8 @@
   [step]="step">
   <input matSliderThumb
     [(value)]="value"
-    (valueChange)="onChange($event)" />
+    (valueChange)="onSliderChange($event)" />
 </mat-slider>
 
-<button (click)="onRemove()">-</button>
+<button (click)="onDecreased()">-</button>
 <button (click)="onAdd()">+</button>

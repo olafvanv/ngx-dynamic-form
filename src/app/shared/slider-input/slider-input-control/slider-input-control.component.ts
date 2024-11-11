@@ -25,15 +25,15 @@ export class SliderInputControl implements ControlValueAccessor {
   disabled = false;
   touched = false;
 
-  onChange = (number: number) => {};
+  onChange = (val: number) => {};
 
   onTouched = () => {};
 
   writeValue(value: number): void {
-    this.value = value;
+    this.value = value ?? 0;
   }
 
-  registerOnChange(fn: (_: number | null) => void): void {
+  registerOnChange(fn: (val: number | null) => void): void {
     this.onChange = fn;
   }
 
@@ -41,8 +41,8 @@ export class SliderInputControl implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+  setDisabledState(disabled: boolean): void {
+    this.disabled = disabled;
   }
 
   markAsTouched() {
@@ -55,14 +55,19 @@ export class SliderInputControl implements ControlValueAccessor {
   onAdd() {
     if (this.value < this.max) {
       this.value = this.value + this.step;
-      this.onChange(this.value);
+      this.onSliderChange(this.value);
     }
   }
 
-  onRemove() {
+  onDecreased() {
     if (this.value > this.min) {
       this.value = this.value - this.step;
-      this.onChange(this.value);
+      this.onSliderChange(this.value);
     }
+  }
+
+  onSliderChange(val: number) {
+    this.onChange(val);
+    this.markAsTouched();
   }
 }
