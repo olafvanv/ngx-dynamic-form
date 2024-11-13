@@ -3,7 +3,6 @@ import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.
 
 import { DynamicFormFieldRelation } from '../constants/dynamic-relations.const';
 import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.interface';
-import { DynamicFormHook } from '../types/dynamic-form-hook.type';
 
 export abstract class DynamicFormFieldModel {
   public hidden: boolean;
@@ -13,7 +12,7 @@ export abstract class DynamicFormFieldModel {
   public name: string;
   public hint: string | null;
   public validators: DynamicFormValidator[];
-  public updateOn: DynamicFormHook;
+  public updateOn: 'submit' | 'blur' | 'change';
   public relations: DynamicFormFieldRelation[] | null;
   public disabledChange: Observable<boolean>;
 

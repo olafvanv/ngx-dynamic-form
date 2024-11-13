@@ -1,5 +1,4 @@
 import { DynamicFormFieldRelation } from '../constants/dynamic-relations.const';
-import { DynamicFormHook } from '../types/dynamic-form-hook.type';
 import { DynamicFormValidator } from './dynamic-form-validator.interface';
 
 export interface DynamicFormFieldConfig {
@@ -53,9 +52,9 @@ export interface DynamicFormFieldConfig {
   relations?: DynamicFormFieldRelation[];
   /**
    * Event name for the control to update on.
-   * Possible values: 'update', 'blur' or 'submit'.
-   * Default values is 'update'
+   * Possible values: 'change', 'blur' or 'submit'.
+   * Default values is 'blur'
    * @optional
    */
-  updateOn?: DynamicFormHook;
+  updateOn?: 'submit' | 'blur' | 'change';
 }
