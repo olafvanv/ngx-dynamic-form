@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DynamicFormComponent, DynamicFormConfig } from 'ngx-dynamic-form';
+import { DynamicFormConfig, DynamicFormService } from 'ngx-dynamic-form';
 import { Subscription, distinctUntilChanged, filter } from 'rxjs';
 import { AddressService } from 'src/app/services/address.service';
 import { AppService } from 'src/app/services/app.service';
@@ -12,24 +12,23 @@ import { ADDRESS_FORM, AddressFormModel } from './address';
   styleUrls: ['./search-form.component.scss']
 })
 export class SearchFormComponent implements AfterViewInit, OnDestroy {
-  @ViewChild(DynamicFormComponent) dynamicForm!: DynamicFormComponent;
-
   public searchFormConfig: DynamicFormConfig = ADDRESS_FORM;
-  public searchForm!: FormGroup<AddressFormModel>;
+  public searchForm: FormGroup<AddressFormModel> = this.dynamicFormService.createFormGroup(this.searchFormConfig);
 
   private subs = new Subscription();
   constructor(
     private appService: AppService,
-    private addressService: AddressService
+    private addressService: AddressService,
+    private dynamicFormService: DynamicFormService
   ) {
     this.subs.add(this.appService.logClicked.subscribe(() => console.log(this.searchForm)));
   }
 
   ngAfterViewInit(): void {
     this.subs.add(
-      this.dynamicForm
-        .onChange('postcode')
-        .pipe(
+      this.searchForm
+        ?.get('postcode')
+        ?.valueChanges.pipe(
           distinctUntilChanged(),
           filter((val) => !!val && val.length === 6)
         )
@@ -41,33 +40,8 @@ export class SearchFormComponent implements AfterViewInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  onFormReady(form: FormGroup<AddressFormModel>) {
-    this.searchForm = form;
-    // Method 1: using the available FormGroup provided by the 'ready' event of the DynamicFormComponent
-    // this.subs.add(
-    //   form
-    //     .get('postcode')
-    //     ?.valueChanges.pipe(
-    //       distinctUntilChanged(),
-    //       filter((val) => !!val && val.length === 6)
-    //     )
-    //     .subscribe((val: string | null) => (val ? this.getAddress(val) : null))
-    // );
-
-    //Method 2: using the build in onChange method of the DynamicFormComponent
-    // this.subs.add(
-    //   this.dynamicForm
-    //     .onChange('postcode')
-    //     .pipe(
-    //       distinctUntilChanged(),
-    //       filter((val) => !!val && val.length === 6)
-    //     )
-    //     .subscribe((val) => (val ? this.getAddress(val) : null))
-    // );
-  }
-
   onSubmit() {
-    console.log(this.dynamicForm.getFormValue<AddressFormModel>());
+    console.log(this.searchForm.getRawValue());
   }
 
   private getAddress(postcode: string) {

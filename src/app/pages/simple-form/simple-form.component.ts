@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DynamicFormConfig, DynamicFormFieldEvent } from 'ngx-dynamic-form';
+import { DynamicFormConfig, DynamicFormFieldEvent, DynamicFormService } from 'ngx-dynamic-form';
 import { Subscription } from 'rxjs';
 import { PersonFormModel, Persoon } from 'src/app/pages/simple-form/persoon';
 import { AppService } from 'src/app/services/app.service';
@@ -12,11 +12,14 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class SimpleFormComponent implements OnDestroy {
   public personFormConfig: DynamicFormConfig = new Persoon().formConfig;
-  public personForm!: FormGroup<PersonFormModel>;
+  public personForm: FormGroup<PersonFormModel> = this.dynamicFormService.createFormGroup(this.personFormConfig);
 
   private subs = new Subscription();
 
-  constructor(private appService: AppService) {
+  constructor(
+    private appService: AppService,
+    private dynamicFormService: DynamicFormService
+  ) {
     this.subs.add(
       this.appService.logClicked.subscribe(() => {
         console.log(this.personForm);
@@ -26,10 +29,6 @@ export class SimpleFormComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
-  }
-
-  onPersonReady(form: FormGroup<PersonFormModel>) {
-    this.personForm = form;
   }
 
   submit() {

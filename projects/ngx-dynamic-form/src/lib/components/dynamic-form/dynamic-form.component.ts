@@ -1,5 +1,5 @@
 import { NgClass, NgFor } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
@@ -17,15 +17,11 @@ import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-fi
   providers: [DynamicFormService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent {
+  @Input({ required: true }) group!: UntypedFormGroup;
   @Input({ required: true }) formConfig!: DynamicFormConfig;
 
-  @Output() ready: EventEmitter<UntypedFormGroup> = new EventEmitter();
   @Output() change: EventEmitter<DynamicFormFieldEvent> = new EventEmitter();
-
-  private dynamicFormService = inject(DynamicFormService);
-
-  public group!: UntypedFormGroup;
 
   /**
    * Get the formConfig as flat array.
@@ -34,11 +30,12 @@ export class DynamicFormComponent implements OnInit {
     return this.formConfig.reduce((acc, curr) => acc.concat(curr), []);
   }
 
-  ngOnInit() {
-    this.group = this.dynamicFormService.createFormGroup(this.formConfig);
-    this.ready.emit(this.group);
-  }
-
+  /**
+   * TrackBy Function for performance optimization
+   * @param _index
+   * @param field
+   * @returns
+   */
   public trackByFn(_index: number, field: DynamicFormFieldModel): string {
     return field.id;
   }
@@ -59,7 +56,7 @@ export class DynamicFormComponent implements OnInit {
    * @param name Name of the field
    * @returns Observable<any>
    */
-  public onChange(name: string): Observable<any> {
+  public onControlChange(name: string): Observable<any> {
     const field = this.group.get(name);
 
     if (!field) {
@@ -69,7 +66,7 @@ export class DynamicFormComponent implements OnInit {
     return field.valueChanges;
   }
 
-  public onControlChange(event: DynamicFormFieldEvent) {
+  public onChange(event: DynamicFormFieldEvent) {
     this.change.emit(event);
   }
 }

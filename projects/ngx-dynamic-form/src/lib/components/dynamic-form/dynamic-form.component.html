@@ -1,15 +1,12 @@
-<form [formGroup]="group"
-  class="dynamic-form">
-  <div *ngFor="let row of formConfig"
-    class="dynamic-form-row">
-    <dynamic-form-field *ngFor="let field of row; trackBy: trackByFn"
-      class="dynamic-form-field"
-      [id]="field.id"
-      [hidden]="field.hidden"
-      [ngClass]="[field.type, 'form-field-width-'+field.width]"
-      [group]="group"
-      [model]="field"
-      (change)="onControlChange($event)">
-    </dynamic-form-field>
-  </div>
-</form>
+<div *ngFor="let row of formConfig"
+  class="dynamic-form-row">
+  <dynamic-form-field *ngFor="let field of row; trackBy: trackByFn"
+    class="dynamic-form-field"
+    [id]="field.id"
+    [hidden]="field.hidden"
+    [ngClass]="[field.type, 'form-field-width-'+field.width]"
+    [group]="group"
+    [model]="field"
+    (change)="onChange($event)">
+  </dynamic-form-field>
+</div>
