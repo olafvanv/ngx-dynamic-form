@@ -12,7 +12,8 @@
     [attr.minLength]="model.minLength"
     [attr.maxLength]="model.maxLength"
     [rows]="model.rows"
-    [autocomplete]="model.autocomplete">
+    [autocomplete]="model.autocomplete"
+    (change)="onChange($event)">
   </textarea>
 
   <mat-hint *ngIf="model.hint"

@@ -7,7 +7,8 @@
   <ng-container *ngIf="model.options$ | async as options">
     <ng-container *ngIf="!model.native else nativeSelect">
       <mat-select [formControlName]="model.name"
-        [multiple]="model.multiple">
+        [multiple]="model.multiple"
+        (selectionChange)="onChange($event)">
         <mat-option *ngFor="let option of options; trackBy: trackByFn"
           [value]="option.value">
           {{option.label}}
@@ -16,7 +17,8 @@
     </ng-container>
 
     <ng-template #nativeSelect>
-      <select matNativeControl>
+      <select matNativeControl
+        (selectionchange)="onChange($event)">
         <option *ngFor="let option of options"
           [value]="option.value">
           {{option.label}}
@@ -28,7 +30,8 @@
   <!-- Template for select with grouped options -->
   <ng-container *ngIf="model.groupedOptions$ | async as groupedOptions">
     <ng-container *ngIf="!model.native else nativeSelectGrouped">
-      <mat-select [formControlName]="model.name">
+      <mat-select [formControlName]="model.name"
+        (selectionChange)="onChange($event)">
         <mat-optgroup *ngFor="let group of groupedOptions"
           [label]="group.name">
           <mat-option *ngFor="let option of group.options; trackBy: trackByFn"
@@ -40,7 +43,8 @@
     </ng-container>
 
     <ng-template #nativeSelectGrouped>
-      <select matNativeControl>
+      <select matNativeControl
+        (selectionchange)="onChange($event)">
         <optgroup *ngFor="let group of groupedOptions"
           [label]="group.name">
           <option *ngFor="let option of group.options"

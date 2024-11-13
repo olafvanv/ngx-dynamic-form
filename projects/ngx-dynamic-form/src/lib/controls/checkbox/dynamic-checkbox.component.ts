@@ -14,7 +14,5 @@ export class DynamicCheckboxComponent extends DynamicFormFieldBaseComponent {
   @Input() model!: DynamicCheckbox;
   @Input() group!: UntypedFormGroup;
 
-  @Output() blur: EventEmitter<any> = new EventEmitter();
   @Output() change: EventEmitter<MatCheckboxChange> = new EventEmitter();
-  @Output() focus: EventEmitter<any> = new EventEmitter();
 }

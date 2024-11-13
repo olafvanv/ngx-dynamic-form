@@ -16,7 +16,5 @@ export class SliderInputComponent extends DynamicFormFieldBaseComponent {
   @Input() model!: SliderInput;
   @Input() group!: UntypedFormGroup;
 
-  @Output() blur: EventEmitter<any> = new EventEmitter();
   @Output() change: EventEmitter<any> = new EventEmitter();
-  @Output() focus: EventEmitter<any> = new EventEmitter();
 }

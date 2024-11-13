@@ -14,7 +14,8 @@
     [attr.minLength]="model.minLength"
     [attr.maxLength]="model.maxLength"
     [pattern]="model.pattern"
-    [autocomplete]="model.autocomplete" />
+    [autocomplete]="model.autocomplete"
+    (change)="onChange($event)" />
 
   <button matSuffix
     mat-icon-button

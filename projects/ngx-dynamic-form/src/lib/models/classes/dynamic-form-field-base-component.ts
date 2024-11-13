@@ -5,18 +5,14 @@ import { DynamicFormFieldModel } from './dynamic-form-field-model';
 export interface DynamicFormField {
   group: UntypedFormGroup;
   model: DynamicFormFieldModel;
-  blur: EventEmitter<any>;
   change: EventEmitter<any>;
-  focus: EventEmitter<any>;
 }
 
-export abstract class DynamicFormFieldBaseComponent implements DynamicFormField {
+export abstract class DynamicFormFieldBaseComponent {
   group!: UntypedFormGroup;
   model!: DynamicFormFieldModel;
 
-  blur!: EventEmitter<any>;
   change!: EventEmitter<any>;
-  focus!: EventEmitter<any>;
 
   get id(): string {
     return this.model.id ?? this.model.name;
@@ -39,16 +35,8 @@ export abstract class DynamicFormFieldBaseComponent implements DynamicFormField 
     return this.control.invalid;
   }
 
-  public onBlur(ev: any) {
-    this.blur.emit(ev);
-  }
-
-  public onChange(ev: any) {
-    this.change.emit(ev);
-  }
-
-  public onFocus(ev: any) {
-    this.focus.emit(ev);
+  public onChange(event: unknown) {
+    this.change.emit(event);
   }
 
   public resetControl() {

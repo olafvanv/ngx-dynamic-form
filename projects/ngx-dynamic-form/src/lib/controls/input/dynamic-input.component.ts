@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { DynamicFormFieldBaseComponent } from '../../models/classes/dynamic-form-field-base-component';
+import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-field-event.interface';
 import { DynamicInput } from './dynamic-input.model';
 
 @Component({
@@ -21,9 +22,7 @@ export class DynamicInputComponent extends DynamicFormFieldBaseComponent {
   @Input() model!: DynamicInput;
   @Input() group!: UntypedFormGroup;
 
-  @Output() blur: EventEmitter<any> = new EventEmitter();
-  @Output() change: EventEmitter<any> = new EventEmitter();
-  @Output() focus: EventEmitter<any> = new EventEmitter();
+  @Output() change = new EventEmitter<DynamicFormFieldEvent>();
 
   get valueCount(): number {
     return this.input?.value ? this.input.value.length : 0;
@@ -35,5 +34,14 @@ export class DynamicInputComponent extends DynamicFormFieldBaseComponent {
 
   get showClear(): boolean {
     return !!this.control.value && !this.control.disabled;
+  }
+
+  public onChange(event: Event | DynamicFormFieldEvent): void {
+    // Ignore the native HTML 5 change event
+    if (event instanceof Event) {
+      event.stopPropagation();
+    }
+
+    this.change.emit(event as DynamicFormFieldEvent);
   }
 }

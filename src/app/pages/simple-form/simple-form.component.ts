@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DynamicFormConfig } from 'ngx-dynamic-form';
+import { DynamicFormConfig, DynamicFormFieldEvent } from 'ngx-dynamic-form';
 import { Subscription } from 'rxjs';
 import { PersonFormModel, Persoon } from 'src/app/pages/simple-form/persoon';
 import { AppService } from 'src/app/services/app.service';
@@ -38,5 +38,9 @@ export class SimpleFormComponent implements OnDestroy {
 
   resetForm() {
     this.personForm.reset();
+  }
+
+  onChange($event: DynamicFormFieldEvent) {
+    console.log($event);
   }
 }

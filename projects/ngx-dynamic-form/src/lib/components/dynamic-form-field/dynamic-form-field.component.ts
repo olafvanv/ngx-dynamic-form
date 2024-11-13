@@ -1,5 +1,17 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Type,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicButtonComponent } from '../../controls/button/dynamic-button.component';
@@ -17,6 +29,7 @@ import { DYNAMIC_FORM_FIELD_TEXTAREA } from '../../controls/textarea/dynamic-tex
 import { DynamicFormField } from '../../models/classes/dynamic-form-field-base-component';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
+import { DynamicFormFieldEvent, DynamicFormFieldEventType } from '../../models/interfaces/dynamic-form-field-event.interface';
 import { RelatedFormControls } from '../../models/types/related-form-controls.type';
 import { DynamicFormRelationsService } from '../../services/dynamic-form-relations.service';
 import { DynamicFormService } from '../../services/dynamic-form.service';
@@ -33,6 +46,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
 
   @Input() model!: DynamicFormFieldModel;
   @Input() group!: UntypedFormGroup;
+
+  @Output() change = new EventEmitter<DynamicFormFieldEvent>();
 
   private _control!: UntypedFormControl;
   private _subs = new Subscription();
@@ -92,6 +107,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
 
       const componentInstance = componentRef.instance;
 
+      this._subs.add(componentInstance.change?.subscribe((event) => this.onChange(event)));
+
       componentInstance.group = this.group;
       componentInstance.model = this.model;
     }
@@ -144,5 +161,13 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    */
   private onDisabledChange(disabled: boolean): void {
     disabled ? this._control.disable() : this._control.enable();
+  }
+
+  private onChange(ev: unknown) {
+    this.change.emit(this.createDynamicFormEvent(ev, 'change'));
+  }
+
+  private createDynamicFormEvent(event: unknown, type: DynamicFormFieldEventType): DynamicFormFieldEvent {
+    return { event, type, control: this._control, form: this.group, model: this.model };
   }
 }

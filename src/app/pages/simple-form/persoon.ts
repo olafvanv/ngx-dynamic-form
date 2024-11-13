@@ -36,8 +36,8 @@ export class Persoon {
         inputType: 'text',
         id: 'first-name',
         label: 'Voornaam',
-        defaultValue: 'Olaf',
-        maxLength: 40
+        maxLength: 40,
+        validators: [DynamicFormValidators.required()]
       }),
       new DynamicInput({
         name: 'name',
@@ -100,8 +100,8 @@ export class Persoon {
             conditions: [
               {
                 fieldName: 'agree',
-                value: (val: boolean) => {
-                  return val === true;
+                value: (test: boolean) => {
+                  return test === true;
                 }
               }
             ]

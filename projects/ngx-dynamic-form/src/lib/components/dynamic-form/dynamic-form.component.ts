@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
+import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-field-event.interface';
 import { DynamicFormConfig } from '../../models/types/dynamic-form-config.type';
 import { DynamicFormService } from '../../services/dynamic-form.service';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
@@ -20,6 +21,7 @@ export class DynamicFormComponent implements OnInit {
   @Input({ required: true }) formConfig!: DynamicFormConfig;
 
   @Output() ready: EventEmitter<UntypedFormGroup> = new EventEmitter();
+  @Output() change: EventEmitter<DynamicFormFieldEvent> = new EventEmitter();
 
   private dynamicFormService = inject(DynamicFormService);
 
@@ -65,5 +67,9 @@ export class DynamicFormComponent implements OnInit {
     }
 
     return field.valueChanges;
+  }
+
+  public onControlChange(event: DynamicFormFieldEvent) {
+    this.change.emit(event);
   }
 }

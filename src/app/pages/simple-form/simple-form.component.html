@@ -4,7 +4,8 @@
   </mat-card-header>
   <mat-card-content>
     <dynamic-form [formConfig]="personFormConfig"
-      (ready)="onPersonReady($event)"></dynamic-form>
+      (ready)="onPersonReady($event)"
+      (change)="onChange($event)"></dynamic-form>
 
     <button mat-stroked-button
       color="primary"

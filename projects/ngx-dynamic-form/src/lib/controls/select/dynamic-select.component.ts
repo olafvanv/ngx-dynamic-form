@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { DynamicFormFieldBaseComponent } from '../../models/classes/dynamic-form-field-base-component';
 import { DynamicFormFieldOption } from '../../models/classes/dynamic-form-field-option-model';
+import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-field-event.interface';
 import { DynamicSelect } from './dynamic-select.model';
 
 @Component({
@@ -20,9 +21,7 @@ export class DynamicSelectComponent extends DynamicFormFieldBaseComponent {
   @Input() model!: DynamicSelect<string>;
   @Input() group!: UntypedFormGroup;
 
-  @Output() blur: EventEmitter<any> = new EventEmitter();
-  @Output() change: EventEmitter<any> = new EventEmitter();
-  @Output() focus: EventEmitter<any> = new EventEmitter();
+  @Output() change = new EventEmitter<DynamicFormFieldEvent>();
 
   public trackByFn(index: number, option: DynamicFormFieldOption<unknown>) {
     return option.value;

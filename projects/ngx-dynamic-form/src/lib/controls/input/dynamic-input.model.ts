@@ -14,6 +14,7 @@ export interface DynamicInputConfig extends DynamicFormFieldValueConfig<string |
   pattern?: string | RegExp;
   autocomplete?: 'on' | 'off';
   prefix?: string;
+  hideClearIcon?: boolean;
 }
 
 export class DynamicInput extends DynamicFormFieldValueModel<string | number | Date | null> {
@@ -26,6 +27,7 @@ export class DynamicInput extends DynamicFormFieldValueModel<string | number | D
   public pattern: string | RegExp;
   public autocomplete: 'on' | 'off';
   public prefix: string | null;
+  public hideClearIcon: boolean;
 
   public readonly type = DYNAMIC_FORM_FIELD_INPUT;
 
@@ -41,5 +43,6 @@ export class DynamicInput extends DynamicFormFieldValueModel<string | number | D
     this.pattern = config.pattern ?? '';
     this.autocomplete = config.autocomplete ?? 'off';
     this.prefix = config.prefix ?? null;
+    this.hideClearIcon = config.hideClearIcon ?? false;
   }
 }

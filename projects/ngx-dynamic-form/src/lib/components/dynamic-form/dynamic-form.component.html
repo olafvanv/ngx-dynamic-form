@@ -8,7 +8,8 @@
       [hidden]="field.hidden"
       [ngClass]="[field.type, 'form-field-width-'+field.width]"
       [group]="group"
-      [model]="field">
+      [model]="field"
+      (change)="onControlChange($event)">
     </dynamic-form-field>
   </div>
 </form>
