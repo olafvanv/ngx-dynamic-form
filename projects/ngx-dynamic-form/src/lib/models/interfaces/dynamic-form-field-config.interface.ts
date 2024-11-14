@@ -1,4 +1,4 @@
-import { DynamicFormFieldRelation } from '../constants/dynamic-relations.const';
+import { DynamicFormFieldRelation } from './dynamic-form-field-relation.interface';
 import { DynamicFormValidator } from './dynamic-form-validator.interface';
 
 export interface DynamicFormFieldConfig {

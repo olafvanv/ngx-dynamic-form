@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DynamicFormFieldBaseComponent } from 'ngx-dynamic-form';
+import { DynamicFormFieldBase } from 'ngx-dynamic-form';
 import { SliderInputControl } from './slider-input-control/slider-input-control.component';
 import { SliderInput } from './slider-input.model';
 
@@ -12,9 +12,9 @@ import { SliderInput } from './slider-input.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, SliderInputControl, MatFormFieldModule]
 })
-export class SliderInputComponent extends DynamicFormFieldBaseComponent {
+export class SliderInputComponent extends DynamicFormFieldBase {
   @Input() model!: SliderInput;
   @Input() group!: UntypedFormGroup;
 
-  @Output() change: EventEmitter<any> = new EventEmitter();
+  @Output() change: EventEmitter<number> = new EventEmitter();
 }

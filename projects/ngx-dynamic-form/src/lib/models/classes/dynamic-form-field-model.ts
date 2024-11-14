@@ -1,7 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.interface';
-
-import { DynamicFormFieldRelation } from '../constants/dynamic-relations.const';
+import { DynamicFormFieldRelation } from '../interfaces/dynamic-form-field-relation.interface';
 import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.interface';
 
 export abstract class DynamicFormFieldModel {

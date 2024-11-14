@@ -1,0 +1,10 @@
+<ng-container [formGroup]="group">
+  <mat-button-toggle-group [id]="id"
+    [formControlName]="model.name"
+    [multiple]="model.multiple"
+    [vertical]="model.vertical"
+    (change)="onChange($event)">
+    <mat-button-toggle *ngFor="let option of model.options$ | async"
+      [value]="option.value">{{option.label}}</mat-button-toggle>
+  </mat-button-toggle-group>
+</ng-container>

@@ -14,6 +14,8 @@ import {
 } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { DynamicButtonTogglesComponent } from '../../controls/button-toggles/dynamic-button-toggles.component';
+import { DYNAMIC_FORM_FIELD_BUTTON_TOGGLES } from '../../controls/button-toggles/dynamic-button-toggles.model';
 import { DynamicButtonComponent } from '../../controls/button/dynamic-button.component';
 import { DYNAMIC_FORM_FIELD_BUTTON } from '../../controls/button/dynamic-button.model';
 import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkbox.component';
@@ -26,7 +28,7 @@ import { DynamicSelectComponent } from '../../controls/select/dynamic-select.com
 import { DYNAMIC_FORM_FIELD_SELECT } from '../../controls/select/dynamic-select.model';
 import { DynamicTextareaComponent } from '../../controls/textarea/dynamic-textarea.component';
 import { DYNAMIC_FORM_FIELD_TEXTAREA } from '../../controls/textarea/dynamic-textarea.model';
-import { DynamicFormField } from '../../models/classes/dynamic-form-field-base-component';
+import { DynamicFormField } from '../../models/classes/dynamic-form-field-base';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 import { DynamicFormFieldEvent, DynamicFormFieldEventType } from '../../models/interfaces/dynamic-form-field-event.interface';
@@ -91,6 +93,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
         return DynamicSelectComponent;
       case DYNAMIC_FORM_FIELD_BUTTON:
         return DynamicButtonComponent;
+      case DYNAMIC_FORM_FIELD_BUTTON_TOGGLES:
+        return DynamicButtonTogglesComponent;
       default:
         console.warn(
           `Model of type 'dynamic-${this.model.type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`

@@ -1,7 +1,7 @@
 import { Inject, Injectable, Optional, Type } from '@angular/core';
 import { FormBuilder, FormControlOptions, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { map, Observable } from 'rxjs';
-import { DynamicFormField } from '../models/classes/dynamic-form-field-base-component';
+import { DynamicFormField } from '../models/classes/dynamic-form-field-base';
 import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldOption } from '../models/classes/dynamic-form-field-option-model';
 import { DynamicFormFieldValueConfig } from '../models/classes/dynamic-form-field-value-model';

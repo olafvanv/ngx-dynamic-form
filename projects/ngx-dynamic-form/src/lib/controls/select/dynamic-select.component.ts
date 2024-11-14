@@ -5,7 +5,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { DynamicFormFieldBaseComponent } from '../../models/classes/dynamic-form-field-base-component';
+import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
 import { DynamicFormFieldOption } from '../../models/classes/dynamic-form-field-option-model';
 import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-field-event.interface';
 import { DynamicSelect } from './dynamic-select.model';
@@ -17,7 +17,7 @@ import { DynamicSelect } from './dynamic-select.model';
   templateUrl: './dynamic-select.component.html',
   styleUrls: ['./dynamic-select.component.scss']
 })
-export class DynamicSelectComponent extends DynamicFormFieldBaseComponent {
+export class DynamicSelectComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicSelect<string>;
   @Input() group!: UntypedFormGroup;
 

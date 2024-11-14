@@ -54,9 +54,9 @@ export class DynamicFormComponent {
    * Provides an Observable to listen to changes of a specific field in the form.
    *
    * @param name Name of the field
-   * @returns Observable<any>
+   * @returns Observable<unknown>
    */
-  public onControlChange(name: string): Observable<any> {
+  public onControlChange(name: string): Observable<unknown> {
     const field = this.group.get(name);
 
     if (!field) {

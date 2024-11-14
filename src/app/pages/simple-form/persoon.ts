@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   DynamicButton,
+  DynamicButtonToggles,
   DynamicCheckbox,
   DynamicFormConfig,
   DynamicFormService,
@@ -185,6 +186,16 @@ export class Persoon {
             ]
           }
         ]
+      })
+    ],
+    [
+      new DynamicButtonToggles({
+        name: 'button-toggle',
+        options: this._dynamicFormService.toDynamicOptionListObs<Gender, string>(
+          this._dataService.getGenders(),
+          (gender: Gender) => gender.name,
+          (gender: Gender) => gender.value
+        )
       })
     ],
     [

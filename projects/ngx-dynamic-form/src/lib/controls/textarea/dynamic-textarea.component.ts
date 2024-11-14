@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
-import { DynamicFormFieldBaseComponent } from '../../models/classes/dynamic-form-field-base-component';
+import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
 import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-field-event.interface';
 import { DynamicTextarea } from './dynamic-textarea.model';
 
@@ -14,7 +14,7 @@ import { DynamicTextarea } from './dynamic-textarea.model';
   templateUrl: './dynamic-textarea.component.html',
   styles: ['mat-form-field {width: 100%;}']
 })
-export class DynamicTextareaComponent extends DynamicFormFieldBaseComponent {
+export class DynamicTextareaComponent extends DynamicFormFieldBase {
   @ViewChild(MatInput, { static: true }) textarea!: MatInput;
 
   @Input() model!: DynamicTextarea;

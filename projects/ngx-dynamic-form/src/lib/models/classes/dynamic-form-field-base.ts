@@ -8,7 +8,7 @@ export interface DynamicFormField {
   change: EventEmitter<any>;
 }
 
-export abstract class DynamicFormFieldBaseComponent {
+export abstract class DynamicFormFieldBase implements DynamicFormField {
   group!: UntypedFormGroup;
   model!: DynamicFormFieldModel;
 
