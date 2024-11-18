@@ -1,4 +1,7 @@
-<ng-container [formGroup]="group">
+<div class="dynamic-button-toggles-wrapper"
+  [formGroup]="group">
+  <label *ngIf="model.label"
+    [ngClass]="model.fieldLabelPosition">{{model.label}}</label>
   <mat-button-toggle-group [id]="id"
     [formControlName]="model.name"
     [multiple]="model.multiple"
@@ -7,4 +10,4 @@
     <mat-button-toggle *ngFor="let option of model.options$ | async"
       [value]="option.value">{{option.label}}</mat-button-toggle>
   </mat-button-toggle-group>
-</ng-container>
+</div>

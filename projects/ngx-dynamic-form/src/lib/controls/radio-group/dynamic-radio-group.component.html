@@ -1,0 +1,14 @@
+<div class="dynamic-radio-group-wrapper"
+  [formGroup]="group">
+  <label *ngIf="model.label">{{model.label}}</label>
+  <mat-radio-group [formControlName]="model.name"
+    class="radio-group"
+    [ngClass]="{'inline': model.inline}"
+    (change)="onChange($event)">
+    <mat-radio-button *ngFor="let option of model.options$ | async"
+      [value]="option.value"
+      [labelPosition]="model.labelPosition">
+      {{option.label}}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>

@@ -1,0 +1,15 @@
+.dynamic-button-toggles-wrapper {
+  label {
+    font-size: var(--mdc-typography-body2-font-size, 14px);
+
+    &.above {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    &.before {
+      display: inline-block;
+      margin-right: 8px;
+    }
+  }
+}

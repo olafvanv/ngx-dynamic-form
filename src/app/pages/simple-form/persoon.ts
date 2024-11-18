@@ -8,6 +8,7 @@ import {
   DynamicFormService,
   DynamicFormValidators,
   DynamicInput,
+  DynamicRadioGroup,
   DynamicReadonly,
   DynamicSelect,
   DynamicTextarea,
@@ -60,6 +61,14 @@ export class Persoon {
         label: 'Age',
         max: 100,
         validators: [DynamicFormValidators.min(18, 'Minimale leeftijd is 18 jaar')]
+      }),
+      new DynamicRadioGroup({
+        name: 'age-2',
+        label: 'Leeftijd',
+        options: [
+          { label: 'Under 18', value: 17 },
+          { label: '18+', value: 20 }
+        ]
       })
     ],
     [
@@ -89,6 +98,7 @@ export class Persoon {
       new DynamicSelect<string>({
         name: 'gender',
         label: 'Gender',
+        width: 40,
         options: this._dynamicFormService.toDynamicOptionListObs<Gender, string>(
           this._dataService.getGenders(),
           (gender: Gender) => gender.name,
@@ -112,6 +122,7 @@ export class Persoon {
       new DynamicSelect({
         name: 'gender-advanced',
         label: 'Gender v2',
+        width: 40,
         groupedOptions: [
           {
             name: 'Klassiek',
@@ -128,6 +139,16 @@ export class Persoon {
             ]
           }
         ]
+      }),
+      new DynamicButtonToggles({
+        name: 'button-toggle',
+        label: 'Button toggles',
+        width: 20,
+        options: this._dynamicFormService.toDynamicOptionListObs<Gender, string>(
+          this._dataService.getGenders(),
+          (gender: Gender) => gender.name,
+          (gender: Gender) => gender.value
+        )
       })
     ],
     [
@@ -186,16 +207,6 @@ export class Persoon {
             ]
           }
         ]
-      })
-    ],
-    [
-      new DynamicButtonToggles({
-        name: 'button-toggle',
-        options: this._dynamicFormService.toDynamicOptionListObs<Gender, string>(
-          this._dataService.getGenders(),
-          (gender: Gender) => gender.name,
-          (gender: Gender) => gender.value
-        )
       })
     ],
     [

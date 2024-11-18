@@ -22,6 +22,8 @@ import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkb
 import { DYNAMIC_FORM_FIELD_CHECKBOX } from '../../controls/checkbox/dynamic-checkbox.model';
 import { DynamicInputComponent } from '../../controls/input/dynamic-input.component';
 import { DYNAMIC_FORM_FIELD_INPUT } from '../../controls/input/dynamic-input.model';
+import { DymamicRadioGroupComponent } from '../../controls/radio-group/dynamic-radio-group.component';
+import { DYNAMIC_FORM_FIELD_RADIO_GROUP } from '../../controls/radio-group/dynamic-radio-group.model';
 import { DynamicReadonlyComponent } from '../../controls/readonly/dynamic-readonly.component';
 import { DYNAMIC_FORM_FIELD_READONLY } from '../../controls/readonly/dynamic-readonly.model';
 import { DynamicSelectComponent } from '../../controls/select/dynamic-select.component';
@@ -95,6 +97,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
         return DynamicButtonComponent;
       case DYNAMIC_FORM_FIELD_BUTTON_TOGGLES:
         return DynamicButtonTogglesComponent;
+      case DYNAMIC_FORM_FIELD_RADIO_GROUP:
+        return DymamicRadioGroupComponent;
       default:
         console.warn(
           `Model of type 'dynamic-${this.model.type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`
