@@ -124,7 +124,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   private setSubscriptions(): void {
     const model = this.model as DynamicFormFieldValueModel<unknown>;
 
-    // Subscribe to the value change inside the control to chagne the value inside the model as well
+    // Subscribe to the value change inside the control to change the value inside the model as well
     this._subs.add(this._control.valueChanges.subscribe((value) => this.onValueChange(value)));
 
     // Subscribe to the disabled change inside the model to change the disabled state of the FormControl
@@ -167,7 +167,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
     disabled ? this._control.disable() : this._control.enable();
   }
 
-  private onChange(ev: unknown) {
+  private onChange(ev: unknown): void {
     this.change.emit(this.createDynamicFormEvent(ev, 'change'));
   }
 
