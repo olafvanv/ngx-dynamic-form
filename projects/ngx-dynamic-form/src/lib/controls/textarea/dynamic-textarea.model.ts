@@ -4,6 +4,7 @@ export const DYNAMIC_FORM_FIELD_TEXTAREA = 'textarea';
 export type DynamicTextareaValue = string | null;
 
 export interface DynamicTextareaConfig extends DynamicFormFieldValueConfig<DynamicTextareaValue> {
+  placeholder?: string;
   minLength?: number;
   maxLength?: number;
   autocomplete?: 'on' | 'off';
@@ -13,6 +14,7 @@ export interface DynamicTextareaConfig extends DynamicFormFieldValueConfig<Dynam
 }
 
 export class DynamicTextarea extends DynamicFormFieldValueModel<DynamicTextareaValue> {
+  public placeholder: string;
   public minLength: number | null;
   public maxLength: number | null;
   public autocomplete: 'on' | 'off';
@@ -25,6 +27,7 @@ export class DynamicTextarea extends DynamicFormFieldValueModel<DynamicTextareaV
   constructor(config: DynamicTextareaConfig) {
     super(config);
 
+    this.placeholder = config.placeholder ?? '';
     this.minLength = config.minLength ?? 0;
     this.maxLength = config.minLength ?? null;
     this.autocomplete = config.autocomplete ?? 'off';

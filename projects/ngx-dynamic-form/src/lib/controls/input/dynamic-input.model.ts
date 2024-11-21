@@ -6,6 +6,7 @@ export type HtmlInputType = 'text' | 'number' | 'tel' | 'email' | 'password' | '
 
 export interface DynamicInputConfig extends DynamicFormFieldValueConfig<string | number | Date | null> {
   inputType?: HtmlInputType;
+  placeholder?: string;
   max?: number;
   min?: number;
   maxLength?: number;
@@ -19,6 +20,7 @@ export interface DynamicInputConfig extends DynamicFormFieldValueConfig<string |
 
 export class DynamicInput extends DynamicFormFieldValueModel<string | number | Date | null> {
   public inputType: HtmlInputType;
+  public placeholder: string;
   public max: number | null;
   public min: number | null;
   public maxLength: number | null;
@@ -35,6 +37,7 @@ export class DynamicInput extends DynamicFormFieldValueModel<string | number | D
     super(config);
 
     this.inputType = config.inputType ?? 'text';
+    this.placeholder = config.placeholder ?? config.label ?? '';
     this.max = config.max ?? null;
     this.min = config.min ?? null;
     this.maxLength = typeof config.maxLength === 'number' ? config.maxLength : null;
