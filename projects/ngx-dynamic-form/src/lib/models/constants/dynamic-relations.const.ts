@@ -1,7 +1,16 @@
+import { Injector } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
 import { DynamicFormValidationsService } from '../../services/dynamic-validations.service';
+import { DynamicFormFieldModel } from '../classes/dynamic-form-field-model';
 import { DynamicFormValidators } from '../classes/dynamic-form-validators';
-import { DynamicRelationAction, RelationActionType } from '../interfaces/dynamic-form-field-relation.interface';
+import { RelationActionType } from '../interfaces/dynamic-form-field-relation.interface';
 import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.interface';
+
+export interface DynamicRelationAction {
+  type: RelationActionType;
+  reversedType?: string;
+  change(hasMatch: boolean, model: DynamicFormFieldModel, control: UntypedFormControl, injector: Injector): void;
+}
 
 const DISABLE_ACTION: DynamicRelationAction = {
   type: RelationActionType.DISABLED,

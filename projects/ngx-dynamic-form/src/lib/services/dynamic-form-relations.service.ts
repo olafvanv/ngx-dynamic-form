@@ -2,13 +2,8 @@ import { inject, Injectable, Injector } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormControl } from '@angular/forms';
 import { distinctUntilChanged, startWith, Subscription } from 'rxjs';
 import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
-import { RELATION_ACTIONS } from '../models/constants/dynamic-relations.const';
-import {
-  DynamicFormFieldRelation,
-  DynamicRelationAction,
-  RelationCondition,
-  RelationOperator
-} from '../models/interfaces/dynamic-form-field-relation.interface';
+import { DynamicRelationAction, RELATION_ACTIONS } from '../models/constants/dynamic-relations.const';
+import { DynamicFormFieldRelation, RelationCondition, RelationOperator } from '../models/interfaces/dynamic-form-field-relation.interface';
 import { RelatedFormControls } from '../models/types/related-form-controls.type';
 
 @Injectable({

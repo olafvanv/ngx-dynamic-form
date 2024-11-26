@@ -3,22 +3,12 @@ import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.inter
 
 export class DynamicFormValidators {
   /**
-   * Default required validator, the control must contain a value
+   * Default email validator, the value of the control has to be a valid email address
    * @param msg
    */
-  static required(msg?: string): DynamicFormValidator {
-    const message: string = msg ?? 'Dit veld is verplicht';
-
-    return { name: 'required', validator: Validators.required, message };
-  }
-
-  /**
-   * Ddefault requiredTrue validator, the value of the control has to be true
-   * @param msg
-   */
-  static requiredTrue(msg?: string): DynamicFormValidator {
-    const message: string = msg ?? 'Dit veld is verplicht';
-    return { name: 'requiredTrue', validator: Validators.requiredTrue, message };
+  static email(msg?: string): DynamicFormValidator {
+    const message: string = msg ?? 'Geen geldig emailadres';
+    return { name: 'email', validator: Validators.email, message };
   }
 
   /**
@@ -62,15 +52,6 @@ export class DynamicFormValidators {
   }
 
   /**
-   * Ddefault email validator, the value of the control has to be a valid email address
-   * @param msg
-   */
-  static email(msg?: string): DynamicFormValidator {
-    const message: string = msg ?? 'Geen geldig emailadres';
-    return { name: 'email', validator: Validators.email, message };
-  }
-
-  /**
    * Default pattern validator, the value of the control has to match the provided pattern
    * @param pattern: string | RegExp
    * @param msg
@@ -78,5 +59,24 @@ export class DynamicFormValidators {
   static pattern(pattern: string | RegExp, msg?: string): DynamicFormValidator {
     const message: string = msg ?? 'Geen geldige invoer';
     return { name: 'pattern', validator: Validators.pattern(pattern), message };
+  }
+
+  /**
+   * Default required validator, the control must contain a value
+   * @param msg
+   */
+  static required(msg?: string): DynamicFormValidator {
+    const message: string = msg ?? 'Dit veld is verplicht';
+
+    return { name: 'required', validator: Validators.required, message };
+  }
+
+  /**
+   * Default requiredTrue validator, the value of the control has to be true
+   * @param msg
+   */
+  static requiredTrue(msg?: string): DynamicFormValidator {
+    const message: string = msg ?? 'Dit veld is verplicht';
+    return { name: 'requiredTrue', validator: Validators.requiredTrue, message };
   }
 }
