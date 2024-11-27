@@ -5,22 +5,23 @@
         (click)="createNew()">Add new</button>
     </div>
     <mat-action-list>
-      <ng-container *ngFor="let item of $media(); trackBy: trackByFn">
-        <button mat-list-item
-          (click)="selectItem(item)">
-          <div matListItemTitle>{{item.title}}</div>
-          <div matListItemLine>{{item.type}}</div>
-        </button>
-        <mat-divider></mat-divider>
-      </ng-container>
+      @for (item of $media(); track trackByFn($index, item)) {
+      <button mat-list-item
+        (click)="selectItem(item)">
+        <div matListItemTitle>{{item.title}}</div>
+        <div matListItemLine>{{item.type}}</div>
+      </button>
+      <mat-divider></mat-divider>
+      }
     </mat-action-list>
   </div>
   <div class="details">
     <div class="button-bar">
+      @if (!!selectedItem) {
       <button mat-stroked-button
-        *ngIf="!!selectedItem"
         color="warn"
         (click)="deleteItem()">Delete</button>
+      }
       <button mat-raised-button
         color="primary"
         (click)="saveItem()"

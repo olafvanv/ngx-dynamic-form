@@ -3,13 +3,14 @@
     <mat-card-title>Simple Form (dynamic Form)</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form *ngIf="personForm"
-      [formGroup]="personForm">
+    @if (personForm) {
+    <form [formGroup]="personForm">
       <dynamic-form [group]="personForm"
         [formConfig]="personFormConfig"
         (change)="onChange($event)">
       </dynamic-form>
     </form>
+    }
 
     <button mat-stroked-button
       color="primary"

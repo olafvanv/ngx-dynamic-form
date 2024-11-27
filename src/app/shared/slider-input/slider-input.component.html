@@ -10,10 +10,13 @@
   </app-slider-input-control>
 
   <div class="slider-subscript-wrapper">
-    <ng-container *ngFor="let validator of model.validators"
-      ngProjectAs="mat-error">
-      <mat-error *ngIf="hasError(validator.name)">{{validator.message}}</mat-error>
+    @for (validator of model.validators; track validator) {
+    <ng-container ngProjectAs="mat-error">
+      @if (hasError(validator.name)) {
+      <mat-error>{{validator.message}}</mat-error>
+      }
     </ng-container>
+    }
   </div>
 
 </div>

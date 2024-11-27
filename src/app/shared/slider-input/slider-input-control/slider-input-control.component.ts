@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
@@ -7,7 +7,7 @@ import { MatSliderModule } from '@angular/material/slider';
   selector: 'app-slider-input-control',
   templateUrl: 'slider-input-control.component.html',
   standalone: true,
-  imports: [CommonModule, MatSliderModule, ReactiveFormsModule],
+  imports: [MatSliderModule, ReactiveFormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

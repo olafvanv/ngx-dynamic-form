@@ -1,17 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { DynamicFormComponent, DynamicFormService } from 'ngx-dynamic-form';
-import { DynamicButtonComponent } from '../../../../projects/ngx-dynamic-form/src/lib/controls/button/dynamic-button.component';
 import { CrudDemoService, Media } from './crud-demo.service';
 import { MEDIA_FORM_CONFIG } from './media-form';
 
 @Component({
   selector: 'app-crud-demo',
   standalone: true,
-  imports: [CommonModule, DynamicFormComponent, MatListModule, MatButtonModule, ReactiveFormsModule, DynamicButtonComponent],
+  imports: [DynamicFormComponent, MatListModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './crud-demo.component.html',
   styleUrls: ['./crud-demo.component.scss']
 })

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,7 +10,7 @@ import { SliderInput } from './slider-input.model';
   selector: 'app-slider-input',
   templateUrl: 'slider-input.component.html',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SliderInputControl, MatFormFieldModule]
+  imports: [ReactiveFormsModule, SliderInputControl, MatFormFieldModule]
 })
 export class SliderInputComponent extends DynamicFormFieldBase {
   @Input() model!: SliderInput;
