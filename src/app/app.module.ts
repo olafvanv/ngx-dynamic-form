@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DYNAMIC_FORM_FIELD_MAP_FN, DynamicFormComponent, DynamicFormField, DynamicFormFieldModel } from 'ngx-dynamic-form';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NonDynamicFormComponent } from './pages/non-dynamic-form/non-dynamic-form.component';
 import { SearchFormComponent } from './pages/search-form/search-form.component';
 import { SimpleFormComponent } from './pages/simple-form/simple-form.component';
 import { SliderInputComponent } from './shared/slider-input/slider-input.component';
@@ -28,8 +27,7 @@ import { DYNAMIC_FORM_FIELD_SLIDER } from './shared/slider-input/slider-input.mo
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    DynamicFormComponent,
-    NonDynamicFormComponent
+    DynamicFormComponent
   ],
   providers: [
     {

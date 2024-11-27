@@ -1,14 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NonDynamicFormComponent } from './pages/non-dynamic-form/non-dynamic-form.component';
+import { CrudDemoComponent } from './pages/crud-demo/crud-demo.component';
 import { SearchFormComponent } from './pages/search-form/search-form.component';
 import { SimpleFormComponent } from './pages/simple-form/simple-form.component';
 
 const routes: Routes = [
-  {
-    path: 'non-dynamic',
-    component: NonDynamicFormComponent
-  },
   {
     path: 'simple-form',
     component: SimpleFormComponent
@@ -16,6 +12,10 @@ const routes: Routes = [
   {
     path: 'search-form',
     component: SearchFormComponent
+  },
+  {
+    path: 'crud-demo',
+    component: CrudDemoComponent
   },
   {
     path: '',
