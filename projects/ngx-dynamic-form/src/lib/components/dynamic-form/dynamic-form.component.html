@@ -1,7 +1,7 @@
-<div *ngFor="let row of formConfig"
-  class="dynamic-form-row">
-  <dynamic-form-field *ngFor="let field of row; trackBy: trackByFn"
-    class="dynamic-form-field"
+@for(row of formConfig; track $index) {
+<div class="dynamic-form-row">
+  @for(field of row; track field.id) {
+  <dynamic-form-field class="dynamic-form-field"
     [id]="field.id"
     [hidden]="field.hidden"
     [ngClass]="[field.type, 'form-field-width-' + field.width]"
@@ -9,4 +9,6 @@
     [model]="field"
     (change)="onChange($event)">
   </dynamic-form-field>
+  }
 </div>
+}

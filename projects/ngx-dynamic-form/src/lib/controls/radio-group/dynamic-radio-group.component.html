@@ -5,10 +5,11 @@
     class="radio-group"
     [ngClass]="{'inline': model.inline}"
     (change)="onChange($event)">
-    <mat-radio-button *ngFor="let option of model.options$ | async"
-      [value]="option.value"
+    @for(option of model.options$ | async; track option.value) {
+    <mat-radio-button [value]="option.value"
       [labelPosition]="model.labelPosition">
       {{option.label}}
     </mat-radio-button>
+    }
   </mat-radio-group>
 </div>

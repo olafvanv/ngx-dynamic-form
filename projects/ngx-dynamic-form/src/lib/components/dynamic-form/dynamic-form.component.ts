@@ -31,16 +31,6 @@ export class DynamicFormComponent {
   }
 
   /**
-   * TrackBy Function for performance optimization
-   * @param _index
-   * @param field
-   * @returns
-   */
-  public trackByFn(_index: number, field: DynamicFormFieldModel): string {
-    return field.id;
-  }
-
-  /**
    * Get the current value of the form.
    * @param includeDisabledFields Include the disabled fields of the form, is enabled by default
    */

@@ -5,7 +5,7 @@
         (click)="createNew()">Add new</button>
     </div>
     <mat-action-list>
-      @for (item of $media(); track trackByFn($index, item)) {
+      @for (item of $media(); track item.id) {
       <button mat-list-item
         (click)="selectItem(item)">
         <div matListItemTitle>{{item.title}}</div>
