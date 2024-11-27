@@ -4,14 +4,12 @@ import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-fie
 export const DYNAMIC_FORM_FIELD_BUTTON = 'button';
 
 export interface DynamicButtonConfig extends DynamicFormFieldConfig {
-  text: string;
-  raised?: boolean;
+  label: string;
   onClick: () => any;
 }
 
 export class DynamicButton extends DynamicFormFieldModel {
-  public text: string | null;
-  public raised: boolean;
+  public label: string | null;
   public onClick: () => any;
 
   public readonly type = DYNAMIC_FORM_FIELD_BUTTON;
@@ -19,8 +17,7 @@ export class DynamicButton extends DynamicFormFieldModel {
   constructor(config: DynamicButtonConfig) {
     super(config);
 
-    this.text = config.text ?? null;
-    this.raised = config.raised ?? false;
+    this.label = config.label ?? null;
     this.onClick = config.onClick;
   }
 }

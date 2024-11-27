@@ -19,11 +19,9 @@
     <div class="button-bar">
       @if (!!selectedItem) {
       <button mat-stroked-button
-        color="warn"
         (click)="deleteItem()">Delete</button>
       }
       <button mat-raised-button
-        color="primary"
         (click)="saveItem()"
         [disabled]="mediaFormGroup.invalid">Save</button>
     </div>

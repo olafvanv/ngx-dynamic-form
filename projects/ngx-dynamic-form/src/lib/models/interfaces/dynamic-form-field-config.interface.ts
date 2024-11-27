@@ -52,8 +52,13 @@ export interface DynamicFormFieldConfig {
   relations?: DynamicFormFieldRelation[];
   /**
    * Event name for the control to update on.
-   * Possible values: 'change', 'blur' or 'submit'.
-   * Default values is 'blur'
+   * This will determine when Angular is checking the validators
+   * Possible values:
+   * - `change`: on every change event on the FormControl
+   * - `blur`: on the blur event of the FormControl
+   * - `submit`: when the parent form of the FormControl is submitted
+   *
+   * Default value is 'blur'.
    * @optional
    */
   updateOn?: 'submit' | 'blur' | 'change';

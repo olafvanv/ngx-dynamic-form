@@ -79,7 +79,7 @@ export class Persoon {
       }),
       new DynamicButton({
         name: 'button',
-        text: 'Info',
+        label: 'Info',
         onClick: () => {
           alert('info');
         }

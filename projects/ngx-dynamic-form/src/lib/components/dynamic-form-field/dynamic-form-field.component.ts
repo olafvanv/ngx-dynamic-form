@@ -53,11 +53,11 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
 
   @Output() change = new EventEmitter<DynamicFormFieldEvent>();
 
+  private readonly dynamicFormService = inject(DynamicFormService);
+  private readonly relationService = inject(DynamicFormRelationsService);
+
   private _control!: UntypedFormControl;
   private _subs = new Subscription();
-
-  private dynamicFormService = inject(DynamicFormService);
-  private relationService = inject(DynamicFormRelationsService);
 
   /** Get the instance of a control component using the injected custom method or local method */
   private get componentType(): Type<DynamicFormField> | null {

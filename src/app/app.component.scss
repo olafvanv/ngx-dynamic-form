@@ -3,13 +3,13 @@
   display: flex;
   flex-direction: column;
 }
+
 .header {
   flex-shrink: 0;
   nav {
     display: flex;
 
     a {
-      color: #fff;
       display: block;
       text-decoration: none;
       font-size: 14px;
