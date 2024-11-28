@@ -1,6 +1,6 @@
 # NgxDynamicForm
 
-This library is to create a form based on a JSON model. The forms is based on the `ReactiveFormsModule` from Angular and Angular Material for the components.
+This library is to create a form based on a JSON model. The forms is based on the `ReactiveFormsModule` from Angular and contains a set of pre-built form controls using the Angular Material library. Using the built-in form controls is optional, you can use your own components to use as form controls inside the dynamic form. See [Custom Form Controls](#custom-form-controls) form more information.
 
 ## Table of contents
 
@@ -13,11 +13,11 @@ This library is to create a form based on a JSON model. The forms is based on th
   - [Action type](#action-type)
   - [Conditions](#conditions)
   - [Operator](#operator)
-- [Custom Form Controls](#custom-form-control)
+- [Custom Form Controls](#custom-form-controls)
 
 ## Getting started
 
-##### 1. Make sure to install and configure [Angular Material](https://material.angular.io/guide/getting-started)
+##### 1. Make sure to install and configure [Angular Material](https://material.angular.io/guide/getting-started) if you want to use the built-in form controls
 
 ##### 2. Install the library using npm:
 
@@ -304,7 +304,26 @@ const formConfig = [
 ];
 ```
 
-## Custom Form Control
+## Built-in form controls
+
+The library comes with a set of built-in form controls, using the Angular Material library. To make use of these you have to make sure to install and configure [Angular Material](https://material.angular.io).
+
+The library comes with the following form controls:
+
+| Form control name | Description                                                                                                                                                                     |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Button            | Shows a button inside the form. Can be provided with a label and/or icon. You also provide a callback method for what happens when the button is clicked                        |
+| Button toggle     | Based on the Angular Material component which shows a row of buttons, each holding a value (can be compared to radio buttons). It is possible to select one or multiple options |
+| Checkbox          | Shows a checkbox, indicating a true or false value                                                                                                                              |
+| Input             | Text based input using the HTML5 input element with Angular Material styling and animations.                                                                                    |
+| Radio group       | Uses the `mat-radio-group` of Angular Material to show a group of radio buttons to select a single option                                                                       |
+| Readonly          | Shows the value of the control without the possibility to interact with it.                                                                                                     |
+| Select            | Uses the `mat-select` of Angular Material to show a list of options inside a dropdown.                                                                                          |
+| Textarea          | The HTML5 `<textarea>` element with enchanced Angular Material styling and animations.                                                                                          |
+
+Each control has a basic set of properties (see `DynamicFormFieldConfig`) that can be passed to the control's model. They also have a specific set of properties that only apply to the selected control.
+
+## Custom Form Controls
 
 Other than the build-in form controls, it is possible to plug in you own custom controls. Start out with creating a custom form control component:
 
@@ -312,14 +331,14 @@ Other than the build-in form controls, it is possible to plug in you own custom 
 
 After that follow the following steps.
 
-### Create a model
+#### 1. Create a model
 
 First step is to create a model and interface for the custom control containing the control specific properties for the configuration definitions, extending the base interface/model from the library.
 Also, you need to create an (unique) name for the type of the model/.
 
 For example if you're creating a control with a slider to select a value between 0 and 10:
 
-#### Interface:
+##### Interface:
 
 The interface extends the base interface `DynamicFormFieldValueConfig` and expects a generic type describing the possible value(s) of the field. In this case that would be a number or null value.
 
