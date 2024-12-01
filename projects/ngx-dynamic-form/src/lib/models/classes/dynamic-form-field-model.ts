@@ -1,10 +1,10 @@
+import { signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.interface';
 import { DynamicFormFieldRelation } from '../interfaces/dynamic-form-field-relation.interface';
 import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.interface';
 
 export abstract class DynamicFormFieldModel {
-  public hidden: boolean;
   public id: string;
   public width: number;
   public label: string | null;
@@ -18,9 +18,9 @@ export abstract class DynamicFormFieldModel {
   abstract readonly type: string;
 
   private readonly disabled$: BehaviorSubject<boolean>;
+  private readonly $hidden: WritableSignal<boolean>;
 
   constructor(config: DynamicFormFieldConfig) {
-    this.hidden = config.hidden ?? false;
     this.id = config.id ?? config.name;
     this.width = config.width ?? 100;
     this.label = config.label ?? null;
@@ -33,6 +33,8 @@ export abstract class DynamicFormFieldModel {
     // Create a disabled Subject and Observable to change the state of the FormControl inside DynamicFormFieldComponent by subscribing to disabledChange
     this.disabled$ = new BehaviorSubject(config.disabled ?? false);
     this.disabledChange = this.disabled$.asObservable();
+
+    this.$hidden = signal(config.hidden ?? false);
   }
 
   get disabled(): boolean {
@@ -40,5 +42,12 @@ export abstract class DynamicFormFieldModel {
   }
   set disabled(disable: boolean) {
     this.disabled$.next(disable);
+  }
+
+  get hidden(): boolean {
+    return this.$hidden();
+  }
+  set hidden(hidden: boolean) {
+    this.$hidden.set(hidden);
   }
 }

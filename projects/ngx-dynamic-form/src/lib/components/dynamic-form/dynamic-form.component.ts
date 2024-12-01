@@ -1,4 +1,4 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-fi
 
 @Component({
   standalone: true,
-  imports: [NgFor, NgClass, DynamicFormFieldComponent, ReactiveFormsModule],
+  imports: [NgClass, DynamicFormFieldComponent, ReactiveFormsModule],
   selector: 'dynamic-form',
   templateUrl: 'dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss'],

@@ -155,22 +155,12 @@ export class Persoon {
       new DynamicInput({
         name: 'parentName',
         label: 'Name of parent',
-        hidden: true,
         relations: [
-          {
-            actionType: RelationActionType.REQUIRED,
-            conditions: [
-              {
-                fieldName: 'age',
-                value: (age: number) => !!age && age < 18
-              }
-            ]
-          },
           {
             actionType: RelationActionType.VISIBLE,
             conditions: [
               {
-                fieldName: 'age',
+                fieldName: 'age-2',
                 value: (age: number) => !!age && age < 18
               }
             ]

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CrudDemoComponent } from './pages/crud-demo/crud-demo.component';
+import { MultiSectionsDemoComponent } from './pages/multi-sections-demo/multi-sections-demo.component';
 import { SearchFormComponent } from './pages/search-form/search-form.component';
 import { SimpleFormComponent } from './pages/simple-form/simple-form.component';
 
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'crud-demo',
     component: CrudDemoComponent
+  },
+  {
+    path: 'multi-section',
+    component: MultiSectionsDemoComponent
   },
   {
     path: '',

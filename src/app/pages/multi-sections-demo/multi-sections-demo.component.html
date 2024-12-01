@@ -1,0 +1,19 @@
+<form [formGroup]="bookingForm">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Person details
+    </mat-expansion-panel-header>
+
+    <dynamic-form [group]="personForm"
+      [formConfig]="personFormConfig"></dynamic-form>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Address details
+    </mat-expansion-panel-header>
+
+    <dynamic-form [group]="addressForm"
+      [formConfig]="addressFormConfig"></dynamic-form>
+  </mat-expansion-panel>
+</form>

@@ -11,6 +11,7 @@ import { RelatedFormControls } from '../models/types/related-form-controls.type'
 })
 export class DynamicFormRelationsService {
   private _injector = inject(Injector);
+
   /**
    * Get an object with all FormField the provided model has a relation with
    * @param model
@@ -19,14 +20,18 @@ export class DynamicFormRelationsService {
    */
   public findRelatedFormField(model: DynamicFormFieldModel, group: FormGroup): RelatedFormControls {
     const conditionReducer = (controls: RelatedFormControls, condition: RelationCondition) => {
-      const control = group.get(condition.fieldName) as UntypedFormControl;
+      const fieldName = condition.path ?? condition.fieldName!;
+      // Get the control using the provided path or fieldName
+      const control = condition.path
+        ? (group.root.get(condition.path) as UntypedFormControl)
+        : (group.get(condition.fieldName!) as UntypedFormControl);
 
       if (!control) {
         console.warn(`No related form control with the name ${condition.fieldName} found`);
         return controls;
       }
 
-      controls[condition.fieldName] = control;
+      controls[fieldName] = control;
       return controls;
     };
 
@@ -89,7 +94,7 @@ export class DynamicFormRelationsService {
       let relatedControl: UntypedFormControl | undefined;
 
       for (const [fieldName, control] of Object.entries(relatedControls)) {
-        if (fieldName === condition.fieldName) {
+        if (fieldName === (condition.path ?? condition.fieldName)) {
           relatedControl = control;
           break;
         }
@@ -99,10 +104,10 @@ export class DynamicFormRelationsService {
 
       // Using the 'normal' type should return true when the condition matches
       if (relation.actionType === action.type) {
-        // Shortcut to false when a previous condition check was resolved as false
+        // Shortcut to false when a previous condition check was resolved as false in case of the AND operator
         if (index > 0 && operator === RelationOperator.AND && !isMatch) return false;
 
-        // Shortcut to true when a previous condition check was resolved as true
+        // Shortcut to true when a previous condition check was resolved as true in case of the OR operator
         if (index > 0 && operator === RelationOperator.OR && isMatch) return true;
 
         return condition.value(relatedControl.value);

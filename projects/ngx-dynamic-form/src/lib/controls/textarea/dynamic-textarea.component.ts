@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,7 +9,7 @@ import { DynamicTextarea } from './dynamic-textarea.model';
 
 @Component({
   standalone: true,
-  imports: [NgIf, NgFor, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+  imports: [NgIf, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
   selector: 'dynamic-textarea',
   templateUrl: './dynamic-textarea.component.html',
   styles: ['mat-form-field {width: 100%;}']

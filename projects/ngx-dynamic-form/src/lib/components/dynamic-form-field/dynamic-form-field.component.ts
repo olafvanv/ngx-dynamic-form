@@ -146,6 +146,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   private setUpRelations(): void {
     // Array of all FormControls the current model has a relation to
     const relatedFormControls: RelatedFormControls = this.relationService.findRelatedFormField(this.model, this.group);
+
     const subs = this.relationService.getRelationSubscriptions(relatedFormControls, this.model, this._control);
 
     // Add all relations as subscription to the main Subscription object
