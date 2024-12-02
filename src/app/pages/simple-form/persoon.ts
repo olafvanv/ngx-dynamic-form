@@ -44,7 +44,18 @@ export class Persoon {
       new DynamicInput({
         name: 'name',
         inputType: 'text',
-        label: 'Achternaam'
+        label: 'Achternaam',
+        relations: [
+          {
+            actionType: RelationActionType.DISABLED,
+            conditions: [
+              {
+                path: 'firstname',
+                value: (val: string) => !!val
+              }
+            ]
+          }
+        ]
       })
     ],
     [
@@ -103,21 +114,7 @@ export class Persoon {
           this._dataService.getGenders(),
           (gender: Gender) => gender.name,
           (gender: Gender) => gender.value
-        ),
-        validators: [],
-        relations: [
-          {
-            actionType: RelationActionType.REQUIRED,
-            conditions: [
-              {
-                fieldName: 'agree',
-                value: (test: boolean) => {
-                  return test === true;
-                }
-              }
-            ]
-          }
-        ]
+        )
       }),
       new DynamicSelect({
         name: 'gender-advanced',
