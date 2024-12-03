@@ -4,6 +4,9 @@ import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.
 import { DynamicFormFieldRelation } from '../interfaces/dynamic-form-field-relation.interface';
 import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.interface';
 
+/**
+ * Base class for all DynamicFormFields
+ */
 export abstract class DynamicFormFieldModel {
   public id: string;
   public width: number;

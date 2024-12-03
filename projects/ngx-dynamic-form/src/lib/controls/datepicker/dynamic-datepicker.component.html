@@ -16,4 +16,10 @@
     [startAt]="model.startAt"
     [startView]="model.startView"></mat-datepicker>
 
+  @for(validator of model.validators; track validator.name) {
+  <ng-container ngProjectAs="mat-error">
+    <mat-error *ngIf="hasError(validator.name)">{{validator.message}}</mat-error>
+  </ng-container>
+  }
+
 </mat-form-field>

@@ -1,6 +1,10 @@
 import { DynamicFormFieldRelation } from './dynamic-form-field-relation.interface';
 import { DynamicFormValidator } from './dynamic-form-validator.interface';
 
+/**
+ * Base configuration object for each Dynamic Form Field.
+ * Expects a generic type describing the type of the value the control holds.
+ */
 export interface DynamicFormFieldConfig<T> {
   /**
    * Name used as FormControlName

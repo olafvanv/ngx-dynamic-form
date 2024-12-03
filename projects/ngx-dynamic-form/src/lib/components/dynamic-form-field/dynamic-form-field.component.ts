@@ -36,7 +36,6 @@ import { DynamicFormField } from '../../models/classes/dynamic-form-field-base';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 import { DynamicFormFieldEvent, DynamicFormFieldEventType } from '../../models/interfaces/dynamic-form-field-event.interface';
-import { RelatedFormControls } from '../../models/types/related-form-controls.type';
 import { DynamicFormRelationsService } from '../../services/dynamic-form-relations.service';
 import { DynamicFormService } from '../../services/dynamic-form.service';
 
@@ -149,7 +148,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    */
   private setUpRelations(): void {
     // Array of all FormControls the current model has a relation to
-    const relatedFormControls: RelatedFormControls = this.relationService.findRelatedFormField(this.model, this.group);
+    const relatedFormControls = this.relationService.findRelatedFormField(this.model, this.group);
 
     const subs = this.relationService.getRelationSubscriptions(relatedFormControls, this.model, this._control);
 

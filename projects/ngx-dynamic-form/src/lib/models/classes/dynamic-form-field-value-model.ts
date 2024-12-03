@@ -1,28 +1,22 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.interface';
 import { DynamicFormFieldModel } from './dynamic-form-field-model';
 
+/**
+ * Base class for a DynamicFormField with a value
+ */
 export abstract class DynamicFormFieldValueModel<T> extends DynamicFormFieldModel {
-  public valueChanges: Observable<T | null>;
+  public defaultValue: T | null;
 
-  private _defaultValue: T | null;
-  private _value: T | null;
   private _value$: BehaviorSubject<T | null>;
 
   constructor(config: DynamicFormFieldConfig<T>) {
     super(config);
 
-    this._defaultValue = config.defaultValue ?? null;
-    this._value = config.value ?? null;
-    this._value$ = new BehaviorSubject(this._value);
-    this.valueChanges = this._value$.asObservable();
-  }
+    this.defaultValue = config.defaultValue ?? null;
 
-  get defaultValue(): T | null {
-    return this._defaultValue;
-  }
-  set defaultValue(val: T | null) {
-    this._defaultValue = val;
+    const val: T | null = config.value ?? null;
+    this._value$ = new BehaviorSubject(val);
   }
 
   get value(): T | null {
