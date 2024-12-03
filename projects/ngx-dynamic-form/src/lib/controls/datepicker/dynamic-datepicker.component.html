@@ -1,0 +1,19 @@
+<mat-form-field [formGroup]="group"
+  [id]="model.id"
+  color="primary">
+  <mat-label *ngIf="model.label">{{model.label}}</mat-label>
+
+  <input matInput
+    [min]="model.min"
+    [max]="model.max"
+    [matDatepicker]="picker">
+
+  <mat-hint *ngIf="model.hint">{{model.hint}}</mat-hint>
+
+  <mat-datepicker-toggle matIconSuffix
+    [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker
+    [startAt]="model.startAt"
+    [startView]="model.startView"></mat-datepicker>
+
+</mat-form-field>

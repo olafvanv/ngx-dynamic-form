@@ -9,7 +9,6 @@ import { BOOKING_ADDRESS_CONFIG } from './form-configs/address';
 import { BOOKING_PERSON_CONFIG } from './form-configs/person';
 
 interface BookingFormModel {
-  //Person details
   person: FormGroupModel<BookingPerson>;
   address: FormGroupModel<BookingAddress>;
 }

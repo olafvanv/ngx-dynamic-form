@@ -5,6 +5,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,6 +46,7 @@ import { DYNAMIC_FORM_FIELD_SLIDER } from './shared/slider-input/slider-input.mo
         }
       }
     },
+    provideNativeDateAdapter(),
     provideHttpClient(withInterceptorsFromDi())
   ]
 })

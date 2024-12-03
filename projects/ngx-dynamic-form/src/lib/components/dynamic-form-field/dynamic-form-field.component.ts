@@ -20,6 +20,8 @@ import { DynamicButtonComponent } from '../../controls/button/dynamic-button.com
 import { DYNAMIC_FORM_FIELD_BUTTON } from '../../controls/button/dynamic-button.model';
 import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkbox.component';
 import { DYNAMIC_FORM_FIELD_CHECKBOX } from '../../controls/checkbox/dynamic-checkbox.model';
+import { DynamicDatepickerComponent } from '../../controls/datepicker/dynamic-datepicker.component';
+import { DYNAMIC_FORM_FIELD_DATEPICKER } from '../../controls/datepicker/dynamic-datepicker.model';
 import { DynamicInputComponent } from '../../controls/input/dynamic-input.component';
 import { DYNAMIC_FORM_FIELD_INPUT } from '../../controls/input/dynamic-input.model';
 import { DymamicRadioGroupComponent } from '../../controls/radio-group/dynamic-radio-group.component';
@@ -83,22 +85,24 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    */
   private getControlComponentType(): Type<DynamicFormField> | null {
     switch (this.model.type) {
-      case DYNAMIC_FORM_FIELD_CHECKBOX:
-        return DynamicCheckboxComponent;
-      case DYNAMIC_FORM_FIELD_INPUT:
-        return DynamicInputComponent;
-      case DYNAMIC_FORM_FIELD_TEXTAREA:
-        return DynamicTextareaComponent;
-      case DYNAMIC_FORM_FIELD_READONLY:
-        return DynamicReadonlyComponent;
-      case DYNAMIC_FORM_FIELD_SELECT:
-        return DynamicSelectComponent;
       case DYNAMIC_FORM_FIELD_BUTTON:
         return DynamicButtonComponent;
       case DYNAMIC_FORM_FIELD_BUTTON_TOGGLES:
         return DynamicButtonTogglesComponent;
+      case DYNAMIC_FORM_FIELD_CHECKBOX:
+        return DynamicCheckboxComponent;
+      case DYNAMIC_FORM_FIELD_DATEPICKER:
+        return DynamicDatepickerComponent;
+      case DYNAMIC_FORM_FIELD_INPUT:
+        return DynamicInputComponent;
       case DYNAMIC_FORM_FIELD_RADIO_GROUP:
         return DymamicRadioGroupComponent;
+      case DYNAMIC_FORM_FIELD_READONLY:
+        return DynamicReadonlyComponent;
+      case DYNAMIC_FORM_FIELD_SELECT:
+        return DynamicSelectComponent;
+      case DYNAMIC_FORM_FIELD_TEXTAREA:
+        return DynamicTextareaComponent;
       default:
         console.warn(
           `Model of type 'dynamic-${this.model.type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`

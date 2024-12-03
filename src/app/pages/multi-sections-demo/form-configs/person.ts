@@ -1,4 +1,4 @@
-import { DynamicCheckbox, DynamicFormConfig, DynamicFormValidators, DynamicInput } from 'ngx-dynamic-form';
+import { DynamicCheckbox, DynamicDatepicker, DynamicFormConfig, DynamicFormValidators, DynamicInput } from 'ngx-dynamic-form';
 
 export const BOOKING_PERSON_CONFIG: DynamicFormConfig = [
   [
@@ -13,6 +13,14 @@ export const BOOKING_PERSON_CONFIG: DynamicFormConfig = [
       name: 'lastName',
       label: 'Last name',
       validators: [DynamicFormValidators.required()]
+    })
+  ],
+  [
+    new DynamicDatepicker({
+      name: 'dob',
+      label: 'Date of birth',
+      max: new Date(),
+      startAt: new Date(1992, 0, 1)
     })
   ],
   [
