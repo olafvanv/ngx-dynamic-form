@@ -139,7 +139,6 @@ export class Persoon {
       }),
       new DynamicButtonToggles({
         name: 'button-toggle',
-        label: 'Button toggles',
         width: 20,
         options: this._dynamicFormService.toDynamicOptionListObs<Gender, string>(
           this._dataService.getGenders(),

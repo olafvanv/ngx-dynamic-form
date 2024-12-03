@@ -1,7 +1,5 @@
 <div class="dynamic-button-toggles-wrapper"
   [formGroup]="group">
-  <label *ngIf="model.label"
-    [ngClass]="model.fieldLabelPosition">{{model.label}}</label>
   <mat-button-toggle-group [id]="id"
     [formControlName]="model.name"
     [multiple]="model.multiple"

@@ -1,4 +1,8 @@
 .dynamic-button-toggles-wrapper {
+  height: var(--mat-form-field-container-height, 56px);
+  display: flex;
+  align-items: center;
+
   label {
     font-size: var(--mdc-typography-body2-font-size, 14px);
 
