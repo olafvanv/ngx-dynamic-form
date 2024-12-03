@@ -3,7 +3,7 @@ import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-fie
 
 export const DYNAMIC_FORM_FIELD_BUTTON = 'button';
 
-export interface DynamicButtonConfig extends DynamicFormFieldConfig {
+export interface DynamicButtonConfig extends Omit<DynamicFormFieldConfig, 'label' | 'hint' | 'validators' | 'relations' | 'updateOn'> {
   label: string;
   onClick: () => any;
 }
