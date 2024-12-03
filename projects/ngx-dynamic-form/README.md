@@ -340,10 +340,10 @@ For example if you're creating a control with a slider to select a value between
 
 ##### Interface:
 
-The interface extends the base interface `DynamicFormFieldValueConfig` and expects a generic type describing the possible value(s) of the field. In this case that would be a number or null value.
+The interface extends the base interface `DynamicFormFieldConfig` and expects a generic type describing the possible value(s) of the field. In this case that would be a number or null value.
 
 ```typescript
-export interface SliderInputConfig extends DynamicFormFieldValueConfig<number | null> {
+export interface SliderInputConfig extends DynamicFormFieldConfig<number | null> {
   min: number;
   max: number;
   step: number;

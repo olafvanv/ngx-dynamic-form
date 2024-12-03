@@ -2,11 +2,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.interface';
 import { DynamicFormFieldModel } from './dynamic-form-field-model';
 
-export interface DynamicFormFieldValueConfig<T> extends DynamicFormFieldConfig {
-  value?: T;
-  defaultValue?: T;
-}
-
 export abstract class DynamicFormFieldValueModel<T> extends DynamicFormFieldModel {
   public valueChanges: Observable<T | null>;
 
@@ -14,7 +9,7 @@ export abstract class DynamicFormFieldValueModel<T> extends DynamicFormFieldMode
   private _value: T | null;
   private _value$: BehaviorSubject<T | null>;
 
-  constructor(config: DynamicFormFieldValueConfig<T>) {
+  constructor(config: DynamicFormFieldConfig<T>) {
     super(config);
 
     this._defaultValue = config.defaultValue ?? null;

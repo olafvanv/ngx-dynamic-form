@@ -1,7 +1,23 @@
 import { DynamicFormFieldRelation } from './dynamic-form-field-relation.interface';
 import { DynamicFormValidator } from './dynamic-form-validator.interface';
 
-export interface DynamicFormFieldConfig {
+export interface DynamicFormFieldConfig<T> {
+  /**
+   * Name used as FormControlName
+   * @required
+   */
+  name: string;
+  /**
+   * The value of the control.
+   * This value will change when the control is used.
+   * @optional
+   */
+  value?: T;
+  /**
+   * The default value of the control when initializing or resetting the control.
+   * @optional
+   */
+  defaultValue?: T;
   /**
    * Whether the control has to be disabled.
    * Default value is false.
@@ -21,20 +37,10 @@ export interface DynamicFormFieldConfig {
    */
   id?: string;
   /**
-   * Sets the width of the field, based on percentages. Default value is 100.
-   * @optional
-   */
-  width?: number;
-  /**
    * Used as mat-label when provided
    * @optional
    */
   label?: string | null;
-  /**
-   * Name used as FormControlName
-   * @required
-   */
-  name: string;
   /**
    * Hint text underneath the FormControl
    * @optional
@@ -62,4 +68,9 @@ export interface DynamicFormFieldConfig {
    * @optional
    */
   updateOn?: 'submit' | 'blur' | 'change';
+  /**
+   * Sets the width of the field, based on percentages. Default value is 100.
+   * @optional
+   */
+  width?: number;
 }

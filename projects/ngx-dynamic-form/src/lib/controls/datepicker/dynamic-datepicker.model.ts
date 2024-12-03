@@ -1,14 +1,12 @@
-import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
+import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
+import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-field-config.interface';
 
 export const DYNAMIC_FORM_FIELD_DATEPICKER = 'datepicker';
 
-export type DynamicDatepickerControlValue = Date | object | string;
+export type DynamicDatepickerControlValue = Date | object | string | null;
 
-export interface DynamicDatepickerConfig extends DynamicFormFieldValueConfig<DynamicDatepickerControlValue> {
-  /**
-   * Maximum date selectable in the datepicker
-   * {DynamicDatepickerControlValue}
-   * */
+export interface DynamicDatepickerConfig extends DynamicFormFieldConfig<DynamicDatepickerControlValue> {
+  /** Maximum date selectable in the datepicker */
   max?: DynamicDatepickerControlValue;
   /** Minimum date selectable in the datepicker */
   min?: DynamicDatepickerControlValue;

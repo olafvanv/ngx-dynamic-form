@@ -1,9 +1,10 @@
-import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
+import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
+import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-field-config.interface';
 
 export const DYNAMIC_FORM_FIELD_TEXTAREA = 'textarea';
 export type DynamicTextareaValue = string | null;
 
-export interface DynamicTextareaConfig extends DynamicFormFieldValueConfig<DynamicTextareaValue> {
+export interface DynamicTextareaConfig extends DynamicFormFieldConfig<DynamicTextareaValue> {
   placeholder?: string;
   minLength?: number;
   maxLength?: number;

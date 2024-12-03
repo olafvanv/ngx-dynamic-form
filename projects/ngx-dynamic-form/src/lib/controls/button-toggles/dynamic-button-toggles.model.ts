@@ -2,14 +2,14 @@ import { DynamicFormFieldOptionConfig, DynamicFormFieldOptionModel } from '../..
 
 export const DYNAMIC_FORM_FIELD_BUTTON_TOGGLES = 'button-toggles';
 
-export interface DynamicButtonTogglesConfig extends Omit<DynamicFormFieldOptionConfig<string | number>, 'label'> {
+export interface DynamicButtonTogglesConfig extends Omit<DynamicFormFieldOptionConfig<string | number | null>, 'label'> {
   /** Whether to allow multiple options to be selected. Default is false */
   multiple?: boolean;
   /** Whether the toggle group is vertical. Default is false */
   vertical?: boolean;
 }
 
-export class DynamicButtonToggles extends DynamicFormFieldOptionModel<string | number> {
+export class DynamicButtonToggles extends DynamicFormFieldOptionModel<string | number | null> {
   public multiple: boolean;
   public vertical: boolean;
 

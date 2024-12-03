@@ -1,10 +1,11 @@
-import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
+import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
+import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-field-config.interface';
 
 export const DYNAMIC_FORM_FIELD_INPUT = 'input';
 
 export type HtmlInputType = 'text' | 'number' | 'tel' | 'email' | 'password' | 'date' | 'time' | 'color';
 
-export interface DynamicInputConfig extends DynamicFormFieldValueConfig<string | number | Date | null> {
+export interface DynamicInputConfig extends DynamicFormFieldConfig<string | number | Date | null> {
   inputType?: HtmlInputType;
   placeholder?: string;
   max?: number;

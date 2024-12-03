@@ -2,14 +2,14 @@ import { DynamicFormFieldOptionConfig, DynamicFormFieldOptionModel } from '../..
 
 export const DYNAMIC_FORM_FIELD_RADIO_GROUP = 'radio-group';
 
-export interface DynamicRadioGroupConfig extends DynamicFormFieldOptionConfig<string | number> {
+export interface DynamicRadioGroupConfig extends DynamicFormFieldOptionConfig<string | number | null> {
   /** Placement of the option label. Default is 'before' */
   labelPosition?: 'before' | 'after';
   /** Whether the options are shown inline (horizontally). Default is false */
   inline?: boolean;
 }
 
-export class DynamicRadioGroup extends DynamicFormFieldOptionModel<string | number> {
+export class DynamicRadioGroup extends DynamicFormFieldOptionModel<string | number | null> {
   public labelPosition: 'before' | 'after';
   public inline: boolean;
 
