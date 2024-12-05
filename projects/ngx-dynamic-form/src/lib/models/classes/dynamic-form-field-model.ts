@@ -23,7 +23,7 @@ export abstract class DynamicFormFieldModel {
   private readonly disabled$: BehaviorSubject<boolean>;
   private readonly $hidden: WritableSignal<boolean>;
 
-  constructor(config: DynamicFormFieldConfig<unknown>) {
+  constructor(config: DynamicFormFieldConfig) {
     this.id = config.id ?? config.name;
     this.width = config.width ?? 100;
     this.label = config.label ?? null;

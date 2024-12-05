@@ -1,16 +1,38 @@
-import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
-import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-field-config.interface';
+import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 
 export const DYNAMIC_FORM_FIELD_TEXTAREA = 'textarea';
 export type DynamicTextareaValue = string | null;
 
-export interface DynamicTextareaConfig extends DynamicFormFieldConfig<DynamicTextareaValue> {
+export interface DynamicTextareaConfig extends DynamicFormFieldValueConfig<DynamicTextareaValue> {
+  /**
+   * Placeholder text inside the textarea.
+   * Only visible when the field is empty and in focus.
+   */
   placeholder?: string;
+  /**
+   * Minimum amount of characters needed in the textarea
+   */
   minLength?: number;
+  /**
+   * Maximum amount of characters it is possible to fill in the textarea
+   */
   maxLength?: number;
+  /**
+   * Enables or disabled the browser natie autocomplete bubble when the control is in focus.
+   * Default value is 'off'
+   */
   autocomplete?: 'on' | 'off';
+  /**
+   * Amount of rows the textarea initializes on
+   */
   rows?: number;
+  /**
+   * Whether the textare automatically resizes to fit its content
+   */
   resize?: boolean;
+  /**
+   * Maximum amount of rows the textarea show resize to
+   */
   resizeMaxRows?: number;
 }
 

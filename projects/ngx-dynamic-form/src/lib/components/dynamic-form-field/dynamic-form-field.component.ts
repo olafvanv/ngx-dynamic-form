@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   inject,
@@ -56,6 +57,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
 
   private readonly dynamicFormService = inject(DynamicFormService);
   private readonly relationService = inject(DynamicFormRelationsService);
+  private readonly cdRef = inject(ChangeDetectorRef);
 
   private _control!: UntypedFormControl;
   private _subs = new Subscription();
@@ -129,7 +131,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    * Setup all necessary subscriptions of the FormControl
    */
   private setSubscriptions(): void {
-    const model = this.model as DynamicFormFieldValueModel<unknown>;
+    const model = this.model as DynamicFormFieldModel;
 
     // Subscribe to the value change inside the control to change the value inside the model as well
     this._subs.add(this._control.valueChanges.subscribe((value) => this.onValueChange(value)));
@@ -173,6 +175,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    */
   private onDisabledChange(disabled: boolean): void {
     disabled ? this._control.disable() : this._control.enable();
+
+    this.cdRef.markForCheck();
   }
 
   private onChange(ev: unknown): void {

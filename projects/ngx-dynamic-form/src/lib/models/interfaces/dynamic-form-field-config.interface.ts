@@ -5,23 +5,12 @@ import { DynamicFormValidator } from './dynamic-form-validator.interface';
  * Base configuration object for each Dynamic Form Field.
  * Expects a generic type describing the type of the value the control holds.
  */
-export interface DynamicFormFieldConfig<T> {
+export interface DynamicFormFieldConfig {
   /**
    * Name used as FormControlName
    * @required
    */
   name: string;
-  /**
-   * The value of the control.
-   * This value will change when the control is used.
-   * @optional
-   */
-  value?: T;
-  /**
-   * The default value of the control when initializing or resetting the control.
-   * @optional
-   */
-  defaultValue?: T;
   /**
    * Whether the control has to be disabled.
    * Default value is false.

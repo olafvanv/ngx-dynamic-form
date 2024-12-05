@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,16 +12,7 @@ import { DynamicInput } from './dynamic-input.model';
 
 @Component({
   standalone: true,
-  imports: [
-    NgIf,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    AsyncPipe
-  ],
+  imports: [NgIf, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule],
   selector: 'dynamic-input',
   templateUrl: './dynamic-input.component.html',
   styleUrl: './dynamic-input.component.scss'

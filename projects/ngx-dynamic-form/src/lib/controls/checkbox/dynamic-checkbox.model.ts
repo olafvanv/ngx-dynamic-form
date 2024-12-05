@@ -1,9 +1,8 @@
-import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
-import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-field-config.interface';
+import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 
 export const DYNAMIC_FORM_FIELD_CHECKBOX = 'checkbox';
 
-export interface DynamicCheckboxConfig extends DynamicFormFieldConfig<boolean> {
+export interface DynamicCheckboxConfig extends DynamicFormFieldValueConfig<boolean> {
   labelPosition?: 'before' | 'after';
   indeterminate?: boolean;
 }

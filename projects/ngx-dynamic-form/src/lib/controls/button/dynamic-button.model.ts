@@ -3,10 +3,18 @@ import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-fie
 
 export const DYNAMIC_FORM_FIELD_BUTTON = 'button';
 
-type OmittedProperties = 'value' | 'defaultValue' | 'label' | 'hint' | 'validators' | 'relations' | 'updateOn';
+type OmittedProperties = 'hint' | 'validators' | 'updateOn';
 
-export interface DynamicButtonConfig extends Omit<DynamicFormFieldConfig<void>, OmittedProperties> {
+export interface DynamicButtonConfig extends Omit<DynamicFormFieldConfig, OmittedProperties> {
+  /**
+   * Label shown inside the button
+   */
   label: string;
+  /**
+   * Function called when the button is clicked.
+   * Provides no parameters.
+   * @returns
+   */
   onClick: () => any;
 }
 

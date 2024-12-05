@@ -1,6 +1,5 @@
 import { isObservable, map, Observable, of } from 'rxjs';
-import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.interface';
-import { DynamicFormFieldValueModel } from './dynamic-form-field-value-model';
+import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from './dynamic-form-field-value-model';
 
 export type DynamicOptionList<T> = DynamicFormFieldOption<T>[] | Observable<DynamicFormFieldOption<T>[]>;
 
@@ -29,7 +28,7 @@ export interface DynamicFormFieldOptionGroup<T> {
 /**
  * Base interface for any DynamicFormFieldConfig with options (e.g. DynamicSelectConfig or DynamicAutocompleteConfig).
  */
-export interface DynamicFormFieldOptionConfig<T> extends DynamicFormFieldConfig<T> {
+export interface DynamicFormFieldOptionConfig<T> extends DynamicFormFieldValueConfig<T> {
   options?: DynamicOptionList<T>;
   groupedOptions?: DynamicGroupedOptionList<T>;
 }

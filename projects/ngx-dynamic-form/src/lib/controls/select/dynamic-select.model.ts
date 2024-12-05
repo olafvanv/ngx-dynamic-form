@@ -3,7 +3,14 @@ import { DynamicFormFieldOptionConfig, DynamicFormFieldOptionModel } from '../..
 export const DYNAMIC_FORM_FIELD_SELECT = 'select';
 
 export interface DynamicSelectConfig<T> extends DynamicFormFieldOptionConfig<T> {
+  /**
+   * Show the native dropdown instead of the Angular Material styled dropdown
+   */
   native?: boolean;
+  /**
+   * Whether it is possible to select multiple options.
+   * Default value is false
+   */
   multiple?: boolean;
 }
 

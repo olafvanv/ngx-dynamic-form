@@ -1,12 +1,12 @@
 import { signal, WritableSignal } from '@angular/core';
-import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
-import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-field-config.interface';
+import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 
 export const DYNAMIC_FORM_FIELD_INPUT = 'input';
 
 export type HtmlInputType = 'text' | 'number' | 'tel' | 'email' | 'password' | 'date' | 'time' | 'color';
+export type DynamicInputValue = string | number | Date | null;
 
-export interface DynamicInputConfig extends DynamicFormFieldConfig<string | number | Date | null> {
+export interface DynamicInputConfig extends DynamicFormFieldValueConfig<DynamicInputValue> {
   inputType?: HtmlInputType;
   placeholder?: string;
   max?: number;
@@ -21,7 +21,7 @@ export interface DynamicInputConfig extends DynamicFormFieldConfig<string | numb
   showLoader?: WritableSignal<boolean>;
 }
 
-export class DynamicInput extends DynamicFormFieldValueModel<string | number | Date | null> {
+export class DynamicInput extends DynamicFormFieldValueModel<DynamicInputValue> {
   public inputType: HtmlInputType;
   public placeholder: string;
   public max: number | null;

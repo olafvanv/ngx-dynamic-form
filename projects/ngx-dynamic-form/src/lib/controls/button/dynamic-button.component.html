@@ -1,6 +1,7 @@
 <div class="dynamic-button-wrapper">
   <button mat-button
     [id]="id"
+    [disabled]="model.disabled"
     (click)="onClick()">
     <span>{{model.label}}</span>
   </button>

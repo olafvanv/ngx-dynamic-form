@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormConfig, DynamicFormService } from 'ngx-dynamic-form';
 import { Subscription, delay, distinctUntilChanged, filter, tap } from 'rxjs';
@@ -11,7 +11,7 @@ import { AddressForm, AddressFormModel } from './address';
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss']
 })
-export class SearchFormComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SearchFormComponent implements OnInit, OnDestroy {
   public addressForm = new AddressForm();
   public searchFormConfig: DynamicFormConfig = this.addressForm.formConfig;
   public searchForm: FormGroup<AddressFormModel> = this.dynamicFormService.createFormGroup(this.searchFormConfig);
@@ -36,18 +36,6 @@ export class SearchFormComponent implements OnInit, AfterViewInit, OnDestroy {
         )
         .subscribe((val) => (val ? this.getAddress(val) : null))
     );
-  }
-
-  ngAfterViewInit(): void {
-    // this.subs.add(
-    //   this.searchForm
-    //     ?.get('postcode')
-    //     ?.valueChanges.pipe(
-    //       distinctUntilChanged(),
-    //       filter((val) => !!val && val.length === 6)
-    //     )
-    //     .subscribe((val) => (val ? this.getAddress(val) : null))
-    // );
   }
 
   ngOnDestroy(): void {

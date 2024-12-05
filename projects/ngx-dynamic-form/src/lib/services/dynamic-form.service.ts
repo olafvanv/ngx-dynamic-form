@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { DynamicFormField } from '../models/classes/dynamic-form-field-base';
 import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldOption } from '../models/classes/dynamic-form-field-option-model';
-import { DynamicFormFieldConfig } from '../models/interfaces/dynamic-form-field-config.interface';
+import { DynamicFormFieldValueConfig } from '../models/classes/dynamic-form-field-value-model';
 import { DYNAMIC_FORM_FIELD_MAP_FN } from '../models/tokens/dynamic-form-field-map-fn.token';
 import { DynamicFormConfig } from '../models/types/dynamic-form-config.type';
 import { DynamicFormValidationsService } from './dynamic-validations.service';
@@ -41,12 +41,12 @@ export class DynamicFormService {
 
     config.forEach((row) => {
       row.forEach((controlConfig) => {
-        const controlValueConfig = controlConfig as DynamicFormFieldConfig<unknown>;
         const controlOptions: FormControlOptions = {
           updateOn: controlConfig.updateOn,
           validators: this.validatorsService.getValidatorFns(controlConfig.validators)
         };
 
+        const controlValueConfig = controlConfig as DynamicFormFieldValueConfig<unknown>;
         const control = new UntypedFormControl(
           { value: controlValueConfig.value ?? controlValueConfig.defaultValue, disabled: controlValueConfig.disabled },
           controlOptions

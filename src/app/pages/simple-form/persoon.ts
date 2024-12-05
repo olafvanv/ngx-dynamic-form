@@ -93,7 +93,18 @@ export class Persoon {
         label: 'Info',
         onClick: () => {
           alert('info');
-        }
+        },
+        relations: [
+          {
+            actionType: RelationActionType.DISABLED,
+            conditions: [
+              {
+                fieldName: 'age-2',
+                value: (val: number) => val > 18
+              }
+            ]
+          }
+        ]
       })
     ],
     [

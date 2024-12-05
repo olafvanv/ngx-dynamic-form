@@ -1,8 +1,8 @@
-import { DynamicFormFieldConfig, DynamicFormFieldValueModel } from 'ngx-dynamic-form';
+import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from 'ngx-dynamic-form';
 
 export const DYNAMIC_FORM_FIELD_SLIDER = 'slider';
 
-export interface SliderInputConfig extends DynamicFormFieldConfig<number> {
+export interface SliderInputConfig extends DynamicFormFieldValueConfig<number> {
   /** Lowest value possible. Default is 1. */
   min?: number;
   /** Highest value possible. Default is 10. */
