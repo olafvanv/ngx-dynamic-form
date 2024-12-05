@@ -1,18 +1,19 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormConfig, DynamicFormService } from 'ngx-dynamic-form';
-import { Subscription, distinctUntilChanged, filter } from 'rxjs';
+import { Subscription, delay, distinctUntilChanged, filter, tap } from 'rxjs';
 import { AddressService } from 'src/app/services/address.service';
 import { AppService } from 'src/app/services/app.service';
-import { ADDRESS_FORM, AddressFormModel } from './address';
+import { AddressForm, AddressFormModel } from './address';
 
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss']
 })
-export class SearchFormComponent implements AfterViewInit, OnDestroy {
-  public searchFormConfig: DynamicFormConfig = ADDRESS_FORM;
+export class SearchFormComponent implements OnInit, AfterViewInit, OnDestroy {
+  public addressForm = new AddressForm();
+  public searchFormConfig: DynamicFormConfig = this.addressForm.formConfig;
   public searchForm: FormGroup<AddressFormModel> = this.dynamicFormService.createFormGroup(this.searchFormConfig);
 
   private subs = new Subscription();
@@ -24,16 +25,29 @@ export class SearchFormComponent implements AfterViewInit, OnDestroy {
     this.subs.add(this.appService.logClicked.subscribe(() => console.log(this.searchForm)));
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.subs.add(
       this.searchForm
         ?.get('postcode')
         ?.valueChanges.pipe(
           distinctUntilChanged(),
-          filter((val) => !!val && val.length === 6)
+          filter((val) => !!val && val.length === 6),
+          tap((val) => console.log(val))
         )
         .subscribe((val) => (val ? this.getAddress(val) : null))
     );
+  }
+
+  ngAfterViewInit(): void {
+    // this.subs.add(
+    //   this.searchForm
+    //     ?.get('postcode')
+    //     ?.valueChanges.pipe(
+    //       distinctUntilChanged(),
+    //       filter((val) => !!val && val.length === 6)
+    //     )
+    //     .subscribe((val) => (val ? this.getAddress(val) : null))
+    // );
   }
 
   ngOnDestroy(): void {
@@ -45,11 +59,17 @@ export class SearchFormComponent implements AfterViewInit, OnDestroy {
   }
 
   private getAddress(postcode: string) {
-    this.addressService.getAddressByPostcode(postcode).subscribe((res) => {
-      this.searchForm.patchValue({
-        street: res?.straatnaam,
-        city: res?.woonplaatsnaam
+    this.addressForm.searchingAddress$.next(true);
+    this.addressService
+      .getAddressByPostcode(postcode)
+      .pipe(delay(3000))
+      .subscribe((res) => {
+        this.searchForm.patchValue({
+          street: res?.straatnaam,
+          city: res?.woonplaatsnaam
+        });
+
+        this.addressForm.searchingAddress$.next(false);
       });
-    });
   }
 }

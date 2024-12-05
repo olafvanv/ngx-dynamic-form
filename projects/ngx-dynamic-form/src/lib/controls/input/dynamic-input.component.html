@@ -25,6 +25,13 @@
     <mat-icon fontIcon="clear"></mat-icon>
   </button>
 
+  <div matSuffix
+    *ngIf="model.showLoader | async"
+    class="loaderIcon">
+    <mat-spinner diameter="16"
+      color="primary"></mat-spinner>
+  </div>
+
   <mat-hint *ngIf="model.hint"
     align="start">{{model.hint}}</mat-hint>
 
