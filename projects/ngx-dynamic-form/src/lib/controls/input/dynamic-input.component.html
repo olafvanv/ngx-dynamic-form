@@ -26,7 +26,7 @@
   </button>
 
   <div matSuffix
-    *ngIf="model.showLoader | async"
+    *ngIf="model.showLoader()"
     class="loaderIcon">
     <mat-spinner diameter="16"
       color="primary"></mat-spinner>

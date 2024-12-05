@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { signal, WritableSignal } from '@angular/core';
 import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
 import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-field-config.interface';
 
@@ -18,7 +18,7 @@ export interface DynamicInputConfig extends DynamicFormFieldConfig<string | numb
   autocomplete?: 'on' | 'off';
   prefix?: string;
   hideClearIcon?: boolean;
-  showLoader?: Observable<boolean>;
+  showLoader?: WritableSignal<boolean>;
 }
 
 export class DynamicInput extends DynamicFormFieldValueModel<string | number | Date | null> {
@@ -33,7 +33,7 @@ export class DynamicInput extends DynamicFormFieldValueModel<string | number | D
   public autocomplete: 'on' | 'off';
   public prefix: string | null;
   public hideClearIcon: boolean;
-  public showLoader: Observable<boolean> | null;
+  public showLoader: WritableSignal<boolean>;
 
   public readonly type = DYNAMIC_FORM_FIELD_INPUT;
 
@@ -51,6 +51,6 @@ export class DynamicInput extends DynamicFormFieldValueModel<string | number | D
     this.autocomplete = config.autocomplete ?? 'off';
     this.prefix = config.prefix ?? null;
     this.hideClearIcon = config.hideClearIcon ?? false;
-    this.showLoader = config.showLoader ?? null;
+    this.showLoader = config.showLoader ?? signal(false);
   }
 }

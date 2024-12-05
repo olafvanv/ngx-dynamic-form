@@ -1,6 +1,7 @@
+import { inject, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DynamicFormConfig, DynamicInput } from 'ngx-dynamic-form';
-import { BehaviorSubject } from 'rxjs';
+import { AddressService } from 'src/app/services/address.service';
 
 export interface AddressFormModel {
   postcode: FormControl<string | null>;
@@ -10,7 +11,9 @@ export interface AddressFormModel {
 }
 
 export class AddressForm {
-  public searchingAddress$ = new BehaviorSubject(false);
+  private readonly addressService = inject(AddressService);
+
+  public $searchingAddress = signal(false);
 
   public formConfig: DynamicFormConfig = [
     [
@@ -26,7 +29,7 @@ export class AddressForm {
         name: 'street',
         label: 'Straatnaam',
         disabled: true,
-        showLoader: this.searchingAddress$
+        showLoader: this.$searchingAddress
       })
     ],
     [
@@ -34,7 +37,7 @@ export class AddressForm {
         name: 'city',
         label: 'Stad',
         disabled: true,
-        showLoader: this.searchingAddress$
+        showLoader: this.$searchingAddress
       })
     ]
   ];

@@ -59,7 +59,7 @@ export class SearchFormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private getAddress(postcode: string) {
-    this.addressForm.searchingAddress$.next(true);
+    this.addressForm.$searchingAddress.set(true);
     this.addressService
       .getAddressByPostcode(postcode)
       .pipe(delay(3000))
@@ -69,7 +69,7 @@ export class SearchFormComponent implements OnInit, AfterViewInit, OnDestroy {
           city: res?.woonplaatsnaam
         });
 
-        this.addressForm.searchingAddress$.next(false);
+        this.addressForm.$searchingAddress.set(false);
       });
   }
 }
