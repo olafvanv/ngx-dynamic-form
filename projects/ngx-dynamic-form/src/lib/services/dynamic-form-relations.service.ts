@@ -27,7 +27,7 @@ export class DynamicFormRelationsService {
         : (group.get(condition.fieldName!) as UntypedFormControl);
 
       if (!control) {
-        console.warn(`No related form control with the name ${condition.fieldName} found`);
+        console.warn(`No related form control with the name ${fieldName} found`);
         return controls;
       }
 
