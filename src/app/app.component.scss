@@ -6,6 +6,7 @@
 
 .header {
   flex-shrink: 0;
+
   nav {
     display: flex;
 
@@ -16,10 +17,11 @@
       padding: 4px 8px;
 
       &.active {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgb(0 0 0 / 20%);
       }
     }
   }
+
   .log-button {
     margin-left: auto;
   }
