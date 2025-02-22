@@ -7,8 +7,7 @@ import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-simple-form',
-  templateUrl: './simple-form.component.html',
-  styleUrls: ['./simple-form.component.scss']
+  templateUrl: './simple-form.component.html'
 })
 export class SimpleFormComponent implements OnDestroy {
   public personFormConfig: DynamicFormConfig = new Persoon().formConfig;

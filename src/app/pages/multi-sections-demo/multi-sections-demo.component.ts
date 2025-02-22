@@ -31,8 +31,7 @@ interface BookingAddress {
   standalone: true,
   imports: [ReactiveFormsModule, DynamicFormComponent, MatExpansionModule],
   selector: 'app-multi-sections-demo',
-  templateUrl: './multi-sections-demo.component.html',
-  styleUrls: ['./multi-sections-demo.component.scss']
+  templateUrl: './multi-sections-demo.component.html'
 })
 export class MultiSectionsDemoComponent {
   public readonly personFormConfig = BOOKING_PERSON_CONFIG;
