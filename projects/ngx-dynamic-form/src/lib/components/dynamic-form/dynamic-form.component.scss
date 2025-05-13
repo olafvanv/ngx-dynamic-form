@@ -4,6 +4,7 @@
   .dynamic-form-field {
     width: 100%;
     margin: 4px 0;
+    overflow: hidden;
 
     &:not(:last-of-type) {
       margin-right: 12px;
@@ -14,9 +15,9 @@
     }
   }
 
-  @for $i from 1 through 100 {
-    .form-field-width-#{$i} {
-      width: 1% * $i;
+  @for $i from 1 through 20 {
+    .form-field-width-#{$i * 5} {
+      width: 5% * $i;
     }
   }
 }
