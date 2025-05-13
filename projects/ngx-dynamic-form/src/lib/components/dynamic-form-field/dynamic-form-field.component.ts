@@ -41,11 +41,10 @@ import { DynamicFormRelationsService } from '../../services/dynamic-form-relatio
 import { DynamicFormService } from '../../services/dynamic-form.service';
 
 @Component({
-  standalone: true,
-  imports: [NgClass, ReactiveFormsModule],
-  selector: 'dynamic-form-field',
-  templateUrl: 'dynamic-form-field.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    imports: [NgClass, ReactiveFormsModule],
+    selector: 'dynamic-form-field',
+    templateUrl: 'dynamic-form-field.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   @ViewChild('componentViewContainer', { read: ViewContainerRef, static: true }) componentViewContainer!: ViewContainerRef;

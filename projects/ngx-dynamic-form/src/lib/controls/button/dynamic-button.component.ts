@@ -5,11 +5,10 @@ import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-ba
 import { DynamicButton } from './dynamic-button.model';
 
 @Component({
-  standalone: true,
-  imports: [MatButtonModule],
-  selector: 'dynamic-button',
-  templateUrl: './dynamic-button.component.html',
-  styleUrl: './dynamic-button.component.scss'
+    imports: [MatButtonModule],
+    selector: 'dynamic-button',
+    templateUrl: './dynamic-button.component.html',
+    styleUrl: './dynamic-button.component.scss'
 })
 export class DynamicButtonComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicButton;

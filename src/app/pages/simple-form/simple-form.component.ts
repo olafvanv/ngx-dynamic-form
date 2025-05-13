@@ -6,8 +6,9 @@ import { PersonFormModel, Persoon } from 'src/app/pages/simple-form/persoon';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
-  selector: 'app-simple-form',
-  templateUrl: './simple-form.component.html'
+    selector: 'app-simple-form',
+    templateUrl: './simple-form.component.html',
+    standalone: false
 })
 export class SimpleFormComponent implements OnDestroy {
   public personFormConfig: DynamicFormConfig = new Persoon().formConfig;

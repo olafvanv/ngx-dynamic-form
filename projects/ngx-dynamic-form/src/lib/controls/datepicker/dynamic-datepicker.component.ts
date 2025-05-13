@@ -9,11 +9,10 @@ import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-fiel
 import { DynamicDatepicker } from './dynamic-datepicker.model';
 
 @Component({
-  standalone: true,
-  imports: [NgIf, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatDatepickerModule],
-  selector: 'dynamic-datepicker',
-  templateUrl: './dynamic-datepicker.component.html',
-  styleUrl: './dynamic-datepicker.component.scss'
+    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatDatepickerModule],
+    selector: 'dynamic-datepicker',
+    templateUrl: './dynamic-datepicker.component.html',
+    styleUrl: './dynamic-datepicker.component.scss'
 })
 export class DynamicDatepickerComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicDatepicker;

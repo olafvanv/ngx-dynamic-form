@@ -4,17 +4,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
 import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
-  selector: 'app-slider-input-control',
-  templateUrl: 'slider-input-control.component.html',
-  standalone: true,
-  imports: [MatSliderModule, ReactiveFormsModule],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => SliderInputControl)
-    }
-  ]
+    selector: 'app-slider-input-control',
+    templateUrl: 'slider-input-control.component.html',
+    imports: [MatSliderModule, ReactiveFormsModule],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: forwardRef(() => SliderInputControl)
+        }
+    ]
 })
 export class SliderInputControl implements ControlValueAccessor {
   @Input() min = 0;

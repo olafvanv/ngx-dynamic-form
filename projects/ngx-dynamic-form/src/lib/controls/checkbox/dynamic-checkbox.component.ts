@@ -5,10 +5,9 @@ import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-ba
 import { DynamicCheckbox } from './dynamic-checkbox.model';
 
 @Component({
-  selector: 'dynamic-checkbox',
-  templateUrl: 'dynamic-checkbox.component.html',
-  standalone: true,
-  imports: [ReactiveFormsModule, MatCheckboxModule]
+    selector: 'dynamic-checkbox',
+    templateUrl: 'dynamic-checkbox.component.html',
+    imports: [ReactiveFormsModule, MatCheckboxModule]
 })
 export class DynamicCheckboxComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicCheckbox;

@@ -7,11 +7,10 @@ import { CrudDemoService, Media } from './crud-demo.service';
 import { MEDIA_FORM_CONFIG } from './media-form';
 
 @Component({
-  selector: 'app-crud-demo',
-  standalone: true,
-  imports: [DynamicFormComponent, MatListModule, MatButtonModule, ReactiveFormsModule],
-  templateUrl: './crud-demo.component.html',
-  styleUrls: ['./crud-demo.component.scss']
+    selector: 'app-crud-demo',
+    imports: [DynamicFormComponent, MatListModule, MatButtonModule, ReactiveFormsModule],
+    templateUrl: './crud-demo.component.html',
+    styleUrls: ['./crud-demo.component.scss']
 })
 export class CrudDemoComponent {
   private readonly _service = inject(CrudDemoService);

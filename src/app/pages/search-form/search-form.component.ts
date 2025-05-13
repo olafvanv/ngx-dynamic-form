@@ -7,8 +7,9 @@ import { AppService } from 'src/app/services/app.service';
 import { AddressForm, AddressFormModel } from './address';
 
 @Component({
-  selector: 'app-search-form',
-  templateUrl: './search-form.component.html'
+    selector: 'app-search-form',
+    templateUrl: './search-form.component.html',
+    standalone: false
 })
 export class SearchFormComponent implements OnInit, OnDestroy {
   public addressForm = new AddressForm();

@@ -8,11 +8,10 @@ import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-fiel
 import { DynamicTextarea } from './dynamic-textarea.model';
 
 @Component({
-  standalone: true,
-  imports: [NgIf, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
-  selector: 'dynamic-textarea',
-  templateUrl: './dynamic-textarea.component.html',
-  styles: ['mat-form-field {width: 100%;}']
+    imports: [NgIf, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+    selector: 'dynamic-textarea',
+    templateUrl: './dynamic-textarea.component.html',
+    styles: ['mat-form-field {width: 100%;}']
 })
 export class DynamicTextareaComponent extends DynamicFormFieldBase {
   @ViewChild(MatInput, { static: true }) textarea!: MatInput;

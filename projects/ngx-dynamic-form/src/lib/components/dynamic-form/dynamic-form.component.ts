@@ -9,13 +9,12 @@ import { DynamicFormService } from '../../services/dynamic-form.service';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 
 @Component({
-  standalone: true,
-  imports: [NgClass, DynamicFormFieldComponent, ReactiveFormsModule],
-  selector: 'dynamic-form',
-  templateUrl: 'dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.scss'],
-  providers: [DynamicFormService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    imports: [NgClass, DynamicFormFieldComponent, ReactiveFormsModule],
+    selector: 'dynamic-form',
+    templateUrl: 'dynamic-form.component.html',
+    styleUrls: ['./dynamic-form.component.scss'],
+    providers: [DynamicFormService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFormComponent {
   @Input({ required: true }) group!: UntypedFormGroup;

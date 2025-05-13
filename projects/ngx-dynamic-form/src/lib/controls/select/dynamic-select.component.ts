@@ -9,11 +9,10 @@ import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-ba
 import { DynamicSelect } from './dynamic-select.model';
 
 @Component({
-  standalone: true,
-  imports: [NgIf, MatFormFieldModule, ReactiveFormsModule, MatSelectModule, MatOptionModule, AsyncPipe, MatInputModule],
-  selector: 'dynamic-select',
-  templateUrl: './dynamic-select.component.html',
-  styleUrls: ['./dynamic-select.component.scss']
+    imports: [NgIf, MatFormFieldModule, ReactiveFormsModule, MatSelectModule, MatOptionModule, AsyncPipe, MatInputModule],
+    selector: 'dynamic-select',
+    templateUrl: './dynamic-select.component.html',
+    styleUrls: ['./dynamic-select.component.scss']
 })
 export class DynamicSelectComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicSelect<string>;

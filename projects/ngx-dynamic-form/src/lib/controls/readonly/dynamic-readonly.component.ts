@@ -4,11 +4,10 @@ import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-ba
 import { DynamicReadonly } from './dynamic-readonly.model';
 
 @Component({
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  selector: 'dynamic-readonly',
-  templateUrl: './dynamic-readonly.component.html',
-  styleUrls: ['./dynamic-readonly.component.scss']
+    imports: [ReactiveFormsModule],
+    selector: 'dynamic-readonly',
+    templateUrl: './dynamic-readonly.component.html',
+    styleUrls: ['./dynamic-readonly.component.scss']
 })
 export class DynamicReadonlyComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicReadonly;

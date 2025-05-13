@@ -6,11 +6,10 @@ import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-ba
 import { DynamicRadioGroup } from './dynamic-radio-group.model';
 
 @Component({
-  standalone: true,
-  imports: [NgIf, NgClass, ReactiveFormsModule, MatRadioModule, AsyncPipe],
-  selector: 'dynamic-radio-group',
-  templateUrl: './dynamic-radio-group.component.html',
-  styleUrls: ['./dynamic-radio-group.component.scss']
+    imports: [NgIf, NgClass, ReactiveFormsModule, MatRadioModule, AsyncPipe],
+    selector: 'dynamic-radio-group',
+    templateUrl: './dynamic-radio-group.component.html',
+    styleUrls: ['./dynamic-radio-group.component.scss']
 })
 export class DymamicRadioGroupComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicRadioGroup;

@@ -28,10 +28,9 @@ interface BookingAddress {
 }
 
 @Component({
-  standalone: true,
-  imports: [ReactiveFormsModule, DynamicFormComponent, MatExpansionModule],
-  selector: 'app-multi-sections-demo',
-  templateUrl: './multi-sections-demo.component.html'
+    imports: [ReactiveFormsModule, DynamicFormComponent, MatExpansionModule],
+    selector: 'app-multi-sections-demo',
+    templateUrl: './multi-sections-demo.component.html'
 })
 export class MultiSectionsDemoComponent {
   public readonly personFormConfig = BOOKING_PERSON_CONFIG;

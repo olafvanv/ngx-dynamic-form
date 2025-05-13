@@ -7,10 +7,9 @@ import { SliderInputControl } from './slider-input-control/slider-input-control.
 import { SliderInput } from './slider-input.model';
 
 @Component({
-  selector: 'app-slider-input',
-  templateUrl: 'slider-input.component.html',
-  standalone: true,
-  imports: [ReactiveFormsModule, SliderInputControl, MatFormFieldModule]
+    selector: 'app-slider-input',
+    templateUrl: 'slider-input.component.html',
+    imports: [ReactiveFormsModule, SliderInputControl, MatFormFieldModule]
 })
 export class SliderInputComponent extends DynamicFormFieldBase {
   @Input() model!: SliderInput;
