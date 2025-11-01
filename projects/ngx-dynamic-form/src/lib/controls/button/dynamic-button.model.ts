@@ -4,7 +4,9 @@ import { DynamicFormFieldConfig } from '../../models/interfaces/dynamic-form-fie
 export const DYNAMIC_FORM_FIELD_BUTTON = 'button';
 
 type OmittedProperties = 'hint' | 'validators' | 'updateOn';
-
+/**
+ * @TODO icon support
+ */
 export interface DynamicButtonConfig extends Omit<DynamicFormFieldConfig, OmittedProperties> {
   /**
    * Label shown inside the button
