@@ -1,6 +1,6 @@
 {
   "name": "@olafvv/ngx-dynamic-form",
-  "version": "19.0.0",
+  "version": "19.0.1",
   "peerDependencies": {
     "@angular/common": "^19.2.10",
     "@angular/core": "^19.2.10",
