@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -9,10 +8,10 @@ import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-fiel
 import { DynamicDatepicker } from './dynamic-datepicker.model';
 
 @Component({
-    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatDatepickerModule],
-    selector: 'dynamic-datepicker',
-    templateUrl: './dynamic-datepicker.component.html',
-    styleUrl: './dynamic-datepicker.component.scss'
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatDatepickerModule],
+  selector: 'dynamic-datepicker',
+  templateUrl: './dynamic-datepicker.component.html',
+  styleUrl: './dynamic-datepicker.component.scss'
 })
 export class DynamicDatepickerComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicDatepicker;

@@ -1,9 +1,13 @@
-<mat-form-field [formGroup]="group"
+<mat-form-field
+  [formGroup]="group"
   [id]="id"
   color="primary">
-  <mat-label *ngIf="model.label">{{model.label}}</mat-label>
+  @if (model.label) {
+    <mat-label>{{ model.label }}</mat-label>
+  }
 
-  <textarea matInput
+  <textarea
+    matInput
     [cdkTextareaAutosize]="model.resize"
     [cdkAutosizeMinRows]="model.rows"
     [cdkAutosizeMaxRows]="model.resizeMaxRows"
@@ -17,15 +21,19 @@
     (change)="onChange($event)">
   </textarea>
 
-  <mat-hint *ngIf="model.hint"
-    align="start">{{model.hint}}</mat-hint>
+  @if (model.hint) {
+    <mat-hint align="start">{{ model.hint }}</mat-hint>
+  }
 
-  <mat-hint *ngIf="model.maxLength"
-    align="end">{{maxCountText}}</mat-hint>
+  @if (model.maxLength) {
+    <mat-hint align="end">{{ maxCountText }}</mat-hint>
+  }
 
-  @for(validator of model.validators; track validator.name) {
-  <ng-container ngProjectAs="mat-error">
-    <mat-error *ngIf="hasError(validator.name)">{{validator.message}}</mat-error>
-  </ng-container>
+  @for (validator of model.validators; track validator.name) {
+    <ng-container ngProjectAs="mat-error">
+      @if (hasError(validator.name)) {
+        <mat-error>{{ validator.message }}</mat-error>
+      }
+    </ng-container>
   }
 </mat-form-field>

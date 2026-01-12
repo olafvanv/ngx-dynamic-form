@@ -1,12 +1,17 @@
-<mat-form-field [formGroup]="group"
+<mat-form-field
+  [formGroup]="group"
   [id]="id"
   color="primary">
-  <mat-label *ngIf="model.label">{{model.label}}</mat-label>
+  @if (model.label) {
+    <mat-label>{{ model.label }}</mat-label>
+  }
 
-  <span matTextPrefix
-    *ngIf="model.prefix">{{model.prefix}}</span>
+  @if (model.prefix) {
+    <span matTextPrefix>{{ model.prefix }}</span>
+  }
 
-  <input matInput
+  <input
+    matInput
     [type]="model.inputType"
     [formControlName]="model.name"
     [placeholder]="model.placeholder"
@@ -18,29 +23,38 @@
     [autocomplete]="model.autocomplete"
     (change)="onChange($event)" />
 
-  <button matSuffix
-    mat-icon-button
-    *ngIf="showClear"
-    (click)="resetControl()">
-    <mat-icon fontIcon="clear"></mat-icon>
-  </button>
+  @if (showClear) {
+    <button
+      matSuffix
+      mat-icon-button
+      (click)="resetControl()">
+      <mat-icon fontIcon="clear"></mat-icon>
+    </button>
+  }
 
-  <div matSuffix
-    *ngIf="model.showLoader()"
-    class="loader-icon">
-    <mat-spinner diameter="16"
-      color="primary"></mat-spinner>
-  </div>
+  @if (model.showLoader()) {
+    <div
+      matSuffix
+      class="loader-icon">
+      <mat-spinner
+        diameter="16"
+        color="primary"></mat-spinner>
+    </div>
+  }
 
-  <mat-hint *ngIf="model.hint"
-    align="start">{{model.hint}}</mat-hint>
+  @if (model.hint) {
+    <mat-hint align="start">{{ model.hint }}</mat-hint>
+  }
 
-  <mat-hint *ngIf="model.maxLength"
-    align="end">{{maxCountText}}</mat-hint>
+  @if (model.maxLength) {
+    <mat-hint align="end">{{ maxCountText }}</mat-hint>
+  }
 
-  @for(validator of model.validators; track validator.name) {
-  <ng-container ngProjectAs="mat-error">
-    <mat-error *ngIf="hasError(validator.name)">{{validator.message}}</mat-error>
-  </ng-container>
+  @for (validator of model.validators; track validator.name) {
+    <ng-container ngProjectAs="mat-error">
+      @if (hasError(validator.name)) {
+        <mat-error>{{ validator.message }}</mat-error>
+      }
+    </ng-container>
   }
 </mat-form-field>

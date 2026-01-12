@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -7,10 +7,10 @@ import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-ba
 import { DynamicButtonToggles } from './dynamic-button-toggles.model';
 
 @Component({
-    imports: [NgIf, NgClass, MatButtonToggleModule, ReactiveFormsModule, AsyncPipe, MatFormFieldModule],
-    selector: 'dynamic-button-toggles',
-    templateUrl: './dynamic-button-toggles.component.html',
-    styleUrls: ['./dynamic-button-toggles.component.scss']
+  imports: [MatButtonToggleModule, ReactiveFormsModule, AsyncPipe, MatFormFieldModule],
+  selector: 'dynamic-button-toggles',
+  templateUrl: './dynamic-button-toggles.component.html',
+  styleUrls: ['./dynamic-button-toggles.component.scss']
 })
 export class DynamicButtonTogglesComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicButtonToggles;

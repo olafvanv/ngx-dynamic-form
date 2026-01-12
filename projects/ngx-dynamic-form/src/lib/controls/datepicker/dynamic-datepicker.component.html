@@ -1,25 +1,34 @@
-<mat-form-field [formGroup]="group"
+<mat-form-field
+  [formGroup]="group"
   [id]="model.id"
   color="primary">
-  <mat-label *ngIf="model.label">{{model.label}}</mat-label>
+  @if (model.label) {
+    <mat-label>{{ model.label }}</mat-label>
+  }
 
-  <input matInput
+  <input
+    matInput
     [min]="model.min"
     [max]="model.max"
-    [matDatepicker]="picker">
+    [matDatepicker]="picker" />
 
-  <mat-hint *ngIf="model.hint">{{model.hint}}</mat-hint>
+  @if (model.hint) {
+    <mat-hint>{{ model.hint }}</mat-hint>
+  }
 
-  <mat-datepicker-toggle matIconSuffix
+  <mat-datepicker-toggle
+    matIconSuffix
     [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker
+  <mat-datepicker
+    #picker
     [startAt]="model.startAt"
     [startView]="model.startView"></mat-datepicker>
 
-  @for(validator of model.validators; track validator.name) {
-  <ng-container ngProjectAs="mat-error">
-    <mat-error *ngIf="hasError(validator.name)">{{validator.message}}</mat-error>
-  </ng-container>
+  @for (validator of model.validators; track validator.name) {
+    <ng-container ngProjectAs="mat-error">
+      @if (hasError(validator.name)) {
+        <mat-error>{{ validator.message }}</mat-error>
+      }
+    </ng-container>
   }
-
 </mat-form-field>

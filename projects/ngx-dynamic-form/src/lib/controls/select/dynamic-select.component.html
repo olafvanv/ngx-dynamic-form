@@ -1,74 +1,78 @@
-<mat-form-field [formGroup]="group"
+<mat-form-field
+  [formGroup]="group"
   [id]="id"
   color="primary">
-  <mat-label>{{model.label}}</mat-label>
+  <mat-label>{{ model.label }}</mat-label>
 
   <!-- Template for select without grouped options -->
-  <ng-container *ngIf="model.options$ | async as options">
-    <ng-container *ngIf="!model.native else nativeSelect">
-      <mat-select [formControlName]="model.name"
+  @if (model.options$ | async; as options) {
+    @if (!model.native) {
+      <mat-select
+        [formControlName]="model.name"
         [multiple]="model.multiple"
         (selectionChange)="onChange($event)">
-        @for(option of options; track option.value) {
-        <mat-option [value]="option.value">
-          {{option.label}}
-        </mat-option>
+        @for (option of options; track option.value) {
+          <mat-option [value]="option.value">
+            {{ option.label }}
+          </mat-option>
         }
       </mat-select>
-    </ng-container>
-
-    <ng-template #nativeSelect>
-      <select matNativeControl
+    } @else {
+      <select
+        matNativeControl
         (selectionchange)="onChange($event)">
-        @for(option of options; track option.value) {
-        <option [value]="option.value">
-          {{option.label}}
-        </option>
+        @for (option of options; track option.value) {
+          <option [value]="option.value">
+            {{ option.label }}
+          </option>
         }
       </select>
-    </ng-template>
-  </ng-container>
+    }
+  }
 
   <!-- Template for select with grouped options -->
-  <ng-container *ngIf="model.groupedOptions$ | async as groupedOptions">
-    <ng-container *ngIf="!model.native else nativeSelectGrouped">
-      <mat-select [formControlName]="model.name"
+  @if (model.groupedOptions$ | async; as groupedOptions) {
+    @if (!model.native) {
+      <mat-select
+        [formControlName]="model.name"
         (selectionChange)="onChange($event)">
-        @for(group of groupedOptions; track group.name) {
-        <mat-optgroup [label]="group.name">
-          @for(option of group.options; track option.value) {
-          <mat-option [value]="option.value">
-            {{option.label}}
-          </mat-option>
-          }
-        </mat-optgroup>
+        @for (group of groupedOptions; track group.name) {
+          <mat-optgroup [label]="group.name">
+            @for (option of group.options; track option.value) {
+              <mat-option [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            }
+          </mat-optgroup>
         }
-
       </mat-select>
-    </ng-container>
-
-    <ng-template #nativeSelectGrouped>
-      <select matNativeControl
+    } @else {
+      <select
+        matNativeControl
         (selectionchange)="onChange($event)">
-        @for(group of groupedOptions; track group.name) {=
-        <optgroup [label]="group.name">
-          @for(option of group.options; track option.value) {
-          <option [value]="option.value">
-            {{option.label}}
-          </option>
-          }
-        </optgroup>
+        @for (group of groupedOptions; track group.name) {
+          =
+          <optgroup [label]="group.name">
+            @for (option of group.options; track option.value) {
+              <option [value]="option.value">
+                {{ option.label }}
+              </option>
+            }
+          </optgroup>
         }
       </select>
-    </ng-template>
-  </ng-container>
+    }
+  }
 
-  <mat-hint *ngIf="model.hint"
-    align="start">{{model.hint}}</mat-hint>
+  @if (model.hint) {
+    <mat-hint align="start">{{ model.hint }}</mat-hint>
+  }
 
-  @for(validator of model.validators; track validator.name) {
-  <ng-container ngProjectAs="mat-error">
-    <mat-error *ngIf="hasError(validator.name)">{{validator.message}}</mat-error>
-  </ng-container>
+  @for (validator of model.validators; track validator.name) {
+    <ng-container ngProjectAs="mat-error">
+      @if (hasError(validator.name)) {
+        <mat-error>{{ validator.message }}</mat-error>
+      }
+    </ng-container>
   }
 </mat-form-field>

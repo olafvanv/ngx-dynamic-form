@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,10 +10,10 @@ import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-fiel
 import { DynamicInput } from './dynamic-input.model';
 
 @Component({
-    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule],
-    selector: 'dynamic-input',
-    templateUrl: './dynamic-input.component.html',
-    styleUrl: './dynamic-input.component.scss'
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule],
+  selector: 'dynamic-input',
+  templateUrl: './dynamic-input.component.html',
+  styleUrl: './dynamic-input.component.scss'
 })
 export class DynamicInputComponent extends DynamicFormFieldBase {
   @ViewChild(MatInput, { static: true }) input!: MatInput;

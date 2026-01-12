@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
@@ -9,10 +9,10 @@ import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-ba
 import { DynamicSelect } from './dynamic-select.model';
 
 @Component({
-    imports: [NgIf, MatFormFieldModule, ReactiveFormsModule, MatSelectModule, MatOptionModule, AsyncPipe, MatInputModule],
-    selector: 'dynamic-select',
-    templateUrl: './dynamic-select.component.html',
-    styleUrls: ['./dynamic-select.component.scss']
+  imports: [MatFormFieldModule, ReactiveFormsModule, MatSelectModule, MatOptionModule, AsyncPipe, MatInputModule],
+  selector: 'dynamic-select',
+  templateUrl: './dynamic-select.component.html',
+  styleUrls: ['./dynamic-select.component.scss']
 })
 export class DynamicSelectComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicSelect<string>;
