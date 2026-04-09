@@ -56,8 +56,10 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
   private _control!: FormControl;
   private _subs = new Subscription();
 
-  /** Get the instance of a control component using the injected custom method or local method */
-  private get componentType(): Type<DynamicFormField> | null {
+  /**
+   * Get the instance of a control component using the injected custom method or local method
+   */
+  private get componentType(): Type<DynamicFormField<any>> | null {
     return this.dynamicFormService.getCustomControlComponentType(this.model()) || this.getControlComponentType();
   }
 
@@ -78,7 +80,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    * Finds the instance of a control component by type
    * @returns
    */
-  private getControlComponentType(): Type<DynamicFormField> | null {
+  private getControlComponentType(): Type<DynamicFormField<any>> | null {
     switch (this.model().type) {
       case DYNAMIC_FORM_FIELD_BUTTON:
         return DynamicButtonComponent;
@@ -114,8 +116,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
 
       const componentInstance = componentRef.instance;
 
-      componentInstance.group = this.group();
-      componentInstance.model = this.model();
+      componentRef.setInput('group', this.group());
+      componentRef.setInput('model', this.model());
     }
   }
 

@@ -4,21 +4,26 @@
   </mat-card-header>
   <mat-card-content>
     @if (personForm) {
-    <form [formGroup]="personForm">
-      <dynamic-form [group]="personForm"
-        [formConfig]="personFormConfig"
-        (change)="onChange($event)">
-      </dynamic-form>
-    </form>
+      <form [formGroup]="personForm">
+        <dynamic-form
+          [group]="personForm"
+          [formConfig]="personFormConfig">
+        </dynamic-form>
+      </form>
     }
 
-    <button mat-stroked-button
+    <button
+      mat-stroked-button
       color="primary"
-      (click)="resetForm()">Reset
+      (click)="resetForm()">
+      Reset
     </button>
-    <button mat-raised-button
+    <button
+      mat-raised-button
       color="primary"
       (click)="submit()"
-      [disabled]="!personForm.valid">Submit</button>
+      [disabled]="!personForm.valid">
+      Submit
+    </button>
   </mat-card-content>
 </mat-card>

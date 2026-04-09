@@ -1,26 +1,26 @@
 <mat-form-field
-  [formGroup]="group"
+  [formGroup]="group()"
   [id]="id"
   color="primary">
-  @if (model.label) {
-    <mat-label>{{ model.label }}</mat-label>
+  @if (model().label) {
+    <mat-label>{{ model().label }}</mat-label>
   }
 
-  @if (model.prefix) {
-    <span matTextPrefix>{{ model.prefix }}</span>
+  @if (model().prefix) {
+    <span matTextPrefix>{{ model().prefix }}</span>
   }
 
   <input
     matInput
-    [type]="model.inputType"
-    [formControlName]="model.name"
-    [placeholder]="model.placeholder"
-    [attr.min]="model.min"
-    [attr.max]="model.max"
-    [attr.minLength]="model.minLength"
-    [attr.maxLength]="model.maxLength"
-    [pattern]="model.pattern"
-    [autocomplete]="model.autocomplete" />
+    [type]="model().inputType"
+    [formControlName]="model().name"
+    [placeholder]="model().placeholder"
+    [attr.min]="model().min"
+    [attr.max]="model().max"
+    [attr.minLength]="model().minLength"
+    [attr.maxLength]="model().maxLength"
+    [pattern]="model().pattern"
+    [autocomplete]="model().autocomplete" />
 
   @if (showClear) {
     <button
@@ -31,7 +31,7 @@
     </button>
   }
 
-  @if (model.showLoader()) {
+  @if (model().showLoader()) {
     <div
       matSuffix
       class="loader-icon">
@@ -41,15 +41,15 @@
     </div>
   }
 
-  @if (model.hint) {
-    <mat-hint align="start">{{ model.hint }}</mat-hint>
+  @if (model().hint) {
+    <mat-hint align="start">{{ model().hint }}</mat-hint>
   }
 
-  @if (model.maxLength) {
+  @if (model().maxLength) {
     <mat-hint align="end">{{ maxCountText }}</mat-hint>
   }
 
-  @for (validator of model.validators; track validator.name) {
+  @for (validator of model().validators; track validator.name) {
     <ng-container ngProjectAs="mat-error">
       @if (hasError(validator.name)) {
         <mat-error>{{ validator.message }}</mat-error>

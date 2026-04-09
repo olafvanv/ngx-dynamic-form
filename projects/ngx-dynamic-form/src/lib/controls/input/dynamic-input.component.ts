@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, input, viewChild } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,21 +14,21 @@ import { DynamicInput } from './dynamic-input.model';
   templateUrl: './dynamic-input.component.html',
   styleUrl: './dynamic-input.component.scss'
 })
-export class DynamicInputComponent extends DynamicFormFieldBase {
-  @ViewChild(MatInput, { static: true }) input!: MatInput;
+export class DynamicInputComponent extends DynamicFormFieldBase<DynamicInput> {
+  public input = viewChild.required<MatInput>(MatInput);
 
-  @Input() model!: DynamicInput;
-  @Input() group!: FormGroup;
+  public model = input.required<DynamicInput>();
+  public group = input.required<FormGroup>();
 
   get valueCount(): number {
-    return this.input?.value ? this.input.value.length : 0;
+    return this.input()?.value ? this.input().value.length : 0;
   }
 
   get maxCountText(): string {
-    return `${this.valueCount} / ${this.model.maxLength}`;
+    return `${this.valueCount} / ${this.model().maxLength}`;
   }
 
   get showClear(): boolean {
-    return !!this.control.value && !this.control.disabled && !this.model.showLoader;
+    return !!this.control.value && !this.control.disabled && !this.model().showLoader;
   }
 }

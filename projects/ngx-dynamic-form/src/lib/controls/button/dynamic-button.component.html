@@ -1,8 +1,9 @@
 <div class="dynamic-button-wrapper">
-  <button mat-button
+  <button
+    mat-button
     [id]="id"
-    [disabled]="model.disabled"
+    [disabled]="model().disabled"
     (click)="onClick()">
-    <span>{{model.label}}</span>
+    <span>{{ model().label }}</span>
   </button>
 </div>

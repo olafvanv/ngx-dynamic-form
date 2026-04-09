@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +12,7 @@ import { DynamicButtonToggles } from './dynamic-button-toggles.model';
   templateUrl: './dynamic-button-toggles.component.html',
   styleUrls: ['./dynamic-button-toggles.component.scss']
 })
-export class DynamicButtonTogglesComponent extends DynamicFormFieldBase {
-  @Input() model!: DynamicButtonToggles;
-  @Input() group!: FormGroup;
+export class DynamicButtonTogglesComponent extends DynamicFormFieldBase<DynamicButtonToggles> {
+  public model = input.required<DynamicButtonToggles>();
+  public group = input.required<FormGroup>();
 }

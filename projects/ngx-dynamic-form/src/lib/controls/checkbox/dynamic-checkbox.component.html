@@ -1,11 +1,11 @@
-<ng-container [formGroup]="group">
-  <mat-checkbox [checked]="model.checked"
-    [formControlName]="model.name"
-    [indeterminate]="model.indeterminate"
-    [labelPosition]="model.labelPosition"
-    [name]="model.name"
+<ng-container [formGroup]="group()">
+  <mat-checkbox
+    [checked]="model().checked"
+    [formControlName]="model().name"
+    [indeterminate]="model().indeterminate"
+    [labelPosition]="model().labelPosition"
+    [name]="model().name"
     [id]="id">
-
-    <span class="checkbox-label">{{model.label}}</span>
+    <span class="checkbox-label">{{ model().label }}</span>
   </mat-checkbox>
 </ng-container>

@@ -1,15 +1,15 @@
 <mat-form-field
-  [formGroup]="group"
-  [id]="id"
+  [formGroup]="group()"
+  [id]="model().id"
   color="primary">
-  <mat-label>{{ model.label }}</mat-label>
+  <mat-label>{{ model().label }}</mat-label>
 
   <!-- Template for select without grouped options -->
-  @if (model.options$ | async; as options) {
-    @if (!model.native) {
+  @if (model().options$ | async; as options) {
+    @if (!model().native) {
       <mat-select
-        [formControlName]="model.name"
-        [multiple]="model.multiple">
+        [formControlName]="model().name"
+        [multiple]="model().multiple">
         @for (option of options; track option.value) {
           <mat-option [value]="option.value">
             {{ option.label }}
@@ -17,8 +17,7 @@
         }
       </mat-select>
     } @else {
-      <select
-        matNativeControl>
+      <select matNativeControl>
         @for (option of options; track option.value) {
           <option [value]="option.value">
             {{ option.label }}
@@ -29,10 +28,9 @@
   }
 
   <!-- Template for select with grouped options -->
-  @if (model.groupedOptions$ | async; as groupedOptions) {
-    @if (!model.native) {
-      <mat-select
-        [formControlName]="model.name">
+  @if (model().groupedOptions$ | async; as groupedOptions) {
+    @if (!model().native) {
+      <mat-select [formControlName]="model().name">
         @for (group of groupedOptions; track group.name) {
           <mat-optgroup [label]="group.name">
             @for (option of group.options; track option.value) {
@@ -44,8 +42,7 @@
         }
       </mat-select>
     } @else {
-      <select
-        matNativeControl>
+      <select matNativeControl>
         @for (group of groupedOptions; track group.name) {
           =
           <optgroup [label]="group.name">
@@ -60,11 +57,11 @@
     }
   }
 
-  @if (model.hint) {
-    <mat-hint align="start">{{ model.hint }}</mat-hint>
+  @if (model().hint) {
+    <mat-hint align="start">{{ model().hint }}</mat-hint>
   }
 
-  @for (validator of model.validators; track validator.name) {
+  @for (validator of model().validators; track validator.name) {
     <ng-container ngProjectAs="mat-error">
       @if (hasError(validator.name)) {
         <mat-error>{{ validator.message }}</mat-error>

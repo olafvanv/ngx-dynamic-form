@@ -1,27 +1,28 @@
+import { InputSignal } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { DynamicFormFieldModel } from './dynamic-form-field-model';
 
-export interface DynamicFormField {
-  group: FormGroup;
-  model: DynamicFormFieldModel;
+export interface DynamicFormField<M extends DynamicFormFieldModel = DynamicFormFieldModel> {
+  group: InputSignal<FormGroup>;
+  model: InputSignal<M>;
 }
 
 /**
  * Base class for the DynamicFormField component classes
  */
-export abstract class DynamicFormFieldBase implements DynamicFormField {
-  group!: FormGroup;
-  model!: DynamicFormFieldModel;
+export abstract class DynamicFormFieldBase<M extends DynamicFormFieldModel = DynamicFormFieldModel> implements DynamicFormField<M> {
+  abstract group: InputSignal<FormGroup>;
+  abstract model: InputSignal<M>;
 
   get id(): string {
-    return this.model.id ?? this.model.name;
+    return this.model().id ?? this.model().name;
   }
 
   get control(): AbstractControl {
-    const ctrl = this.group.get(this.model.name);
+    const ctrl = this.group().get(this.model().name);
 
     if (!ctrl) {
-      throw new Error(`Provided FormGroup does not contain a control with the name ${this.model.name}`);
+      throw new Error(`Provided FormGroup does not contain a control with the name ${this.model().name}`);
     }
     return ctrl;
   }
@@ -35,7 +36,7 @@ export abstract class DynamicFormFieldBase implements DynamicFormField {
   }
 
   public resetControl() {
-    this.group.get(this.model.name)?.reset();
+    this.group().get(this.model().name)?.reset();
   }
 
   public hasError(name: string): boolean {

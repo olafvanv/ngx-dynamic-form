@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +12,7 @@ import { DynamicDatepicker } from './dynamic-datepicker.model';
   templateUrl: './dynamic-datepicker.component.html',
   styleUrl: './dynamic-datepicker.component.scss'
 })
-export class DynamicDatepickerComponent extends DynamicFormFieldBase {
-  @Input() model!: DynamicDatepicker;
-  @Input() group!: FormGroup;
+export class DynamicDatepickerComponent extends DynamicFormFieldBase<DynamicDatepicker> {
+  public model = input.required<DynamicDatepicker>();
+  public group = input.required<FormGroup>();
 }

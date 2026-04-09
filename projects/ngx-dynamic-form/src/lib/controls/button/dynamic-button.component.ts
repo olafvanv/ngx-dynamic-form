@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
@@ -10,11 +10,11 @@ import { DynamicButton } from './dynamic-button.model';
   templateUrl: './dynamic-button.component.html',
   styleUrl: './dynamic-button.component.scss'
 })
-export class DynamicButtonComponent extends DynamicFormFieldBase {
-  @Input() model!: DynamicButton;
-  @Input() group!: FormGroup;
+export class DynamicButtonComponent extends DynamicFormFieldBase<DynamicButton> {
+  public model = input.required<DynamicButton>();
+  public group = input.required<FormGroup>();
 
   public onClick() {
-    this.model.onClick();
+    this.model().onClick();
   }
 }

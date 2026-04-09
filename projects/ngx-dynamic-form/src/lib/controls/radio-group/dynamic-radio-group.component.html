@@ -1,17 +1,17 @@
 <div
   class="dynamic-radio-group-wrapper"
-  [formGroup]="group">
-  @if (model.label) {
-    <label>{{ model.label }}</label>
+  [formGroup]="group()">
+  @if (model().label) {
+    <label>{{ model().label }}</label>
   }
   <mat-radio-group
-    [formControlName]="model.name"
+    [formControlName]="model().name"
     class="radio-group"
-    [ngClass]="{ inline: model.inline }">
-    @for (option of model.options$ | async; track option.value) {
+    [class.inlint]="model().inline">
+    @for (option of model().options$ | async; track option.value) {
       <mat-radio-button
         [value]="option.value"
-        [labelPosition]="model.labelPosition">
+        [labelPosition]="model().labelPosition">
         {{ option.label }}
       </mat-radio-button>
     }

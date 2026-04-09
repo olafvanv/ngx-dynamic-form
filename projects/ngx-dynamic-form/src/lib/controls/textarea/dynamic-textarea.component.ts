@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, input, viewChild } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
@@ -11,17 +11,17 @@ import { DynamicTextarea } from './dynamic-textarea.model';
   templateUrl: './dynamic-textarea.component.html',
   styles: ['mat-form-field {width: 100%;}']
 })
-export class DynamicTextareaComponent extends DynamicFormFieldBase {
-  @ViewChild(MatInput, { static: true }) textarea!: MatInput;
+export class DynamicTextareaComponent extends DynamicFormFieldBase<DynamicTextarea> {
+  public textarea = viewChild.required<MatInput>(MatInput);
 
-  @Input() model!: DynamicTextarea;
-  @Input() group!: FormGroup;
+  public model = input.required<DynamicTextarea>();
+  public group = input.required<FormGroup>();
 
   get valueCount(): number {
-    return this.textarea?.value ? this.textarea.value.length : 0;
+    return this.textarea()?.value ? this.textarea().value.length : 0;
   }
 
   get maxCountText(): string {
-    return `${this.valueCount} / ${this.model.maxLength}`;
+    return `${this.valueCount} / ${this.model().maxLength}`;
   }
 }
