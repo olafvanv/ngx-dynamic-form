@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
-import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
 import { DynamicButtonToggles } from './dynamic-button-toggles.model';
@@ -15,6 +15,4 @@ import { DynamicButtonToggles } from './dynamic-button-toggles.model';
 export class DynamicButtonTogglesComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicButtonToggles;
   @Input() group!: UntypedFormGroup;
-
-  @Output() change: EventEmitter<MatButtonToggleChange> = new EventEmitter();
 }

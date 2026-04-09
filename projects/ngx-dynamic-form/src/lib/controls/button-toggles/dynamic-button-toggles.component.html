@@ -1,13 +1,13 @@
-<div class="dynamic-button-toggles-wrapper"
+<div
+  class="dynamic-button-toggles-wrapper"
   [formGroup]="group">
-  <mat-button-toggle-group [id]="id"
+  <mat-button-toggle-group
+    [id]="id"
     [formControlName]="model.name"
     [multiple]="model.multiple"
-    [vertical]="model.vertical"
-    (change)="onChange($event)">
-
-    @for(option of model.options$ | async; track option.value) {
-    <mat-button-toggle [value]="option.value">{{option.label}}</mat-button-toggle>
+    [vertical]="model.vertical">
+    @for (option of model.options$ | async; track option.value) {
+      <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
     }
   </mat-button-toggle-group>
 </div>
