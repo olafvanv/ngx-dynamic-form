@@ -1,4 +1,5 @@
-<div [formGroup]="group"
-  [ngClass]="['dynamic-form-field-container', 'dynamic-form-field-' + model.type]">
+<div
+  [formGroup]="group()"
+  [ngClass]="['dynamic-form-field-container', 'dynamic-form-field-' + model().type]">
   <ng-container #componentViewContainer></ng-container>
 </div>
