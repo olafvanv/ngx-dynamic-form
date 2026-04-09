@@ -17,6 +17,4 @@ import { DynamicSelect } from './dynamic-select.model';
 export class DynamicSelectComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicSelect<string>;
   @Input() group!: UntypedFormGroup;
-
-  @Output() change = new EventEmitter<MatSelectChange>();
 }

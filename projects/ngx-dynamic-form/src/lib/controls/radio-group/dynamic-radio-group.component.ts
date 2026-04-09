@@ -14,6 +14,4 @@ import { DynamicRadioGroup } from './dynamic-radio-group.model';
 export class DymamicRadioGroupComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicRadioGroup;
   @Input() group!: UntypedFormGroup;
-
-  @Output() change = new EventEmitter<MatRadioChange>();
 }

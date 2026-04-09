@@ -5,7 +5,6 @@ import { DynamicFormFieldModel } from './dynamic-form-field-model';
 export interface DynamicFormField {
   group: UntypedFormGroup;
   model: DynamicFormFieldModel;
-  change: EventEmitter<any>;
 }
 
 /**
@@ -14,8 +13,6 @@ export interface DynamicFormField {
 export abstract class DynamicFormFieldBase implements DynamicFormField {
   group!: UntypedFormGroup;
   model!: DynamicFormFieldModel;
-
-  change!: EventEmitter<any>;
 
   get id(): string {
     return this.model.id ?? this.model.name;
@@ -36,10 +33,6 @@ export abstract class DynamicFormFieldBase implements DynamicFormField {
 
   get isInvalid(): boolean {
     return this.control.invalid;
-  }
-
-  public onChange(event: unknown) {
-    this.change.emit(event);
   }
 
   public resetControl() {

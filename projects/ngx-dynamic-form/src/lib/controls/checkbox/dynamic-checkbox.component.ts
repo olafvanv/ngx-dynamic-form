@@ -12,6 +12,4 @@ import { DynamicCheckbox } from './dynamic-checkbox.model';
 export class DynamicCheckboxComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicCheckbox;
   @Input() group!: UntypedFormGroup;
-
-  @Output() change: EventEmitter<MatCheckboxChange> = new EventEmitter();
 }

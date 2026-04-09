@@ -7,8 +7,7 @@
   <mat-radio-group
     [formControlName]="model.name"
     class="radio-group"
-    [ngClass]="{ inline: model.inline }"
-    (change)="onChange($event)">
+    [ngClass]="{ inline: model.inline }">
     @for (option of model.options$ | async; track option.value) {
       <mat-radio-button
         [value]="option.value"

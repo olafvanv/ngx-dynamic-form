@@ -20,8 +20,7 @@
     [attr.minLength]="model.minLength"
     [attr.maxLength]="model.maxLength"
     [pattern]="model.pattern"
-    [autocomplete]="model.autocomplete"
-    (change)="onChange($event)" />
+    [autocomplete]="model.autocomplete" />
 
   @if (showClear) {
     <button

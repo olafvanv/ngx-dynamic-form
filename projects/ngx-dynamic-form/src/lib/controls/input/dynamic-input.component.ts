@@ -21,8 +21,6 @@ export class DynamicInputComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicInput;
   @Input() group!: UntypedFormGroup;
 
-  @Output() change = new EventEmitter<DynamicFormFieldEvent>();
-
   get valueCount(): number {
     return this.input?.value ? this.input.value.length : 0;
   }
@@ -33,14 +31,5 @@ export class DynamicInputComponent extends DynamicFormFieldBase {
 
   get showClear(): boolean {
     return !!this.control.value && !this.control.disabled && !this.model.showLoader;
-  }
-
-  public onChange(event: Event | DynamicFormFieldEvent): void {
-    // Ignore the native HTML 5 change event
-    if (event instanceof Event) {
-      event.stopPropagation();
-    }
-
-    this.change.emit(event as DynamicFormFieldEvent);
   }
 }

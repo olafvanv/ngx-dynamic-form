@@ -16,6 +16,4 @@ import { DynamicDatepicker } from './dynamic-datepicker.model';
 export class DynamicDatepickerComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicDatepicker;
   @Input() group!: UntypedFormGroup;
-
-  @Output() change = new EventEmitter<DynamicFormFieldEvent>();
 }
