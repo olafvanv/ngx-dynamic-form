@@ -1,5 +1,5 @@
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 export type RelatedFormControls = {
-  [name: string]: UntypedFormControl;
+  [name: string]: FormControl;
 };

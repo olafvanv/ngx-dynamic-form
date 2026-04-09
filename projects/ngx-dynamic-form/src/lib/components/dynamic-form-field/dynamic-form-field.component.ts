@@ -4,14 +4,14 @@ import {
   ChangeDetectorRef,
   Component,
   inject,
-  Input,
+  input,
   OnDestroy,
   OnInit,
   Type,
-  ViewChild,
+  viewChild,
   ViewContainerRef
 } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicButtonTogglesComponent } from '../../controls/button-toggles/dynamic-button-toggles.component';
 import { DYNAMIC_FORM_FIELD_BUTTON_TOGGLES } from '../../controls/button-toggles/dynamic-button-toggles.model';
@@ -44,26 +44,26 @@ import { DynamicFormService } from '../../services/dynamic-form.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFormFieldComponent implements OnInit, OnDestroy {
-  @ViewChild('componentViewContainer', { read: ViewContainerRef, static: true }) componentViewContainer!: ViewContainerRef;
+  private componentViewContainer = viewChild.required('componentViewContainer', { read: ViewContainerRef });
 
-  @Input() model!: DynamicFormFieldModel;
-  @Input() group!: UntypedFormGroup;
+  public model = input.required<DynamicFormFieldModel>();
+  public group = input.required<FormGroup>();
 
   private readonly dynamicFormService = inject(DynamicFormService);
   private readonly relationService = inject(DynamicFormRelationsService);
   private readonly cdRef = inject(ChangeDetectorRef);
 
-  private _control!: UntypedFormControl;
+  private _control!: FormControl;
   private _subs = new Subscription();
 
   /** Get the instance of a control component using the injected custom method or local method */
   private get componentType(): Type<DynamicFormField> | null {
-    return this.dynamicFormService.getCustomControlComponentType(this.model) || this.getControlComponentType();
+    return this.dynamicFormService.getCustomControlComponentType(this.model()) || this.getControlComponentType();
   }
 
   ngOnInit(): void {
-    if (this.group) {
-      this._control = this.group.get(this.model.name) as UntypedFormControl;
+    if (this.group()) {
+      this._control = this.group().get(this.model().name) as FormControl;
 
       this.createFormControlComponent();
       this.setSubscriptions();
@@ -79,7 +79,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    * @returns
    */
   private getControlComponentType(): Type<DynamicFormField> | null {
-    switch (this.model.type) {
+    switch (this.model().type) {
       case DYNAMIC_FORM_FIELD_BUTTON:
         return DynamicButtonComponent;
       case DYNAMIC_FORM_FIELD_BUTTON_TOGGLES:
@@ -100,7 +100,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
         return DynamicTextareaComponent;
       default:
         console.warn(
-          `Model of type 'dynamic-${this.model.type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`
+          `Model of type 'dynamic-${this.model().type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`
         );
         return null;
     }
@@ -110,12 +110,12 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
     const component = this.componentType;
 
     if (component != null) {
-      let componentRef = this.componentViewContainer.createComponent(component);
+      let componentRef = this.componentViewContainer().createComponent(component);
 
       const componentInstance = componentRef.instance;
 
-      componentInstance.group = this.group;
-      componentInstance.model = this.model;
+      componentInstance.group = this.group();
+      componentInstance.model = this.model();
     }
   }
 
@@ -123,7 +123,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    * Setup all necessary subscriptions of the FormControl
    */
   private setSubscriptions(): void {
-    const model = this.model as DynamicFormFieldModel;
+    const model = this.model() as DynamicFormFieldModel;
 
     // Subscribe to the value change inside the control to change the value inside the model as well
     this._subs.add(this._control.valueChanges.subscribe((value) => this.onValueChange(value)));
@@ -132,7 +132,7 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
     this._subs.add(model.disabledChange.subscribe((disabled) => this.onDisabledChange(disabled)));
 
     // Setup subscriptions for any possible relation
-    if (this.model.relations?.length) {
+    if (this.model().relations?.length) {
       this.setUpRelations();
     }
   }
@@ -142,9 +142,9 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    */
   private setUpRelations(): void {
     // Array of all FormControls the current model has a relation to
-    const relatedFormControls = this.relationService.findRelatedFormField(this.model, this.group);
+    const relatedFormControls = this.relationService.findRelatedFormField(this.model(), this.group());
 
-    const subs = this.relationService.getRelationSubscriptions(relatedFormControls, this.model, this._control);
+    const subs = this.relationService.getRelationSubscriptions(relatedFormControls, this.model(), this._control);
 
     // Add all relations as subscription to the main Subscription object
     subs.forEach((sub) => this._subs.add(sub));
@@ -155,8 +155,8 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    * @param value
    */
   private onValueChange(value: unknown): void {
-    if (this.model instanceof DynamicFormFieldValueModel && this.model.value !== value) {
-      this.model.value = value;
+    if (this.model() instanceof DynamicFormFieldValueModel && (this.model() as DynamicFormFieldValueModel).value !== value) {
+      (this.model() as DynamicFormFieldValueModel).value = value;
     }
   }
 

@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
-import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-field-event.interface';
 import { DynamicDatepicker } from './dynamic-datepicker.model';
 
 @Component({
@@ -15,5 +14,5 @@ import { DynamicDatepicker } from './dynamic-datepicker.model';
 })
 export class DynamicDatepickerComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicDatepicker;
-  @Input() group!: UntypedFormGroup;
+  @Input() group!: FormGroup;
 }

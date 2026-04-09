@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { DynamicFormValidationsService } from '../../services/dynamic-validations.service';
 import { DynamicFormFieldModel } from '../classes/dynamic-form-field-model';
 import { DynamicFormValidators } from '../classes/dynamic-form-validators';
@@ -9,7 +9,7 @@ import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.inter
 export interface DynamicRelationAction {
   type: RelationActionType;
   reversedType?: string;
-  change(hasMatch: boolean, model: DynamicFormFieldModel, control: UntypedFormControl, injector: Injector): void;
+  change(hasMatch: boolean, model: DynamicFormFieldModel, control: FormControl, injector: Injector): void;
 }
 
 /**

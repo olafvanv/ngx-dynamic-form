@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { Component, Input, ViewChild } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
-import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-field-event.interface';
 import { DynamicTextarea } from './dynamic-textarea.model';
 
 @Component({
@@ -16,7 +15,7 @@ export class DynamicTextareaComponent extends DynamicFormFieldBase {
   @ViewChild(MatInput, { static: true }) textarea!: MatInput;
 
   @Input() model!: DynamicTextarea;
-  @Input() group!: UntypedFormGroup;
+  @Input() group!: FormGroup;
 
   get valueCount(): number {
     return this.textarea?.value ? this.textarea.value.length : 0;

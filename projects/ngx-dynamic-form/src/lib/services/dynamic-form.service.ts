@@ -1,5 +1,5 @@
 import { Inject, Injectable, Optional, Type } from '@angular/core';
-import { FormBuilder, FormControlOptions, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormControlOptions, FormGroup } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { DynamicFormField } from '../models/classes/dynamic-form-field-base';
 import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
@@ -34,10 +34,10 @@ export class DynamicFormService {
    * Create a FormGroup from the provided form configuration.
    * Returns a FormGroup.
    * @param {DynamicFormConfig} config Configuration object of a form
-   * @returns {UntypedFormGroup}
+   * @returns {FormGroup}
    */
-  public createFormGroup(config: DynamicFormConfig): UntypedFormGroup {
-    const group: UntypedFormGroup = this.fb.group({});
+  public createFormGroup(config: DynamicFormConfig): FormGroup {
+    const group: FormGroup = this.fb.group({});
 
     config.forEach((row) => {
       row.forEach((controlConfig) => {
@@ -47,7 +47,7 @@ export class DynamicFormService {
         };
 
         const controlValueConfig = controlConfig as DynamicFormFieldValueConfig<unknown>;
-        const control = new UntypedFormControl(
+        const control = new FormControl(
           { value: controlValueConfig.value ?? controlValueConfig.defaultValue, disabled: controlValueConfig.disabled },
           controlOptions
         );

@@ -1,12 +1,11 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { Component, Input, ViewChild } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
-import { DynamicFormFieldEvent } from '../../models/interfaces/dynamic-form-field-event.interface';
 import { DynamicInput } from './dynamic-input.model';
 
 @Component({
@@ -19,7 +18,7 @@ export class DynamicInputComponent extends DynamicFormFieldBase {
   @ViewChild(MatInput, { static: true }) input!: MatInput;
 
   @Input() model!: DynamicInput;
-  @Input() group!: UntypedFormGroup;
+  @Input() group!: FormGroup;
 
   get valueCount(): number {
     return this.input?.value ? this.input.value.length : 0;

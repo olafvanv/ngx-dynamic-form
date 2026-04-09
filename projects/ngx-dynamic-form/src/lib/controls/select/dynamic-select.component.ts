@@ -1,10 +1,10 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
 import { DynamicSelect } from './dynamic-select.model';
 
@@ -16,5 +16,5 @@ import { DynamicSelect } from './dynamic-select.model';
 })
 export class DynamicSelectComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicSelect<string>;
-  @Input() group!: UntypedFormGroup;
+  @Input() group!: FormGroup;
 }

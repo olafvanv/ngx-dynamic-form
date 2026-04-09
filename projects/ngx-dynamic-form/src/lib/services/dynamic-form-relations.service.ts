@@ -1,5 +1,5 @@
 import { inject, Injectable, Injector } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { distinctUntilChanged, startWith, Subscription } from 'rxjs';
 import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
 import { DynamicRelationAction, RELATION_ACTIONS } from '../models/constants/dynamic-relations.const';
@@ -22,9 +22,7 @@ export class DynamicFormRelationsService {
     const conditionReducer = (controls: RelatedFormControls, condition: RelationCondition) => {
       const fieldName = condition.path ?? condition.fieldName!;
       // Get the control using the provided path or fieldName
-      const control = condition.path
-        ? (group.root.get(condition.path) as UntypedFormControl)
-        : (group.get(condition.fieldName!) as UntypedFormControl);
+      const control = condition.path ? (group.root.get(condition.path) as FormControl) : (group.get(condition.fieldName!) as FormControl);
 
       if (!control) {
         console.warn(`No related form control with the name ${fieldName} found`);
@@ -91,7 +89,7 @@ export class DynamicFormRelationsService {
     // Use a reducer to map all conditions to a single boolean value to decide if we want to trigger the provided action type
     const reducer = (isMatch: boolean, condition: RelationCondition, index: number): boolean => {
       // Find the FormControl of the related field
-      let relatedControl: UntypedFormControl | undefined;
+      let relatedControl: FormControl | undefined;
 
       for (const [fieldName, control] of Object.entries(relatedControls)) {
         if (fieldName === (condition.path ?? condition.fieldName)) {

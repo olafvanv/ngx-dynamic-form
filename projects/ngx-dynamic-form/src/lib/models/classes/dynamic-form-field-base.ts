@@ -1,9 +1,8 @@
-import { EventEmitter } from '@angular/core';
-import { AbstractControl, UntypedFormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { DynamicFormFieldModel } from './dynamic-form-field-model';
 
 export interface DynamicFormField {
-  group: UntypedFormGroup;
+  group: FormGroup;
   model: DynamicFormFieldModel;
 }
 
@@ -11,7 +10,7 @@ export interface DynamicFormField {
  * Base class for the DynamicFormField component classes
  */
 export abstract class DynamicFormFieldBase implements DynamicFormField {
-  group!: UntypedFormGroup;
+  group!: FormGroup;
   model!: DynamicFormFieldModel;
 
   get id(): string {

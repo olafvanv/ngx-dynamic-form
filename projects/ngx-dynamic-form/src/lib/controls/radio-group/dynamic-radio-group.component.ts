@@ -1,7 +1,7 @@
 import { AsyncPipe, NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
-import { MatRadioChange, MatRadioModule } from '@angular/material/radio';
+import { Component, Input } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
 import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
 import { DynamicRadioGroup } from './dynamic-radio-group.model';
 
@@ -13,5 +13,5 @@ import { DynamicRadioGroup } from './dynamic-radio-group.model';
 })
 export class DymamicRadioGroupComponent extends DynamicFormFieldBase {
   @Input() model!: DynamicRadioGroup;
-  @Input() group!: UntypedFormGroup;
+  @Input() group!: FormGroup;
 }
