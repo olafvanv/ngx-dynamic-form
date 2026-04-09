@@ -1,11 +1,11 @@
-import { DynamicFormFieldRelation } from './dynamic-form-field-relation.interface';
-import { DynamicFormValidator } from './dynamic-form-validator.interface';
+import { DynamicFormFieldRelation } from '../types/dynamic-form-field-relation.type';
+import { DynamicFormValidator } from '../types/dynamic-form-validator.type';
 
 /**
  * Base configuration object for each Dynamic Form Field.
  * Expects a generic type describing the type of the value the control holds.
  */
-export interface DynamicFormFieldConfig {
+export type DynamicFormFieldConfig = {
   /**
    * Name used as FormControlName
    * @required
@@ -66,4 +66,4 @@ export interface DynamicFormFieldConfig {
    * @optional
    */
   width?: number;
-}
+};

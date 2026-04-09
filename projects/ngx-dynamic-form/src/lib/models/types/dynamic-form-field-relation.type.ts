@@ -12,7 +12,7 @@ export enum RelationOperator {
   OR = 'OR'
 }
 
-export interface RelationCondition {
+export type RelationCondition = {
   /** Name of a field in the same form this field is depended on */
   fieldName?: string;
   /**
@@ -22,10 +22,10 @@ export interface RelationCondition {
   path?: string;
   /** Method that returns true when the condition is met. The passed parameter is the value of the depended field */
   value: (val: any) => boolean;
-}
+};
 
-export interface DynamicFormFieldRelation {
+export type DynamicFormFieldRelation = {
   actionType: RelationActionType;
   conditions: RelationCondition[];
   operator?: RelationOperator;
-}
+};

@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { DynamicFormValidationsService } from '../../services/dynamic-validations.service';
 import { DynamicFormFieldModel } from '../classes/dynamic-form-field-model';
 import { DynamicFormValidators } from '../classes/dynamic-form-validators';
-import { RelationActionType } from '../interfaces/dynamic-form-field-relation.interface';
-import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.interface';
+import { RelationActionType } from '../types/dynamic-form-field-relation.type';
+import { DynamicFormValidator } from '../types/dynamic-form-validator.type';
 
 export interface DynamicRelationAction {
   type: RelationActionType;

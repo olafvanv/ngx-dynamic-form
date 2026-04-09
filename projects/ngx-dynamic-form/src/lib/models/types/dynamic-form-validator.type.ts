@@ -1,7 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
 
-export interface DynamicFormValidator {
+export type DynamicFormValidator = {
   name: string;
   validator: ValidatorFn;
   message?: string;
-}
+};

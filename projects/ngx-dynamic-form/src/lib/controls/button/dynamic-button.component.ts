@@ -15,6 +15,6 @@ export class DynamicButtonComponent extends DynamicFormFieldBase<DynamicButton> 
   public group = input.required<FormGroup>();
 
   public onClick() {
-    this.model().onClick();
+    this.model().clicked();
   }
 }

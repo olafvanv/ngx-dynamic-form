@@ -4,10 +4,9 @@ export * from './classes/dynamic-form-field-option-model';
 export * from './classes/dynamic-form-field-value-model';
 export * from './classes/dynamic-form-validators';
 
-export * from './interfaces/dynamic-form-field-config.interface';
-export * from './interfaces/dynamic-form-field-event.interface';
-export * from './interfaces/dynamic-form-field-relation.interface';
-export * from './interfaces/dynamic-form-validator.interface';
+export * from './types/dynamic-form-field-config.type';
+export * from './types/dynamic-form-field-relation.type';
+export * from './types/dynamic-form-validator.type';
 
 export * from './types/dynamic-form-config.type';
 

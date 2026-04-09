@@ -2,10 +2,10 @@ import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../m
 
 export const DYNAMIC_FORM_FIELD_CHECKBOX = 'checkbox';
 
-export interface DynamicCheckboxConfig extends DynamicFormFieldValueConfig<boolean> {
+export type DynamicCheckboxConfig = DynamicFormFieldValueConfig<boolean> & {
   labelPosition?: 'before' | 'after';
   indeterminate?: boolean;
-}
+};
 
 export class DynamicCheckbox extends DynamicFormFieldValueModel<boolean> {
   public labelPosition: 'before' | 'after';

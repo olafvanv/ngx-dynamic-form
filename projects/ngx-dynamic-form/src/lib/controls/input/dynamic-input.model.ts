@@ -6,7 +6,7 @@ export const DYNAMIC_FORM_FIELD_INPUT = 'input';
 export type HtmlInputType = 'text' | 'number' | 'tel' | 'email' | 'password' | 'date' | 'time' | 'color';
 export type DynamicInputValue = string | number | Date | null;
 
-export interface DynamicInputConfig extends DynamicFormFieldValueConfig<DynamicInputValue> {
+export type DynamicInputConfig = DynamicFormFieldValueConfig<DynamicInputValue> & {
   inputType?: HtmlInputType;
   placeholder?: string;
   max?: number;
@@ -19,7 +19,7 @@ export interface DynamicInputConfig extends DynamicFormFieldValueConfig<DynamicI
   prefix?: string;
   hideClearIcon?: boolean;
   showLoader?: WritableSignal<boolean>;
-}
+};
 
 export class DynamicInput extends DynamicFormFieldValueModel<DynamicInputValue> {
   public inputType: HtmlInputType;

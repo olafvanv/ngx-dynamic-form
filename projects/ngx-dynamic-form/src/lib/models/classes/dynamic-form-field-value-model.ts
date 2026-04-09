@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.interface';
+import { DynamicFormFieldConfig } from '../types/dynamic-form-field-config.type';
 import { DynamicFormFieldModel } from './dynamic-form-field-model';
 
 export interface DynamicFormFieldValueConfig<T> extends DynamicFormFieldConfig {

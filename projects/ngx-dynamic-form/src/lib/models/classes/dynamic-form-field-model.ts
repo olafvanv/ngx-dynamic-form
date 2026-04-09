@@ -1,8 +1,8 @@
 import { signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DynamicFormFieldConfig } from '../interfaces/dynamic-form-field-config.interface';
-import { DynamicFormFieldRelation } from '../interfaces/dynamic-form-field-relation.interface';
-import { DynamicFormValidator } from '../interfaces/dynamic-form-validator.interface';
+import { DynamicFormFieldConfig } from '../types/dynamic-form-field-config.type';
+import { DynamicFormFieldRelation } from '../types/dynamic-form-field-relation.type';
+import { DynamicFormValidator } from '../types/dynamic-form-validator.type';
 
 /**
  * Base class for all DynamicFormFields

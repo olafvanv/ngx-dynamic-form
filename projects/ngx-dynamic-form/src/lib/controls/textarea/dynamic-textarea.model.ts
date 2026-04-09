@@ -3,7 +3,7 @@ import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../m
 export const DYNAMIC_FORM_FIELD_TEXTAREA = 'textarea';
 export type DynamicTextareaValue = string | null;
 
-export interface DynamicTextareaConfig extends DynamicFormFieldValueConfig<DynamicTextareaValue> {
+export type DynamicTextareaConfig = DynamicFormFieldValueConfig<DynamicTextareaValue> & {
   /**
    * Placeholder text inside the textarea.
    * Only visible when the field is empty and in focus.
@@ -34,7 +34,7 @@ export interface DynamicTextareaConfig extends DynamicFormFieldValueConfig<Dynam
    * Maximum amount of rows the textarea show resize to
    */
   resizeMaxRows?: number;
-}
+};
 
 export class DynamicTextarea extends DynamicFormFieldValueModel<DynamicTextareaValue> {
   public placeholder: string;

@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { distinctUntilChanged, startWith, Subscription } from 'rxjs';
 import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-model';
 import { DynamicRelationAction, RELATION_ACTIONS } from '../models/constants/dynamic-relations.const';
-import { DynamicFormFieldRelation, RelationCondition, RelationOperator } from '../models/interfaces/dynamic-form-field-relation.interface';
+import { DynamicFormFieldRelation, RelationCondition, RelationOperator } from '../models/types/dynamic-form-field-relation.type';
 import { RelatedFormControls } from '../models/types/related-form-controls.type';
 
 @Injectable({

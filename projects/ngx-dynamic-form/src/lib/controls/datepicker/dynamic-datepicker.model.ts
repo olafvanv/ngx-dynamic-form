@@ -4,7 +4,7 @@ export const DYNAMIC_FORM_FIELD_DATEPICKER = 'datepicker';
 
 export type DynamicDatepickerControlValue = Date | object | string | null;
 
-export interface DynamicDatepickerConfig extends DynamicFormFieldValueConfig<DynamicDatepickerControlValue> {
+export type DynamicDatepickerConfig = DynamicFormFieldValueConfig<DynamicDatepickerControlValue> & {
   /** Maximum date selectable in the datepicker */
   max?: DynamicDatepickerControlValue;
   /** Minimum date selectable in the datepicker */
@@ -13,7 +13,7 @@ export interface DynamicDatepickerConfig extends DynamicFormFieldValueConfig<Dyn
   startAt?: DynamicDatepickerControlValue;
   /** The view the picker is initializing when opening */
   startView?: 'month' | 'year' | 'multi-year';
-}
+};
 
 export class DynamicDatepicker extends DynamicFormFieldValueModel<DynamicDatepickerControlValue> {
   public max: DynamicDatepickerControlValue | null;
