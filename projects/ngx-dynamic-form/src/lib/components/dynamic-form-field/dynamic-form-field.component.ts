@@ -13,27 +13,10 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { DynamicButtonTogglesComponent } from '../../controls/button-toggles/dynamic-button-toggles.component';
-import { DYNAMIC_FORM_FIELD_BUTTON_TOGGLES } from '../../controls/button-toggles/dynamic-button-toggles.model';
-import { DynamicButtonComponent } from '../../controls/button/dynamic-button.component';
-import { DYNAMIC_FORM_FIELD_BUTTON } from '../../controls/button/dynamic-button.model';
-import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkbox.component';
-import { DYNAMIC_FORM_FIELD_CHECKBOX } from '../../controls/checkbox/dynamic-checkbox.model';
-import { DynamicDatepickerComponent } from '../../controls/datepicker/dynamic-datepicker.component';
-import { DYNAMIC_FORM_FIELD_DATEPICKER } from '../../controls/datepicker/dynamic-datepicker.model';
-import { DynamicInputComponent } from '../../controls/input/dynamic-input.component';
-import { DYNAMIC_FORM_FIELD_INPUT } from '../../controls/input/dynamic-input.model';
-import { DymamicRadioGroupComponent } from '../../controls/radio-group/dynamic-radio-group.component';
-import { DYNAMIC_FORM_FIELD_RADIO_GROUP } from '../../controls/radio-group/dynamic-radio-group.model';
-import { DynamicReadonlyComponent } from '../../controls/readonly/dynamic-readonly.component';
-import { DYNAMIC_FORM_FIELD_READONLY } from '../../controls/readonly/dynamic-readonly.model';
-import { DynamicSelectComponent } from '../../controls/select/dynamic-select.component';
-import { DYNAMIC_FORM_FIELD_SELECT } from '../../controls/select/dynamic-select.model';
-import { DynamicTextareaComponent } from '../../controls/textarea/dynamic-textarea.component';
-import { DYNAMIC_FORM_FIELD_TEXTAREA } from '../../controls/textarea/dynamic-textarea.model';
 import { DynamicFormField } from '../../models/classes/dynamic-form-field-base';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldValueModel } from '../../models/classes/dynamic-form-field-value-model';
+import { DYNAMIC_FORM_FIELD_MAP } from '../../models/constants/dynamic-form-field-map.const';
 import { DynamicFormRelationsService } from '../../services/dynamic-form-relations.service';
 import { DynamicFormService } from '../../services/dynamic-form.service';
 
@@ -81,31 +64,16 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
    * @returns
    */
   private getControlComponentType(): Type<DynamicFormField<any>> | null {
-    switch (this.model().type) {
-      case DYNAMIC_FORM_FIELD_BUTTON:
-        return DynamicButtonComponent;
-      case DYNAMIC_FORM_FIELD_BUTTON_TOGGLES:
-        return DynamicButtonTogglesComponent;
-      case DYNAMIC_FORM_FIELD_CHECKBOX:
-        return DynamicCheckboxComponent;
-      case DYNAMIC_FORM_FIELD_DATEPICKER:
-        return DynamicDatepickerComponent;
-      case DYNAMIC_FORM_FIELD_INPUT:
-        return DynamicInputComponent;
-      case DYNAMIC_FORM_FIELD_RADIO_GROUP:
-        return DymamicRadioGroupComponent;
-      case DYNAMIC_FORM_FIELD_READONLY:
-        return DynamicReadonlyComponent;
-      case DYNAMIC_FORM_FIELD_SELECT:
-        return DynamicSelectComponent;
-      case DYNAMIC_FORM_FIELD_TEXTAREA:
-        return DynamicTextareaComponent;
-      default:
-        console.warn(
-          `Model of type 'dynamic-${this.model().type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`
-        );
-        return null;
+    const field = DYNAMIC_FORM_FIELD_MAP[this.model().type];
+
+    if (!field) {
+      console.warn(
+        `Model of type 'dynamic-${this.model().type}' is not implemented yet. Add this type to dynamic-form-field.component.ts to add support`
+      );
+      return null;
     }
+
+    return field;
   }
 
   private createFormControlComponent(): void {
@@ -113,8 +81,6 @@ export class DynamicFormFieldComponent implements OnInit, OnDestroy {
 
     if (component != null) {
       let componentRef = this.componentViewContainer().createComponent(component);
-
-      const componentInstance = componentRef.instance;
 
       componentRef.setInput('group', this.group());
       componentRef.setInput('model', this.model());

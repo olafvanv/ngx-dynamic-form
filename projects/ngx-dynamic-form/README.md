@@ -322,4 +322,20 @@ export class SliderComponent extends DynamicFormFieldBase<SliderInput> {
 
 ### 3. Registering the Control
 
-Finally, tell the `DynamicFormService` how to connect the `SliderInput` model (`slider`) to the `SliderComponent` rendering engine via dependency injection using `DYNAMIC_FORM_CONTROL_MAP_FN`.
+Finally, tell the `DynamicFormService` how to connect the `SliderInput` model (`slider`) to the `SliderComponent` rendering engine via dependency injection using `DYNAMIC_FORM_CONTROL_MAP`.
+
+```ts
+@NgModule({
+  ...
+  providers: [
+    {
+      provide: DYNAMIC_FORM_FIELD_MAP,
+      useValue: {
+        [DYNAMIC_FORM_FIELD_SLIDER]: SliderComponent
+      }
+    }
+  ]
+})
+export class AppModule {}
+
+```

@@ -91,7 +91,7 @@ export class Persoon {
       new DynamicButton({
         name: 'button',
         label: 'Info',
-        onClick: () => {
+        clicked: () => {
           alert('info');
         },
         relations: [

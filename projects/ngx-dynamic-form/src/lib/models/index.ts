@@ -10,4 +10,4 @@ export * from './types/dynamic-form-validator.type';
 
 export * from './types/dynamic-form-config.type';
 
-export * from './tokens/dynamic-form-field-map-fn.token';
+export * from './tokens/dynamic-form-field-map.token';

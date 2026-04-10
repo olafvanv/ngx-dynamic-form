@@ -8,8 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DYNAMIC_FORM_FIELD_MAP_FN, DynamicFormComponent, DynamicFormFieldModel } from 'ngx-dynamic-form';
+import { DYNAMIC_FORM_FIELD_MAP, DynamicFormComponent } from 'ngx-dynamic-form';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './pages/search-form/search-form.component';
@@ -20,30 +19,16 @@ import { DYNAMIC_FORM_FIELD_SLIDER } from './shared/slider-input/slider-input.mo
 @NgModule({
   declarations: [AppComponent, SimpleFormComponent, SearchFormComponent],
   bootstrap: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    DynamicFormComponent
-  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, MatToolbarModule, MatButtonModule, MatCardModule, DynamicFormComponent],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' }
     },
     {
-      provide: DYNAMIC_FORM_FIELD_MAP_FN,
-      useValue: (model: DynamicFormFieldModel) => {
-        switch (model.type) {
-          case DYNAMIC_FORM_FIELD_SLIDER:
-            return SliderInputComponent;
-          default:
-            return null;
-        }
+      provide: DYNAMIC_FORM_FIELD_MAP,
+      useValue: {
+        [DYNAMIC_FORM_FIELD_SLIDER]: SliderInputComponent
       }
     },
     provideNativeDateAdapter(),
