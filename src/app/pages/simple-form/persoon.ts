@@ -12,6 +12,7 @@ import {
   DynamicReadonly,
   DynamicSelect,
   DynamicTextarea,
+  obsToDynamicFormOptions,
   RelationActionType,
   RelationOperator
 } from 'ngx-dynamic-form';
@@ -121,7 +122,7 @@ export class Persoon {
         name: 'gender',
         label: 'Gender',
         width: 40,
-        options: this._dynamicFormService.toDynamicOptionListObs<Gender, string>(
+        options: obsToDynamicFormOptions<Gender, string>(
           this._dataService.getGenders(),
           (gender: Gender) => gender.name,
           (gender: Gender) => gender.value
@@ -151,7 +152,7 @@ export class Persoon {
       new DynamicButtonToggles({
         name: 'button-toggle',
         width: 20,
-        options: this._dynamicFormService.toDynamicOptionListObs<Gender, string>(
+        options: obsToDynamicFormOptions<Gender, string>(
           this._dataService.getGenders(),
           (gender: Gender) => gender.name,
           (gender: Gender) => gender.value

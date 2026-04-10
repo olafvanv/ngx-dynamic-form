@@ -7,3 +7,5 @@ export * from './lib/controls/controls';
 export * from './lib/models';
 
 export * from './lib/services/dynamic-form.service';
+
+export * from './lib/utils/helpers';
