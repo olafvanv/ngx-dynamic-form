@@ -1,66 +1,66 @@
-# NgxDynamicForm
+# NgxDynamicForm 🚀
 
-This library is to create a form based on a JSON model. The forms is based on the `ReactiveFormsModule` from Angular and contains a set of pre-built form controls using the Angular Material library. Using the built-in form controls is optional, you can use your own components to use as form controls inside the dynamic form. See [Custom Form Controls](#custom-form-controls) form more information.
+[![Angular Version](https://img.shields.io/badge/Angular-17.1%2B-red)](https://angular.io/)
+[![Npm Version](https://img.shields.io/npm/v/@olafvv/ngx-dynamic-form)](https://www.npmjs.com/package/@olafvv/ngx-dynamic-form)
 
-## Table of contents
+**NgxDynamicForm** is a modern, strongly-typed, and highly performant library for dynamically generating Reactive Forms based on a JSON-like configuration model.
+
+Leveraging cutting-edge Angular features like **Strict Typed Forms** and **Signal Inputs**, this library gives you top-tier developer experience without the boilerplate. Use our polished Angular Material built-in controls out of the box, or easily plug in your own custom fields!
+
+![NgxDynamicForm Showcase](https://via.placeholder.com/800x400.png?text=Interactive+Form+Animation+Here)
+
+> _Tip: Replace the placeholder above with a GIF of the dynamic form in action!_
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](#) _(Link this to a live playground playground once deployed!)_
+
+---
+
+## 📖 Table of contents
 
 - [Getting Started](#getting-started)
-- [Usage](#usage)
+- [Basic Usage (3 Steps)](#usage)
 - [Validators](#validators)
-  - [Built-in validators](#built-in-validators)
-  - [Custom validators](#custom-validators)
-- [Relations](#relations)
-  - [Action type](#action-type)
-  - [Conditions](#conditions)
-  - [Operator](#operator)
-- [Custom Form Controls](#custom-form-controls)
+- [Relations (Conditional Logic)](#relations)
+- [Built-in Form Controls](#built-in-form-controls)
+- [Creating Custom Form Controls](#custom-form-controls)
+
+---
 
 ## Getting started
 
-##### 1. Make sure to install and configure [Angular Material](https://material.angular.io/guide/getting-started) if you want to use the built-in form controls
+##### 1. Configure Angular Material
 
-##### 2. Install the library using npm:
+Make sure to install and configure [Angular Material](https://material.angular.io/guide/getting-started) if you want to use the built-in form controls.
 
-```
+##### 2. Install the library
+
+```bash
 npm i --save @olafvv/ngx-dynamic-form
 ```
 
+---
+
 ## Usage
 
-##### 1. Import the (standalone) component
-
-```ts
-import { DynamicFormComponent } from 'olafvv/ngx-dynamic-form';
-
-@NgModule({
-  //...
-  imports: [DynamicFormComponent]
-  //...
-})
-export class AppModule {}
-```
-
-**Or when using a standalone application/components:**
+##### 1. Import the standalone component
 
 ```ts
 import { DynamicFormComponent } from '@olafvv/ngx-dynamic-form';
 
 @Component({
   standalone: true,
-  imports: [DynamicFormComponent]
+  imports: [DynamicFormComponent, ReactiveFormsModule]
   //...
 })
-export class AppComponent {
-  //...
-}
+export class AppComponent {}
 ```
 
 ##### 2. Define your form configuration
 
-Create the JSON configuration for the form. This is a two-dimensional array where each array is a row in the form. So if you want multiple fields next to each other, define them in a single array. See [Form layout](#form-layout) for more information.
+Create the structured configuration for the form. This is a two-dimensional array where each array is a row in the form layout.
 
 ```ts
-import { DynamicInput, DynamicTextarea, DynamicFormValidators } from '@olafvv/ngx-dynamic-form';
+import { DynamicInput, DynamicTextarea, DynamicFormConfig } from '@olafvv/ngx-dynamic-form';
 
 export const SAMPLE_FORM: DynamicFormConfig = [
   [
@@ -68,13 +68,6 @@ export const SAMPLE_FORM: DynamicFormConfig = [
       name: 'name',
       inputType: 'text',
       label: 'Name'
-    })
-  ],
-  [
-    new DynamicInput({
-      name: 'email',
-      inputType: 'email',
-      label: 'Email address'
     })
   ],
   [
@@ -88,49 +81,53 @@ export const SAMPLE_FORM: DynamicFormConfig = [
 ];
 ```
 
-##### 3. Create a FormGroup
+##### 3. Create the Form & Render it!
 
-This library provides the service `DynamicFormService` which you can use to create a FormGroup based on the created form configuration.
+Use the library's `DynamicFormService` to generate a strict, reactive `FormGroup` and pass tis `FormGroup` and the configuration to the `<dynamic-form>` component inside the template.
 
 ```ts
-import { SAMPLE_FORM } from './sample-form.ts';
-import { DynamicFormService } from '@olafvv/ngx-dynamic-form;
+import { Component, inject } from '@angular/core';
+import { DynamicFormService, DynamicFormConfig } from '@olafvv/ngx-dynamic-form';
+import { SAMPLE_FORM } from './sample-form';
 
 @Component({
-  //...
+  standalone: true,
+  imports: [DynamicFormComponent],
+  template: `
+    <form [formGroup]="formGroup">
+      <!-- 🚀 Render the dynamic form dynamically! -->
+      <dynamic-form
+        [group]="formGroup"
+        [formConfig]="formConfig" />
+    </form>
+  `
 })
-export class AppComponent {
-  sampleFormConfig: DynamicFormConfig = SAMPLE_FORM;
-  sampleFormGroup: FormGroup<SampleFormModel> = this.dynamicFormService.createFormGroup(this.sampleFormConfig);
+export class MyFormComponent {
+  private dynamicFormService = inject(DynamicFormService);
 
-  constructor(private dynamicFormService: DynamicFormService) {}
+  formConfig: DynamicFormConfig = SAMPLE_FORM;
+  formGroup = this.dynamicFormService.createFormGroup(this.formConfig);
 }
 ```
 
-##### 4. Add the `dynamic-form` inside the template
-
-To add the form to your template, you have to use the selector `<dynamic-form></dynamic-form>` and pass the FormGroup and configuration as inputs:
-
-```html
-<form [formGroup]="sampleFormGroup">
-  <dynamic-form [group]="sampleFormGroup" [formConfig]="sampleFormConfig">
-</form>
-```
+---
 
 ## Validators
 
-This library comes with a set of built-in validators, based on the [Angular Validators](https://angular.dev/api/forms/Validators). All provided validators are static methods inside the class `DynamicFormValidators`, each returning a `DynamicFormValidator` (e.g. `DynamicFormValidators.required()`).
-
-To use the validators, pass them inside the validators array of the field configuration:
+This library comes with a set of built-in formatters mapped seamlessly to standard [Angular Validators](https://angular.dev/api/forms/Validators). They are provided via static methods inside `DynamicFormValidators` (e.g. `DynamicFormValidators.required()`).
 
 ```ts
 import { DynamicFormValidators } from '@olafvv/ngx-dynamic-form';
 
 export const SAMPLE_FORM = [
   [
-    new DynamicFormInput({
-      //..
-      validators: [DynamicFormValidators.required('Custom error message')]
+    new DynamicInput({
+      name: 'email',
+      inputType: 'email',
+      validators: [
+        DynamicFormValidators.required('Email address is required!'),
+        DynamicFormValidators.email('Please provide a valid email')
+      ]
     })
   ]
 ];
@@ -163,115 +160,41 @@ class DynamicFormValidators {
 
 #### Custom Validators
 
-Adding a custom validator is quite straightforward. All you have to do is to provide an object of the type `DynamicFormValidator` to the validators array of a field with a (unique) name, validatorFn and errorMessage.
-
-Read more about creating custom Angular validators on the following page:
-
-> https://blog.angular-university.io/angular-custom-validators/
-
-E.g. a validator to require a minimum time:
+You can easily provide custom validation logic by passing an object of type `DynamicFormValidator` into the `validators` property.
 
 ```ts
-function minTimeValidatorFn(minTime: string): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const inputTime = control.value as string;
-
-    if (!inputTime) return null;
-
-    const minTimeObj = new Date(`2000-01-01T${minTime}`);
-    const inputTimeObj = new Date(`2000-01-01T${inputTime}`);
-
-    return inputTimeObj >= minTimeObj ? null : { minTime: true };
-  };
-}
-
 export const minTimeValidator: (minTime: string, msg?: string) => DynamicFormValidator = (minTime: string, msg?: string) => ({
   name: 'minTime',
-  validator: minTimeValidatorFn(minTime),
-  message: msg ?? `Minimale tijd is ${minTime}`
+  validator: minTimeValidatorFn(minTime), // Your custom function returning an Angular ValidationErrors object
+  message: msg ?? `Minimum time allowed is ${minTime}`
 });
 ```
 
-```ts
-import { minTimeValidator } from './min-time-validator.ts';
-
-//..
-
-const formConfig: DynamicFormConfig = [
-  [
-    new DynamicInput({
-      name: 'time',
-      inputType: 'time',
-      validators: [minTimeValidator('11:00')]
-    })
-  ]
-];
-```
+---
 
 ## Relations
 
-Sometimes you want to create certain connections between fields in a form to control their state, based on the value of the other field. This library provides a way to configure these connections,called relations.
+Sometimes you want to create interconnected logic between fields (e.g., hiding a passport number input unless the document type is set to "Passport"). NgxDynamicForm handles conditionally reactive states natively using **Relations**.
 
-Each relation is defined on the field that requires a specific state based on one or more conditions. Each relation, a `DynamicFormFieldRelation`, contains an actionType, one or more condition(s) and optionally an operator.
+Each relation defines an Action Type, a source condition, and an operator.
+
+##### DynamicFormFieldRelation type
 
 ```ts
-interface DynamicFormFieldRelation {
+type DynamicFormFieldRelation {
   actionType: RelationActionType;
   conditions: RelationCondition[];
   operator?: RelationOperator;
 }
 ```
 
-##### Action type
+##### Action Types
 
-The action type is the type of state the field should be when the conditions are met. Right now the library contains three different action types:
+- `DISABLED` / `ENABLED`
+- `HIDDEN` / `VISIBLE`
+- `REQUIRED` / `OPTIONAL`
 
-- Disable/Enable
-- Visible/Hidden
-- Required/Optional
-
-To set the type you have to use one of the provided enums:
-
-```ts
-enum RelationActionType {
-  DISABLED = 'DISABLED',
-  ENABLED = 'ENABLED',
-  HIDDEN = 'HIDDEN',
-  VISIBLE = 'VISIBLE',
-  REQUIRED = 'REQUIRED',
-  OPTIONAL = 'OPTIONAL'
-}
-```
-
-##### Conditions
-
-The conditions is an array of `RelationCondition` objects. Each condition contains the name of the field the related field is depended on and a value when the condition is met:
-
-```ts
-interface RelationCondition {
-  // The name of the field this field is related to
-  fieldName: string;
-  // A method which has to return a boolean. Returning true means the condition is met
-  value: (val: any) => boolean;
-}
-```
-
-##### Operator
-
-The operator is an optional property and determines if all or any one of the conditions have to return true to trigger the required state of the field. By default the value of this property is `RelationOperator.AND` and is only used when there are more than 1 conditions.
-
-```ts
-enum RelationOperator {
-  // All conditions have to equal true
-  AND = 'AND',
-  // On of the conditions have to equal true
-  OR = 'OR'
-}
-```
-
-##### Example
-
-Here is an example of a field called 'passportNumber' which has to be visible when the value of the field named 'documentType' equals to 'passport':
+##### Example: Conditional Visibility
 
 ```ts
 const formConfig = [
@@ -280,21 +203,22 @@ const formConfig = [
       name: 'documentType',
       label: 'Document type',
       options: [
-        { label: 'Passport', value: 'passport' }
-        //..
+        { label: 'Passport', value: 'passport' },
+        { label: 'ID Card', value: 'id' }
       ]
     })
-  ][
-    new DymamicInput({
+  ],
+  [
+    new DynamicInput({
       name: 'passportNumber',
       label: 'Passport number',
       relations: [
         {
-          actionType: RelationActionType.VISIBLE,
+          actionType: RelationActionType.VISIBLE, // Make this field visible...
           conditions: [
             {
-              fieldName: 'documentType',
-              value: (val: string) => val === 'passport'
+              fieldName: 'documentType', // ...when 'documentType' field...
+              value: (val: string) => val === 'passport' // ...equals 'passport'
             }
           ]
         }
@@ -304,75 +228,98 @@ const formConfig = [
 ];
 ```
 
+---
+
 ## Built-in form controls
 
-The library comes with a set of built-in form controls, using the Angular Material library. To make use of these you have to make sure to install and configure [Angular Material](https://material.angular.io).
+The library comes with a battle-tested set of built-in form controls utilizing **Angular Material**.
 
-The library comes with the following form controls:
+| Control Name      | Description                                                                           |
+| :---------------- | :------------------------------------------------------------------------------------ |
+| **Button**        | Highly-customizable actionable button with a click callback.                          |
+| **Button toggle** | Horizontal toggle groupings ideal for single or multi-select radio behavior.          |
+| **Checkbox**      | Standard binary state checkbox.                                                       |
+| **Input**         | Standard HTML5 inputs with embedded floating labels, validation hints, and matchings. |
+| **Radio group**   | Vertically or horizontally stacked radio selectors.                                   |
+| **Readonly**      | Presentational un-editable field representation.                                      |
+| **Select**        | Dropdown menu powered by `mat-select` or native `<select>`.                           |
+| **Textarea**      | Auto-resizing text area input.                                                        |
 
-| Form control name | Description                                                                                                                                                                     |
-| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Button            | Shows a button inside the form. Can be provided with a label and/or icon. You also provide a callback method for what happens when the button is clicked                        |
-| Button toggle     | Based on the Angular Material component which shows a row of buttons, each holding a value (can be compared to radio buttons). It is possible to select one or multiple options |
-| Checkbox          | Shows a checkbox, indicating a true or false value                                                                                                                              |
-| Input             | Text based input using the HTML5 input element with Angular Material styling and animations.                                                                                    |
-| Radio group       | Uses the `mat-radio-group` of Angular Material to show a group of radio buttons to select a single option                                                                       |
-| Readonly          | Shows the value of the control without the possibility to interact with it.                                                                                                     |
-| Select            | Uses the `mat-select` of Angular Material to show a list of options inside a dropdown.                                                                                          |
-| Textarea          | The HTML5 `<textarea>` element with enchanced Angular Material styling and animations.                                                                                          |
-
-Each control has a basic set of properties (see `DynamicFormFieldConfig`) that can be passed to the control's model. They also have a specific set of properties that only apply to the selected control.
+---
 
 ## Custom Form Controls
 
-Other than the build-in form controls, it is possible to plug in you own custom controls. Start out with creating a custom form control component:
+NgxDynamicForm was built with modern extensibility in mind. Creating a brand new dynamic control is easy using the generic `DynamicFormFieldBase<M>` abstraction.
 
-> https://blog.angular-university.io/angular-custom-form-controls/
+### 1. Create a Model & Options Type
 
-After that follow the following steps.
-
-#### 1. Create a model
-
-First step is to create a model and interface for the custom control containing the control specific properties for the configuration definitions, extending the base interface/model from the library.
-Also, you need to create an (unique) name for the type of the model/.
-
-For example if you're creating a control with a slider to select a value between 0 and 10:
-
-##### Interface:
-
-The interface extends the base interface `DynamicFormFieldConfig` and expects a generic type describing the possible value(s) of the field. In this case that would be a number or null value.
+First, define a type for your specific options and a model class that Angular will parse.
 
 ```typescript
-export interface SliderInputConfig extends DynamicFormFieldConfig<number | null> {
-  min: number;
-  max: number;
-  step: number;
-}
-```
+import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '@olafvv/ngx-dynamic-form';
 
-#### Model
+export type SliderInputConfig = DynamicFormFieldValueConfig<number | null> & {
+  min?: number;
+  max?: number;
+  step?: number;
+};
 
-The model is what is called when creating the form config (e.g. `new SliderInput(sliderConfig)`).
-The model contains the same properties defined in the configuration interface, and provides them with a value from the config or a default value.
-
-Also, you need to create a field type token which we can later use to map the used model to the control component. In this case we created the token with the name `DYNAMIC_FORM_FIELD_SLIDER` with the value `slider`. The value HAS to be unique.
-
-```typescript
 export const DYNAMIC_FORM_FIELD_SLIDER = 'slider';
 
 export class SliderInput extends DynamicFormFieldValueModel<number | null> {
   public min: number;
   public max: number;
   public step: number;
-
-  readonly type = DYNAMIC_FORM_FIELD_SLIDER;
+  public readonly type = DYNAMIC_FORM_FIELD_SLIDER;
 
   constructor(config: SliderInputConfig) {
     super(config);
-
     this.min = config.min ?? 0;
     this.max = config.max ?? 10;
     this.step = config.step ?? 1;
   }
 }
 ```
+
+### 2. Create the Strongly-Typed Component
+
+Because this library uses **Angular 17+ Signal Inputs**, your custom component should extend `DynamicFormFieldBase` natively.
+
+**`slider.component.ts`**:
+
+```typescript
+import { Component, input } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DynamicFormFieldBase } from '@olafvv/ngx-dynamic-form';
+import { SliderInput } from './slider-input.model';
+
+@Component({
+  standalone: true,
+  selector: 'app-custom-slider',
+  imports: [ReactiveFormsModule],
+  template: `
+    <div
+      class="slider-wrapper"
+      [formGroup]="group()">
+      <label>{{ model().label }}</label>
+
+      <!-- Your custom markup here -->
+      <input
+        type="range"
+        [min]="model().min"
+        [max]="model().max"
+        [step]="model().step"
+        [formControlName]="model().name" />
+    </div>
+  `
+})
+// Notice how passing `SliderInput` strictly types the generic base class!
+export class SliderComponent extends DynamicFormFieldBase<SliderInput> {
+  public model = input.required<SliderInput>();
+  public group = input.required<FormGroup>();
+}
+```
+
+### 3. Registering the Control
+
+Finally, tell the `DynamicFormService` how to connect the `SliderInput` model (`slider`) to the `SliderComponent` rendering engine via dependency injection using `DYNAMIC_FORM_CONTROL_MAP_FN`.

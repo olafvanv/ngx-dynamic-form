@@ -1,4 +1,4 @@
-import { NgModule, Type } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DYNAMIC_FORM_FIELD_MAP_FN, DynamicFormComponent, DynamicFormField, DynamicFormFieldModel } from 'ngx-dynamic-form';
+import { DYNAMIC_FORM_FIELD_MAP_FN, DynamicFormComponent, DynamicFormFieldModel } from 'ngx-dynamic-form';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './pages/search-form/search-form.component';
@@ -37,7 +37,7 @@ import { DYNAMIC_FORM_FIELD_SLIDER } from './shared/slider-input/slider-input.mo
     },
     {
       provide: DYNAMIC_FORM_FIELD_MAP_FN,
-      useValue: (model: DynamicFormFieldModel): Type<DynamicFormField> | null => {
+      useValue: (model: DynamicFormFieldModel) => {
         switch (model.type) {
           case DYNAMIC_FORM_FIELD_SLIDER:
             return SliderInputComponent;
