@@ -1,12 +1,9 @@
 .dynamic-form-row {
   display: flex;
+  gap: var(--form-field-spacing, 1rem);
 
   .dynamic-form-field {
     width: 100%;
-
-    &:not(:last-of-type) {
-      margin-right: 12px;
-    }
 
     &.button {
       flex: 0;
