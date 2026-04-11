@@ -281,6 +281,7 @@ The library comes with a battle-tested set of built-in form controls utilizing *
 | **Button**        | Highly-customizable actionable button with a click callback.                          |
 | **Button toggle** | Horizontal toggle groupings ideal for single or multi-select radio behavior.          |
 | **Checkbox**      | Standard binary state checkbox.                                                       |
+| **Slide toggle**  | Standard binary state slide toggle.                                                   |
 | **Input**         | Standard HTML5 inputs with embedded floating labels, validation hints, and matchings. |
 | **Radio group**   | Vertically or horizontally stacked radio selectors.                                   |
 | **Readonly**      | Presentational un-editable field representation.                                      |
