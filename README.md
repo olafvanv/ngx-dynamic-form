@@ -8,7 +8,8 @@ This repository is an Angular workspace that contains the `ngx-dynamic-form` lib
 
 ### Key Features
 
-- **JSON-based Configuration**: Define layout (rows and columns) and fields entirely via configuration arrays.
+- **JSON-based Configuration**: Define form fields via a flat configuration array. Layout is decoupled and configured separately via a dedicated `layout` input.
+- **Flexible CSS Grid Layout**: Control which fields appear on the same row and their relative widths — independently of the field configuration — using a simple string array and CSS custom properties.
 - **Angular Material Integration**: Comes with pre-built, aesthetically pleasing form controls (Input, Select, Checkbox, Textarea, Datepicker, Button toggles, etc.) powered by Angular Material.
 - **Dynamic Relations**: Built-in support for conditional rendering and state changes (e.g., hiding a field or making it disabled based on the value of another field).
 - **Custom Controls**: Designed to be extensible so you can easily plug in your own custom form control components.

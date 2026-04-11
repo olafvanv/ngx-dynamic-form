@@ -19,6 +19,8 @@ Leveraging cutting-edge Angular features like **Strict Typed Forms** and **Signa
 
 - [Getting Started](#getting-started)
 - [Basic Usage (3 Steps)](#usage)
+- [Layout](#layout)
+- [Field Width Control](#field-width-control)
 - [Validators](#validators)
 - [Relations (Conditional Logic)](#relations)
 - [Built-in Form Controls](#built-in-form-controls)
@@ -57,27 +59,23 @@ export class AppComponent {}
 
 ##### 2. Define your form configuration
 
-Create the structured configuration for the form. This is a two-dimensional array where each array is a row in the form layout.
+Create an array of field models. Each model describes a single field — its type, label, validators, and any conditional logic.
 
 ```ts
 import { DynamicInput, DynamicTextarea, DynamicFormConfig } from '@olafvv/ngx-dynamic-form';
 
 export const SAMPLE_FORM: DynamicFormConfig = [
-  [
-    new DynamicInput({
-      name: 'name',
-      inputType: 'text',
-      label: 'Name'
-    })
-  ],
-  [
-    new DynamicTextarea({
-      name: 'message',
-      label: 'Your message',
-      maxLength: 200,
-      rows: 5
-    })
-  ]
+  new DynamicInput({
+    name: 'name',
+    inputType: 'text',
+    label: 'Name'
+  }),
+  new DynamicTextarea({
+    name: 'message',
+    label: 'Your message',
+    maxLength: 200,
+    rows: 5
+  })
 ];
 ```
 
@@ -112,6 +110,59 @@ export class MyFormComponent {
 
 ---
 
+## Layout
+
+By default, fields are stacked vertically — one per row. To arrange fields side-by-side, pass a `layout` input to `<dynamic-form>`. Each string in the array represents one **row**, containing space-separated field `name` values.
+
+```ts
+// component.ts
+layout: string[] = [
+  'firstName lastName',   // two fields side-by-side
+  'email',                // full-width
+  'street city zip',      // three fields in a row
+];
+```
+
+```html
+<!-- component.html -->
+<dynamic-form
+  [group]="formGroup"
+  [formConfig]="formConfig"
+  [layout]="layout" />
+```
+
+Fields not referenced in the layout are not rendered. Fields within a row share available space equally by default.
+
+---
+
+## Field Width Control
+
+Field widths are controlled via **CSS custom properties**, keeping presentation cleanly separated from data configuration. Each field exposes a CSS variable named `--field-{name}-width`.
+
+Since `<dynamic-form>` is rendered in your own component's template, you can set these variables from your component's scoped stylesheet — no `::ng-deep` or global styles required.
+
+```scss
+// my-form.component.scss
+dynamic-form {
+  --field-postcode-width: 25%; // postcode takes 25%
+  // street fills the remaining 75% automatically
+}
+```
+
+This approach also works natively with `@media` queries for fully responsive layouts:
+
+```scss
+dynamic-form {
+  --field-postcode-width: 25%;
+
+  @media (max-width: 600px) {
+    --field-postcode-width: 100%; // stack on mobile
+  }
+}
+```
+
+---
+
 ## Validators
 
 This library comes with a set of built-in formatters mapped seamlessly to standard [Angular Validators](https://angular.dev/api/forms/Validators). They are provided via static methods inside `DynamicFormValidators` (e.g. `DynamicFormValidators.required()`).
@@ -119,17 +170,12 @@ This library comes with a set of built-in formatters mapped seamlessly to standa
 ```ts
 import { DynamicFormValidators } from '@olafvv/ngx-dynamic-form';
 
-export const SAMPLE_FORM = [
-  [
-    new DynamicInput({
-      name: 'email',
-      inputType: 'email',
-      validators: [
-        DynamicFormValidators.required('Email address is required!'),
-        DynamicFormValidators.email('Please provide a valid email')
-      ]
-    })
-  ]
+export const SAMPLE_FORM: DynamicFormConfig = [
+  new DynamicInput({
+    name: 'email',
+    inputType: 'email',
+    validators: [DynamicFormValidators.required('Email address is required!'), DynamicFormValidators.email('Please provide a valid email')]
+  })
 ];
 ```
 
@@ -197,34 +243,30 @@ type DynamicFormFieldRelation {
 ##### Example: Conditional Visibility
 
 ```ts
-const formConfig = [
-  [
-    new DynamicSelect({
-      name: 'documentType',
-      label: 'Document type',
-      options: [
-        { label: 'Passport', value: 'passport' },
-        { label: 'ID Card', value: 'id' }
-      ]
-    })
-  ],
-  [
-    new DynamicInput({
-      name: 'passportNumber',
-      label: 'Passport number',
-      relations: [
-        {
-          actionType: RelationActionType.VISIBLE, // Make this field visible...
-          conditions: [
-            {
-              fieldName: 'documentType', // ...when 'documentType' field...
-              value: (val: string) => val === 'passport' // ...equals 'passport'
-            }
-          ]
-        }
-      ]
-    })
-  ]
+const formConfig: DynamicFormConfig = [
+  new DynamicSelect({
+    name: 'documentType',
+    label: 'Document type',
+    options: [
+      { label: 'Passport', value: 'passport' },
+      { label: 'ID Card', value: 'id' }
+    ]
+  }),
+  new DynamicInput({
+    name: 'passportNumber',
+    label: 'Passport number',
+    relations: [
+      {
+        actionType: RelationActionType.VISIBLE, // Make this field visible...
+        conditions: [
+          {
+            fieldName: 'documentType', // ...when 'documentType' field...
+            value: (val: string) => val === 'passport' // ...equals 'passport'
+          }
+        ]
+      }
+    ]
+  })
 ];
 ```
 
