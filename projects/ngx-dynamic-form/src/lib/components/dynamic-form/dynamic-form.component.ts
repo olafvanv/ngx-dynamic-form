@@ -1,14 +1,12 @@
-import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
 import { DynamicFormConfig } from '../../models/types/dynamic-form-config.type';
 import { DynamicFormService } from '../../services/dynamic-form.service';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 
 @Component({
-  imports: [NgClass, DynamicFormFieldComponent, ReactiveFormsModule],
+  imports: [DynamicFormFieldComponent, ReactiveFormsModule],
   selector: 'dynamic-form',
   templateUrl: 'dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss'],
@@ -18,13 +16,19 @@ import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-fi
 export class DynamicFormComponent {
   public group = input.required<FormGroup>();
   public formConfig = input.required<DynamicFormConfig>();
+  public layout = input<string[]>([]);
 
-  /**
-   * Get the formConfig as flat array.
-   */
-  public get flatFormConfig(): DynamicFormFieldModel[] {
-    return this.formConfig().reduce((acc, curr) => acc.concat(curr), []);
-  }
+  public layoutRows = computed(() => {
+    if (!this.layout()?.length) return null;
+
+    return this.layout().map((row) =>
+      row
+        .trim()
+        .split(/\s+/)
+        .map((name) => this.formConfig().find((f) => f.name === name))
+        .filter((f) => !!f)
+    );
+  });
 
   /**
    * Get the current value of the form.

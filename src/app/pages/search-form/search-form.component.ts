@@ -7,14 +7,15 @@ import { AppService } from 'src/app/services/app.service';
 import { AddressForm, AddressFormModel } from './address';
 
 @Component({
-    selector: 'app-search-form',
-    templateUrl: './search-form.component.html',
-    standalone: false
+  selector: 'app-search-form',
+  templateUrl: './search-form.component.html',
+  standalone: false
 })
 export class SearchFormComponent implements OnInit, OnDestroy {
   public addressForm = new AddressForm();
   public searchFormConfig: DynamicFormConfig = this.addressForm.formConfig;
   public searchForm: FormGroup<AddressFormModel> = this.dynamicFormService.createFormGroup(this.searchFormConfig);
+  public layout = this.addressForm.layout;
 
   private subs = new Subscription();
   constructor(

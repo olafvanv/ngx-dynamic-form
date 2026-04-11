@@ -5,13 +5,18 @@
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="searchForm">
-      <dynamic-form [group]="searchForm"
-        [formConfig]="searchFormConfig">
+      <dynamic-form
+        [group]="searchForm"
+        [formConfig]="searchFormConfig"
+        [layout]="layout">
       </dynamic-form>
     </form>
-    <button type="submit"
+    <button
+      type="submit"
       mat-raised-button
       color="primary"
-      (click)="onSubmit()">Submit</button>
+      (click)="onSubmit()">
+      Submit
+    </button>
   </mat-card-content>
 </mat-card>

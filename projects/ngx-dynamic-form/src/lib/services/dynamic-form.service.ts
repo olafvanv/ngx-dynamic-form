@@ -35,21 +35,19 @@ export class DynamicFormService {
   public createFormGroup(config: DynamicFormConfig): FormGroup {
     const group: FormGroup = this.fb.group({});
 
-    config.forEach((row) => {
-      row.forEach((controlConfig) => {
-        const controlOptions: FormControlOptions = {
-          updateOn: controlConfig.updateOn,
-          validators: this.validatorsService.getValidatorFns(controlConfig.validators)
-        };
+    config.forEach((controlConfig) => {
+      const controlOptions: FormControlOptions = {
+        updateOn: controlConfig.updateOn,
+        validators: this.validatorsService.getValidatorFns(controlConfig.validators)
+      };
 
-        const controlValueConfig = controlConfig as DynamicFormFieldValueConfig<unknown>;
-        const control = new FormControl(
-          { value: controlValueConfig.value ?? controlValueConfig.defaultValue, disabled: controlValueConfig.disabled },
-          controlOptions
-        );
+      const controlValueConfig = controlConfig as DynamicFormFieldValueConfig<unknown>;
+      const control = new FormControl(
+        { value: controlValueConfig.value ?? controlValueConfig.defaultValue, disabled: controlValueConfig.disabled },
+        controlOptions
+      );
 
-        group.addControl(controlConfig.name, control);
-      });
+      group.addControl(controlConfig.name, control);
     });
 
     return group;

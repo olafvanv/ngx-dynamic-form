@@ -1,14 +1,31 @@
-@for (row of formConfig(); track $index) {
-  <div class="dynamic-form-row">
-    @for (field of row; track field.id) {
+@if (layoutRows(); as rows) {
+  @for (row of rows; track $index) {
+    <div class="dynamic-form-row">
+      @for (field of row; track field.id) {
+        <dynamic-form-field
+          class="dynamic-form-field"
+          [style.flex-basis]="'var(--field-' + field.name + '-width, auto)'"
+          [id]="field.id"
+          [hidden]="field.hidden"
+          [class]="field.type"
+          [group]="group()"
+          [model]="field">
+        </dynamic-form-field>
+      }
+    </div>
+  }
+} @else {
+  @for (field of formConfig(); track $index) {
+    <div class="dynamic-form-row">
       <dynamic-form-field
         class="dynamic-form-field"
+        [style.flex-basis]="'var(--field-' + field.name + '-width, auto)'"
         [id]="field.id"
         [hidden]="field.hidden"
-        [ngClass]="[field.type, 'form-field-width-' + field.width]"
+        [class]="field.type"
         [group]="group()"
         [model]="field">
       </dynamic-form-field>
-    }
-  </div>
+    </div>
+  }
 }

@@ -8,11 +8,24 @@ import { AppService } from 'src/app/services/app.service';
 @Component({
   selector: 'app-simple-form',
   templateUrl: './simple-form.component.html',
-  standalone: false
+  standalone: false,
+  styleUrl: './simple-form.component.scss'
 })
 export class SimpleFormComponent implements OnDestroy {
   public personFormConfig: DynamicFormConfig = new Persoon().formConfig;
   public personForm: FormGroup<PersonFormModel> = this.dynamicFormService.createFormGroup(this.personFormConfig);
+  public personLayout: string[] = [
+    'firstname name',
+    'password',
+    'time age age-2',
+    'email button',
+    'telefoon',
+    'gender gender-advanced button-toggle',
+    'parentName',
+    'readonlyfield',
+    'verhaal',
+    'agree'
+  ];
 
   private subs = new Subscription();
 

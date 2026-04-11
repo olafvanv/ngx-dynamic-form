@@ -1,4 +1,4 @@
-import { Component, input, viewChild } from '@angular/core';
+import { Component, computed, input, viewChild } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,15 +20,12 @@ export class DynamicInputComponent extends DynamicFormFieldBase<DynamicInput> {
   public model = input.required<DynamicInput>();
   public group = input.required<FormGroup>();
 
-  get valueCount(): number {
-    return this.input()?.value ? this.input().value.length : 0;
-  }
+  public typeIsPassword = computed(() => this.model().inputType === 'password');
+  public valueCount = computed(() => (this.input()?.value ? this.input().value.length : 0));
+  public maxCountText = computed(() => `${this.valueCount()} / ${this.model().maxLength}`);
+  public showClear = computed(() => !!this.valueCount() && !this.control.disabled && !this.model().showLoader);
 
-  get maxCountText(): string {
-    return `${this.valueCount} / ${this.model().maxLength}`;
-  }
-
-  get showClear(): boolean {
-    return !!this.control.value && !this.control.disabled && !this.model().showLoader;
+  public togglePassword(): void {
+    this.input().type = this.input().type === 'password' ? 'text' : 'password';
   }
 }

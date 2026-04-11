@@ -3,16 +3,11 @@
   gap: var(--form-field-spacing, 1rem);
 
   .dynamic-form-field {
-    width: 100%;
+    flex: 1; // Grow to fill available row space equally by default
+    min-width: 0; // Prevent flex overflow with long content
 
     &.button {
-      flex: 0;
-    }
-  }
-
-  @for $i from 1 through 20 {
-    .form-field-width-#{$i * 5} {
-      width: 5% * $i;
+      flex: 0; // Buttons only take the space they need
     }
   }
 }

@@ -15,30 +15,26 @@ export class AddressForm {
 
   public $searchingAddress = signal(false);
 
+  public layout: string[] = ['postcode', 'street city'];
+
   public formConfig: DynamicFormConfig = [
-    [
-      new DynamicInput({
-        name: 'postcode',
-        label: 'Postcode',
-        maxLength: 6,
-        pattern: new RegExp('[0-9]{4}[a-zA-Z]{2}')
-      })
-    ],
-    [
-      new DynamicInput({
-        name: 'street',
-        label: 'Straatnaam',
-        disabled: true,
-        showLoader: this.$searchingAddress
-      })
-    ],
-    [
-      new DynamicInput({
-        name: 'city',
-        label: 'Stad',
-        disabled: true,
-        showLoader: this.$searchingAddress
-      })
-    ]
+    new DynamicInput({
+      name: 'postcode',
+      label: 'Postcode',
+      maxLength: 6,
+      pattern: new RegExp('[0-9]{4}[a-zA-Z]{2}')
+    }),
+    new DynamicInput({
+      name: 'street',
+      label: 'Straatnaam',
+      disabled: true,
+      showLoader: this.$searchingAddress
+    }),
+    new DynamicInput({
+      name: 'city',
+      label: 'Stad',
+      disabled: true,
+      showLoader: this.$searchingAddress
+    })
   ];
 }
