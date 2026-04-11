@@ -24,6 +24,7 @@ export class SimpleFormComponent implements OnDestroy {
     'parentName',
     'readonlyfield',
     'verhaal',
+    'subscribe',
     'agree'
   ];
 

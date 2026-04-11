@@ -6,4 +6,5 @@ export * from './input/dynamic-input.model';
 export * from './radio-group/dynamic-radio-group.model';
 export * from './readonly/dynamic-readonly.model';
 export * from './select/dynamic-select.model';
+export * from './slide-toggle/dynamic-slide-toggle.model';
 export * from './textarea/dynamic-textarea.model';

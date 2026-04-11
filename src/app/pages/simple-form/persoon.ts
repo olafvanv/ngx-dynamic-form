@@ -10,6 +10,7 @@ import {
   DynamicRadioGroup,
   DynamicReadonly,
   DynamicSelect,
+  DynamicSlideToggle,
   DynamicTextarea,
   obsToDynamicFormOptions,
   RelationActionType,
@@ -191,6 +192,11 @@ export class Persoon {
           ]
         }
       ]
+    }),
+    new DynamicSlideToggle({
+      name: 'subscribe',
+      label: 'Subscribe to newsletter',
+      value: true
     }),
     new DynamicCheckbox({
       name: 'agree',

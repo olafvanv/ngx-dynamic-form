@@ -1,0 +1,8 @@
+<ng-container [formGroup]="group()">
+  <mat-slide-toggle
+    [formControlName]="model().name"
+    [labelPosition]="model().labelPosition"
+    [id]="id">
+    <span class="slide-toggle-label">{{ model().label }}</span>
+  </mat-slide-toggle>
+</ng-container>
