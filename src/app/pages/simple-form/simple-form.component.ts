@@ -15,6 +15,7 @@ export class SimpleFormComponent implements OnDestroy {
   public personFormConfig: DynamicFormConfig = new Persoon().formConfig;
   public personForm: FormGroup<PersonFormModel> = this.dynamicFormService.createFormGroup(this.personFormConfig);
   public personLayout: string[] = [
+    'intro',
     'firstname name',
     'password',
     'time age age-2',
@@ -23,6 +24,7 @@ export class SimpleFormComponent implements OnDestroy {
     'gender gender-advanced button-toggle',
     'parentName',
     'readonlyfield',
+    'introduction-text',
     'verhaal',
     'subscribe',
     'agree'

@@ -1,0 +1,8 @@
+<div class="dynamic-static-text">
+  @if (model().value?.title) {
+    <h3 class="dynamic-static-text-title">{{ model().value?.title }}</h3>
+  }
+  @if (model().value?.text) {
+    <p class="dynamic-static-text-body">{{ model().value?.text }}</p>
+  }
+</div>

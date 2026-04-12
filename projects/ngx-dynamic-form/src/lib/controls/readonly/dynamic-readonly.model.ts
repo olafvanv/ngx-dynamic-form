@@ -3,7 +3,7 @@ import { DynamicFormFieldValueConfig, DynamicFormFieldValueModel } from '../../m
 export const DYNAMIC_FORM_FIELD_READONLY = 'readonly';
 export type DynamicReadonlyValue = string | number | null;
 
-export type DynamicReadonlyConfig = Omit<DynamicFormFieldValueConfig<DynamicReadonlyValue>, 'validators' | 'relations' | 'updateOn'>;
+export type DynamicReadonlyConfig = DynamicFormFieldValueConfig<DynamicReadonlyValue>;
 
 export class DynamicReadonly extends DynamicFormFieldValueModel<DynamicReadonlyValue> {
   public readonly type = DYNAMIC_FORM_FIELD_READONLY;

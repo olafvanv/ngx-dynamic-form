@@ -285,6 +285,7 @@ The library comes with a battle-tested set of built-in form controls utilizing *
 | **Input**         | Standard HTML5 inputs with embedded floating labels, validation hints, and matchings. |
 | **Radio group**   | Vertically or horizontally stacked radio selectors.                                   |
 | **Readonly**      | Presentational un-editable field representation.                                      |
+| **Static Text**   | Presentational text for titles and/or descriptions.                                   |
 | **Select**        | Dropdown menu powered by `mat-select` or native `<select>`.                           |
 | **Textarea**      | Auto-resizing text area input.                                                        |
 

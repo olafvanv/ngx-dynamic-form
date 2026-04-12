@@ -1,0 +1,16 @@
+.dynamic-static-text {
+  margin-bottom: var(--dynamic-static-text-spacing, 1rem);
+
+  &-title {
+    font-size: var(--dynamic-static-text-title-size, 1.25rem);
+    font-weight: var(--dynamic-static-text-title-font-weight, 600);
+    color: var(--dynamic-static-text-title-color, inherit);
+  }
+
+  &-body {
+    margin: 0;
+    font-size: var(--dynamic-static-text-body-size, 1rem);
+    line-height: var(--dynamic-static-text-body-line-height, 1.5);
+    color: var(--dynamic-static-text-body-color, inherit);
+  }
+}

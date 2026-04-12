@@ -11,6 +11,7 @@ import {
   DynamicReadonly,
   DynamicSelect,
   DynamicSlideToggle,
+  DynamicStaticText,
   DynamicTextarea,
   obsToDynamicFormOptions,
   RelationActionType,
@@ -165,6 +166,13 @@ export class Persoon {
           ]
         }
       ]
+    }),
+    new DynamicStaticText({
+      name: 'introduction-text',
+      value: {
+        title: 'More info',
+        text: 'Provide more info about yourself'
+      }
     }),
     new DynamicReadonly({
       name: 'readonlyfield',
