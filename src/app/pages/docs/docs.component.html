@@ -13,7 +13,7 @@
         <div class="sidebar-category">
           <h3>{{ category.name }}</h3>
           <mat-nav-list>
-            @for (section of category.section; track section.id) {
+            @for (section of category.section | sort: 'name'; track section.id) {
               <a
                 mat-list-item
                 (click)="selectSection(section)"

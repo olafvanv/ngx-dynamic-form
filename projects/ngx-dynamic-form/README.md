@@ -285,6 +285,7 @@ The library comes with a battle-tested set of built-in form controls utilizing *
 
 | Control Name      | Description                                                                           |
 | :---------------- | :------------------------------------------------------------------------------------ |
+| **Autocomplete**  | Advanced input with support for local filtering and async search functions.           |
 | **Button**        | Highly-customizable actionable button with a click callback.                          |
 | **Button toggle** | Horizontal toggle groupings ideal for single or multi-select radio behavior.          |
 | **Checkbox**      | Standard binary state checkbox.                                                       |

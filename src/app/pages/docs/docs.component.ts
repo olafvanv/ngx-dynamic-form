@@ -11,6 +11,7 @@ import { API_DATA } from './data/api.data';
 import { CONTROLS_DATA } from './data/controls.data';
 import { UTILITIES_DATA } from './data/utilities.data';
 import { LibraryDoc } from './docs.models';
+import { SortPipe } from './sort.pipe';
 
 type CategorySection = {
   name: string;
@@ -28,7 +29,8 @@ type CategorySection = {
     MatTabsModule,
     MatTableModule,
     MatIconModule,
-    DynamicFormComponent
+    DynamicFormComponent,
+    SortPipe
   ],
   templateUrl: './docs.component.html',
   styleUrl: './docs.component.scss'

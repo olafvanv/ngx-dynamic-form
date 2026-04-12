@@ -1,3 +1,4 @@
+export * from './autocomplete/dynamic-autocomplete.model';
 export * from './button-toggles/dynamic-button-toggles.model';
 export * from './button/dynamic-button.model';
 export * from './checkbox/dynamic-checkbox.model';

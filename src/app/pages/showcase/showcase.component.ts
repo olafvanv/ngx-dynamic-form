@@ -4,6 +4,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {
+  DynamicAutocomplete,
   DynamicCheckbox,
   DynamicDatepicker,
   DynamicFormComponent,
@@ -82,6 +83,34 @@ export class ShowcaseComponent {
         }
       ]
     }),
+    new DynamicAutocomplete({
+      name: 'country',
+      label: 'Country of Residence',
+      placeholder: 'Search for a country...',
+      options: [
+        { label: 'Netherlands (Nederland)', value: 'NL' },
+        { label: 'Germany (Deutschland)', value: 'DE' },
+        { label: 'United States (USA)', value: 'US' },
+        { label: 'United Kingdom (UK)', value: 'UK' },
+        { label: 'France (France)', value: 'FR' },
+        { label: 'Belgium (België)', value: 'BE' },
+        { label: 'Spain', value: 'ES' },
+        { label: 'Italy', value: 'IT' }
+      ],
+      displayFn: (val: string) => {
+        const countries: Record<string, string> = {
+          NL: 'Netherlands',
+          DE: 'Germany',
+          US: 'United States',
+          UK: 'United Kingdom',
+          FR: 'France',
+          BE: 'Belgium',
+          ES: 'Spain',
+          IT: 'Italy'
+        };
+        return countries[val] || val;
+      }
+    }),
     new DynamicRadioGroup({
       name: 'language',
       label: 'Preferred Language',
@@ -159,7 +188,7 @@ export class ShowcaseComponent {
     'email',
     'password',
     'preferences-header',
-    'theme enableNotifications',
+    'theme country enableNotifications',
     'language',
     'showAdvanced',
     'birthDate',

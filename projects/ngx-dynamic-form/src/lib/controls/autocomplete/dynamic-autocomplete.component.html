@@ -1,0 +1,47 @@
+<mat-form-field
+  [formGroup]="group()"
+  [id]="id"
+  color="primary">
+  @if (model().label) {
+    <mat-label>{{ model().label }}</mat-label>
+  }
+
+  <input
+    type="text"
+    matInput
+    [formControlName]="model().name"
+    [placeholder]="model().placeholder"
+    [matAutocomplete]="auto" />
+
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    [displayWith]="displayFn">
+    @for (option of filteredOptions$ | async; track option.value) {
+      <mat-option [value]="option.value">
+        {{ option.label }}
+      </mat-option>
+    }
+  </mat-autocomplete>
+
+  @if (isLoading()) {
+    <div
+      matSuffix
+      class="loader-icon">
+      <mat-spinner
+        diameter="16"
+        color="primary"></mat-spinner>
+    </div>
+  }
+
+  @if (model().hint) {
+    <mat-hint align="start">{{ model().hint }}</mat-hint>
+  }
+
+  @for (validator of model().validators; track validator.name) {
+    <ng-container ngProjectAs="mat-error">
+      @if (hasError(validator.name)) {
+        <mat-error>{{ validator.message }}</mat-error>
+      }
+    </ng-container>
+  }
+</mat-form-field>

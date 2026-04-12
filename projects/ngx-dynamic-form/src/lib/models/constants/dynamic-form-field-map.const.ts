@@ -1,8 +1,10 @@
 import { Type } from '@angular/core';
+import { DynamicAutocompleteComponent } from '../../controls/autocomplete/dynamic-autocomplete.component';
 import { DynamicButtonTogglesComponent } from '../../controls/button-toggles/dynamic-button-toggles.component';
 import { DynamicButtonComponent } from '../../controls/button/dynamic-button.component';
 import { DynamicCheckboxComponent } from '../../controls/checkbox/dynamic-checkbox.component';
 import {
+  DYNAMIC_FORM_FIELD_AUTOCOMPLETE,
   DYNAMIC_FORM_FIELD_BUTTON,
   DYNAMIC_FORM_FIELD_BUTTON_TOGGLES,
   DYNAMIC_FORM_FIELD_CHECKBOX,
@@ -26,6 +28,7 @@ import { DynamicTextareaComponent } from '../../controls/textarea/dynamic-textar
 import { DynamicFormField } from '../classes/dynamic-form-field-base';
 
 export const DYNAMIC_FORM_FIELD_MAP: Record<string, Type<DynamicFormField<any>>> = {
+  [DYNAMIC_FORM_FIELD_AUTOCOMPLETE]: DynamicAutocompleteComponent,
   [DYNAMIC_FORM_FIELD_BUTTON]: DynamicButtonComponent,
   [DYNAMIC_FORM_FIELD_BUTTON_TOGGLES]: DynamicButtonTogglesComponent,
   [DYNAMIC_FORM_FIELD_CHECKBOX]: DynamicCheckboxComponent,

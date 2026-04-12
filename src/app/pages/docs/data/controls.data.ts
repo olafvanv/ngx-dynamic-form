@@ -1,4 +1,5 @@
 import {
+  DynamicAutocomplete,
   DynamicButton,
   DynamicButtonToggles,
   DynamicCheckbox,
@@ -14,6 +15,69 @@ import {
 import { LibraryDoc } from '../docs.models';
 
 export const CONTROLS_DATA: LibraryDoc[] = [
+  {
+    id: 'autocomplete',
+    name: 'Autocomplete',
+    category: 'Controls',
+    description: 'Advanced input component with real-time filtering support for both local and asynchronous data sources.',
+    usage: `// Prefetched Mode (with label lookup)\nnew DynamicAutocomplete({\n  name: 'country',\n  label: 'Country',\n  options: [\n    { label: 'Netherlands', value: 'NL' },\n    { label: 'United States', value: 'US' }\n  ],\n  displayFn: (val) => val === 'NL' ? 'Netherlands' : 'United States'\n})\n\n// Async Search Mode\nnew DynamicAutocomplete({\n  name: 'user',\n  label: 'Search User',\n  searchFn: (term) => this.userService.search(term)\n})`,
+    config: [
+      new DynamicAutocomplete({
+        name: 'demo-autocomplete',
+        label: 'Select City (Local)',
+        options: [
+          { label: 'Amsterdam', value: 'AMS' },
+          { label: 'Rotterdam', value: 'RTM' },
+          { label: 'Utrecht', value: 'UTR' },
+          { label: 'The Hague', value: 'HAG' }
+        ]
+      })
+    ],
+    properties: [
+      {
+        name: 'options',
+        type: 'DynamicOptionList',
+        required: false,
+        default: '[]',
+        description: 'List of pre-fetched options for local filtering.'
+      },
+      {
+        name: 'searchFn',
+        type: '(term) => Observable',
+        required: false,
+        default: 'null',
+        description: 'Function to fetch options asynchronously based on search term.'
+      },
+      {
+        name: 'filterFn',
+        type: '(term, option) => boolean',
+        required: false,
+        default: 'Internal contains',
+        description: 'Custom predicate for local filtering.'
+      },
+      {
+        name: 'debounceTime',
+        type: 'number',
+        required: false,
+        default: '300',
+        description: 'Delay in ms between keystroke and search execution.'
+      },
+      {
+        name: 'displayFn',
+        type: '(value) => string',
+        required: false,
+        default: 'value',
+        description: 'Function to format the selected value for display in the input.'
+      },
+      {
+        name: 'placeholder',
+        type: 'srting',
+        required: false,
+        default: '',
+        description: 'Placeholder text'
+      }
+    ]
+  },
   {
     id: 'input',
     name: 'Input',
