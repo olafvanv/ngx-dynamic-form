@@ -11,13 +11,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DYNAMIC_FORM_FIELD_MAP, DynamicFormComponent } from 'ngx-dynamic-form';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchFormComponent } from './pages/search-form/search-form.component';
-import { SimpleFormComponent } from './pages/simple-form/simple-form.component';
 import { SliderInputComponent } from './shared/slider-input/slider-input.component';
 import { DYNAMIC_FORM_FIELD_SLIDER } from './shared/slider-input/slider-input.model';
 
 @NgModule({
-  declarations: [AppComponent, SimpleFormComponent, SearchFormComponent],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, MatToolbarModule, MatButtonModule, MatCardModule, DynamicFormComponent],
   providers: [

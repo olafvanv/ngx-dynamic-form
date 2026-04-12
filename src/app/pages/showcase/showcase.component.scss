@@ -1,0 +1,38 @@
+.showcase-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+
+  .showcase-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+
+    // Custom layout overrides via CSS variables
+    dynamic-form {
+      --field-firstName-width: 30%;
+      --field-theme-width: 60%;
+
+      @media (max-width: 600px) {
+        --field-firstName-width: 100%;
+        --field-theme-width: 100%;
+      }
+    }
+
+    .showcase-footer {
+      padding: 1rem;
+      border-top: 1px solid #eee;
+      text-align: center;
+      color: #666;
+      font-style: italic;
+
+      .buttons {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 2rem;
+      }
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { MatButtonAppearance } from '@angular/material/button';
 import { DynamicFormFieldModel } from '../../models/classes/dynamic-form-field-model';
 import { DynamicFormFieldConfig } from '../../models/types/dynamic-form-field-config.type';
 
@@ -14,6 +15,10 @@ export type DynamicButtonConfig = Omit<DynamicFormFieldConfig, OmittedProperties
    */
   label: string;
   /**
+   * Variant of the button
+   */
+  variant?: MatButtonAppearance;
+  /**
    * Function called when the button is clicked.
    * Provides no parameters.
    * @returns
@@ -23,6 +28,7 @@ export type DynamicButtonConfig = Omit<DynamicFormFieldConfig, OmittedProperties
 
 export class DynamicButton extends DynamicFormFieldModel {
   public label: string | null;
+  public variant: MatButtonAppearance;
   public clicked: () => any;
 
   public readonly type = DYNAMIC_FORM_FIELD_BUTTON;
@@ -30,7 +36,8 @@ export class DynamicButton extends DynamicFormFieldModel {
   constructor(config: DynamicButtonConfig) {
     super(config);
 
-    this.label = config.label ?? null;
+    this.label = config.label;
+    this.variant = config.variant ?? 'text';
     this.clicked = config.clicked;
   }
 }

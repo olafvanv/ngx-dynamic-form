@@ -5,6 +5,7 @@
         <dynamic-form-field
           class="dynamic-form-field"
           [style.flex-basis]="'var(--field-' + field.name + '-width, auto)'"
+          [style.max-width]="'var(--field-' + field.name + '-width, 100%)'"
           [id]="field.id"
           [hidden]="field.hidden"
           [class]="field.type"
@@ -20,6 +21,7 @@
       <dynamic-form-field
         class="dynamic-form-field"
         [style.flex-basis]="'var(--field-' + field.name + '-width, auto)'"
+        [style.max-width]="'var(--field-' + field.name + '-width, 100%)'"
         [id]="field.id"
         [hidden]="field.hidden"
         [class]="field.type"

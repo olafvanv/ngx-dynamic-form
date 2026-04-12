@@ -1,6 +1,8 @@
 .dynamic-form-row {
   display: flex;
-  gap: var(--form-field-spacing, 1rem);
+  flex-wrap: wrap;
+  gap: var(--form-field-spacing, 0.5rem);
+  margin-bottom: var(--form-field-spacing, 0.5rem);
 
   .dynamic-form-field {
     flex: 1; // Grow to fill available row space equally by default

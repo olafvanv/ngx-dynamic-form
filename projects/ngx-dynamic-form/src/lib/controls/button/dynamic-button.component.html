@@ -1,6 +1,6 @@
 <div class="dynamic-button-wrapper">
   <button
-    mat-button
+    [matButton]="model().variant"
     [id]="id"
     [disabled]="model().disabled"
     (click)="onClick()">

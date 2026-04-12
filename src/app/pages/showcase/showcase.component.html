@@ -1,0 +1,44 @@
+<div class="showcase-container">
+  <mat-card class="showcase-card">
+    <mat-card-content>
+      <h3>ngx-dynamic-form Showcase 🚀</h3>
+      <p>
+        Experience the full power of the Dynamic Forms with a decoupled layout system, reactive relations, and under-the-hood Angular
+        Reactive Forms.
+      </p>
+      <form [formGroup]="formGroup">
+        <dynamic-form
+          [group]="formGroup"
+          [formConfig]="config"
+          [layout]="layout">
+        </dynamic-form>
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer class="showcase-footer">
+      <small
+        >Note: Reactive relationships are active. Toggle "Show Advanced Options" or set "Referral Source" to "Other" to see them in
+        action.</small
+      >
+
+      <div class="buttons">
+        <button
+          matButton="filled"
+          (click)="onSubmit()"
+          [disabled]="!formGroup.valid">
+          Submit
+        </button>
+        <button
+          matButton="outlined"
+          (click)="formGroup.reset()">
+          Reset Form
+        </button>
+        <button
+          matButton="text"
+          (click)="logForm()">
+          Log Form
+        </button>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>
