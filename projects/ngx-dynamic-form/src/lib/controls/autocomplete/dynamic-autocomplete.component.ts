@@ -6,7 +6,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { debounceTime, distinctUntilChanged, map, Observable, startWith, switchMap, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, merge, Observable, startWith, Subject, switchMap, tap } from 'rxjs';
 import { DynamicFormFieldBase } from '../../models/classes/dynamic-form-field-base';
 import { DynamicFormFieldOption } from '../../models/classes/dynamic-form-field-option-model';
 import { DynamicAutocomplete } from './dynamic-autocomplete.model';
@@ -32,9 +32,11 @@ export class DynamicAutocompleteComponent extends DynamicFormFieldBase<DynamicAu
   public filteredOptions$!: Observable<DynamicFormFieldOption<unknown>[]>;
   public isLoading = signal(false);
 
+  private focus$ = new Subject<void>();
+
   ngOnInit(): void {
-    this.filteredOptions$ = this.control.valueChanges.pipe(
-      startWith(''),
+    this.filteredOptions$ = merge(this.control.valueChanges, this.focus$.pipe(map(() => this.control.value))).pipe(
+      startWith(this.control.value ?? ''),
       debounceTime(this.model().debounceTime),
       distinctUntilChanged(),
       tap(() => {
@@ -43,6 +45,10 @@ export class DynamicAutocompleteComponent extends DynamicFormFieldBase<DynamicAu
       switchMap((value) => this.getOptions(value)),
       tap(() => this.isLoading.set(false))
     );
+  }
+
+  public onFocus(): void {
+    this.focus$.next();
   }
 
   private getOptions(value: unknown): Observable<DynamicFormFieldOption<unknown>[]> {

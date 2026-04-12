@@ -25,6 +25,7 @@ export const CONTROLS_DATA: LibraryDoc[] = [
       new DynamicAutocomplete({
         name: 'demo-autocomplete',
         label: 'Select City (Local)',
+        value: 'HAG',
         options: [
           { label: 'Amsterdam', value: 'AMS' },
           { label: 'Rotterdam', value: 'RTM' },

@@ -11,7 +11,8 @@
     matInput
     [formControlName]="model().name"
     [placeholder]="model().placeholder"
-    [matAutocomplete]="auto" />
+    [matAutocomplete]="auto"
+    (focus)="onFocus()" />
 
   <mat-autocomplete
     #auto="matAutocomplete"
