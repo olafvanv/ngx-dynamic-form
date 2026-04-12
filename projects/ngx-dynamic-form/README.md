@@ -62,9 +62,16 @@ export class AppComponent {}
 Create an array of field models. Each model describes a single field — its type, label, validators, and any conditional logic.
 
 ```ts
-import { DynamicInput, DynamicTextarea, DynamicFormConfig } from '@olafvv/ngx-dynamic-form';
+import { DynamicInput, DynamicTextarea, DynamicStaticText, DynamicFormConfig } from '@olafvv/ngx-dynamic-form';
 
 export const SAMPLE_FORM: DynamicFormConfig = [
+  new DynamicStaticText({
+    name: 'intro',
+    value: {
+      title: 'Contact Information',
+      text: 'Please fill in your details below.'
+    }
+  }),
   new DynamicInput({
     name: 'name',
     inputType: 'text',
