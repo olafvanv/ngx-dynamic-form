@@ -11,7 +11,7 @@ import { DynamicRadioGroup } from './dynamic-radio-group.model';
   templateUrl: './dynamic-radio-group.component.html',
   styleUrls: ['./dynamic-radio-group.component.scss']
 })
-export class DymamicRadioGroupComponent extends DynamicFormFieldBase<DynamicRadioGroup> {
+export class DynamicRadioGroupComponent extends DynamicFormFieldBase<DynamicRadioGroup> {
   public model = input.required<DynamicRadioGroup>();
   public group = input.required<FormGroup>();
 }

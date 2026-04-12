@@ -20,6 +20,7 @@ import { DYNAMIC_FORM_FIELD_MAP } from '../../models/constants/dynamic-form-fiel
 import { DynamicFormRelationsService } from '../../services/dynamic-form-relations.service';
 import { DynamicFormService } from '../../services/dynamic-form.service';
 
+/** @ignore */
 @Component({
   imports: [NgClass, ReactiveFormsModule],
   selector: 'dynamic-form-field',

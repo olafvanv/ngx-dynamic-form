@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormControl, ValidatorFn } from '@angular/forms';
 import { DynamicFormValidator } from '../models/types/dynamic-form-validator.type';
 
+/** @ignore */
 @Injectable({
   providedIn: 'root'
 })

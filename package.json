@@ -11,7 +11,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "lint:fix": "ng lint --fix"
+    "lint:fix": "ng lint --fix",
+    "docs:build": "compodoc -p projects/ngx-dynamic-form/tsconfig.lib.json",
+    "docs:serve": "compodoc -p projects/ngx-dynamic-form/tsconfig.lib.json -s"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +27,6 @@
     "@angular/platform-browser": "^20.3.16",
     "@angular/platform-browser-dynamic": "^20.3.16",
     "@angular/router": "^20.3.16",
-    "@olafvv/ngx-dynamic-form": "^19.0.1",
     "material-design-icons-iconfont": "^6.7.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
@@ -35,6 +36,7 @@
     "@angular/build": "^20.3.14",
     "@angular/cli": "~20.3.14",
     "@angular/compiler-cli": "^20.3.16",
+    "@compodoc/compodoc": "^1.1.25",
     "@types/jasmine": "^4.0.3",
     "@types/jest": "^29.5.8",
     "@types/mocha": "^10.0.4",

@@ -1,0 +1,197 @@
+<div class="docs-container">
+  <mat-sidenav-container class="docs-sidenav-container">
+    <!-- Sidebar Navigation -->
+    <mat-sidenav
+      mode="side"
+      opened
+      class="docs-sidebar">
+      <div class="sidebar-header">
+        <h2>Reference</h2>
+      </div>
+
+      @for (category of sectionsByCategory(); track category.name) {
+        <div class="sidebar-category">
+          <h3>{{ category.name }}</h3>
+          <mat-nav-list>
+            @for (section of category.section; track section.id) {
+              <a
+                mat-list-item
+                (click)="selectSection(section)"
+                [class.active]="selectedSection().id === section.id">
+                <span matListItemTitle>{{ section.name }}</span>
+              </a>
+            }
+          </mat-nav-list>
+        </div>
+      }
+    </mat-sidenav>
+
+    <!-- Content Area -->
+    <mat-sidenav-content class="docs-content">
+      <div class="docs-section">
+        <h1>{{ selectedSection().name }}</h1>
+        <p class="section-description">{{ selectedSection().description }}</p>
+
+        <mat-tab-group class="docs-tabs">
+          <!-- Preview Tab -->
+          @if (selectedSection().config) {
+            <mat-tab label="PREVIEW">
+              <div class="tab-content preview-tab">
+                <div class="demo-wrapper">
+                  @for (section of [selectedSection()]; track section.id) {
+                    <form [formGroup]="formsControls.get(section.id)!">
+                      <dynamic-form
+                        [group]="formsControls.get(section.id)!"
+                        [formConfig]="section.config!">
+                      </dynamic-form>
+                    </form>
+                  }
+                </div>
+              </div>
+            </mat-tab>
+          }
+
+          <!-- Usage Tab -->
+          <mat-tab label="USAGE">
+            <div class="tab-content usage-tab">
+              <div class="usage-description">
+                <p>Include this configuration in your <code>DynamicFormConfig</code> array.</p>
+              </div>
+              <pre><code>{{ selectedSection().usage }}</code></pre>
+            </div>
+          </mat-tab>
+
+          <!-- API Reference Tab -->
+          @if (selectedSection().properties) {
+            <mat-tab label="API REFERENCE">
+              <div class="tab-content api-tab">
+                <h3>Configuration Properties</h3>
+                <table
+                  mat-table
+                  [dataSource]="selectedSection().properties!"
+                  class="mat-elevation-z0 api-table">
+                  <ng-container matColumnDef="name">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef>
+                      Name
+                    </th>
+                    <td
+                      mat-cell
+                      *matCellDef="let element">
+                      <div class="prop-name-wrapper">
+                        <span class="prop-name">{{ element.name }}</span>
+                        @if (element.required) {
+                          <span
+                            class="required-badge"
+                            title="Required"
+                            >*</span
+                          >
+                        }
+                      </div>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="type">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef>
+                      Type
+                    </th>
+                    <td
+                      mat-cell
+                      *matCellDef="let element">
+                      <code class="type-code">{{ element.type }}</code>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="default">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef>
+                      Default
+                    </th>
+                    <td
+                      mat-cell
+                      *matCellDef="let element">
+                      <code class="default-code">{{ element.default }}</code>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="description">
+                    <th
+                      mat-header-cell
+                      *matHeaderCellDef>
+                      Description
+                    </th>
+                    <td
+                      mat-cell
+                      *matCellDef="let element">
+                      {{ element.description }}
+                    </td>
+                  </ng-container>
+
+                  <tr
+                    mat-header-row
+                    *matHeaderRowDef="['name', 'type', 'default', 'description']"></tr>
+                  <tr
+                    mat-row
+                    *matRowDef="let element; columns: ['name', 'type', 'default', 'description']"></tr>
+                </table>
+
+                @if (selectedSection().cssVariables && selectedSection().cssVariables!.length > 0) {
+                  <h3 class="margin-top">CSS Variable Tokens</h3>
+                  <table
+                    mat-table
+                    [dataSource]="selectedSection().cssVariables!"
+                    class="mat-elevation-z0 api-table">
+                    <ng-container matColumnDef="name">
+                      <th
+                        mat-header-cell
+                        *matHeaderCellDef>
+                        Token Name
+                      </th>
+                      <td
+                        mat-cell
+                        *matCellDef="let element">
+                        <code class="variable-code">{{ element.name }}</code>
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="description">
+                      <th
+                        mat-header-cell
+                        *matHeaderCellDef>
+                        Description
+                      </th>
+                      <td
+                        mat-cell
+                        *matCellDef="let element">
+                        {{ element.description }}
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="default">
+                      <th
+                        mat-header-cell
+                        *matHeaderCellDef>
+                        Default
+                      </th>
+                      <td
+                        mat-cell
+                        *matCellDef="let element">
+                        {{ element.default || '-' }}
+                      </td>
+                    </ng-container>
+
+                    <tr
+                      mat-header-row
+                      *matHeaderRowDef="['name', 'description', 'default']"></tr>
+                    <tr
+                      mat-row
+                      *matRowDef="let element; columns: ['name', 'description', 'default']"></tr>
+                  </table>
+                }
+              </div>
+            </mat-tab>
+          }
+        </mat-tab-group>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
