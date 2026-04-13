@@ -5,6 +5,7 @@ import { DynamicFormFieldModel } from '../models/classes/dynamic-form-field-mode
 import { DynamicFormFieldValueConfig } from '../models/classes/dynamic-form-field-value-model';
 import { DYNAMIC_FORM_FIELD_MAP } from '../models/tokens/dynamic-form-field-map.token';
 import { DynamicFormConfig } from '../models/types/dynamic-form-config.type';
+import { TypedFormGroup } from '../models/types/form-group-model.type';
 import { DynamicFormValidationsService } from './dynamic-validations.service';
 
 @Injectable({
@@ -32,7 +33,7 @@ export class DynamicFormService {
    * @param {DynamicFormConfig} config Configuration object of a form
    * @returns {FormGroup}
    */
-  public createFormGroup(config: DynamicFormConfig): FormGroup {
+  public createFormGroup<T = any>(config: DynamicFormConfig): TypedFormGroup<T> {
     const group: FormGroup = this.fb.group({});
 
     config.forEach((controlConfig) => {
