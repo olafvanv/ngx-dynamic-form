@@ -1,0 +1,39 @@
+.datetime-container {
+  display: flex;
+  flex-direction: column;
+
+  .datetime-inputs {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    .date-field {
+      flex: 2;
+    }
+
+    .time-field {
+      flex: 1;
+    }
+  }
+
+  .datetime-subscript {
+    padding: 0 1rem;
+    padding-top: 0.25rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    letter-spacing: 0.0333333333em;
+    font-weight: 400;
+
+    .datetime-error {
+      color: var(--mat-sys-error);
+    }
+
+    .datetime-hint {
+      color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, 0.6));
+    }
+  }
+}

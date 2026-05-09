@@ -15,9 +15,11 @@ import {
   DYNAMIC_FORM_FIELD_SELECT,
   DYNAMIC_FORM_FIELD_SLIDE_TOGGLE,
   DYNAMIC_FORM_FIELD_STATIC_TEXT,
-  DYNAMIC_FORM_FIELD_TEXTAREA
+  DYNAMIC_FORM_FIELD_TEXTAREA,
+  DYNAMIC_FORM_FIELD_DATETIMEPICKER
 } from '../../controls/controls';
 import { DynamicDatepickerComponent } from '../../controls/datepicker/dynamic-datepicker.component';
+import { DynamicDatetimepickerComponent } from '../../controls/datetimepicker/dynamic-datetimepicker.component';
 import { DynamicInputComponent } from '../../controls/input/dynamic-input.component';
 import { DynamicRadioGroupComponent } from '../../controls/radio-group/dynamic-radio-group.component';
 import { DynamicReadonlyComponent } from '../../controls/readonly/dynamic-readonly.component';
@@ -33,6 +35,7 @@ export const DYNAMIC_FORM_FIELD_MAP: Record<string, Type<DynamicFormField<any>>>
   [DYNAMIC_FORM_FIELD_BUTTON_TOGGLES]: DynamicButtonTogglesComponent,
   [DYNAMIC_FORM_FIELD_CHECKBOX]: DynamicCheckboxComponent,
   [DYNAMIC_FORM_FIELD_DATEPICKER]: DynamicDatepickerComponent,
+  [DYNAMIC_FORM_FIELD_DATETIMEPICKER]: DynamicDatetimepickerComponent,
   [DYNAMIC_FORM_FIELD_INPUT]: DynamicInputComponent,
   [DYNAMIC_FORM_FIELD_RADIO_GROUP]: DynamicRadioGroupComponent,
   [DYNAMIC_FORM_FIELD_READONLY]: DynamicReadonlyComponent,

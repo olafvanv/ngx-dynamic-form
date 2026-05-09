@@ -1,6 +1,7 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideRouter } from '@angular/router';
 import { DYNAMIC_FORM_FIELD_MAP } from 'ngx-dynamic-form';
 import { routes } from './app.routes';
@@ -13,6 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideNativeDateAdapter(),
     provideHttpClient(),
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
     {
       provide: DYNAMIC_FORM_FIELD_MAP,
       useValue: {

@@ -1,0 +1,64 @@
+<div
+  class="datetime-container"
+  [formGroup]="internalGroup">
+  <div class="datetime-inputs">
+    <mat-form-field
+      color="primary"
+      subscriptSizing="dynamic"
+      class="date-field">
+      @if (model().labelDate || model().label) {
+        <mat-label>{{ model().labelDate || model().label }}</mat-label>
+      }
+
+      <input
+        matInput
+        formControlName="date"
+        [required]="isRequired"
+        [min]="model().min"
+        [max]="model().max"
+        [errorStateMatcher]="matcher"
+        [matDatepicker]="picker" />
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker
+        #picker
+        [startAt]="model().startAt"
+        [startView]="model().startView"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field
+      color="primary"
+      subscriptSizing="dynamic"
+      class="time-field">
+      @if (model().labelTime || model().label) {
+        <mat-label>{{ model().labelTime || 'Tijd' }}</mat-label>
+      }
+
+      <input
+        matInput
+        [matTimepicker]="timepicker"
+        [required]="isRequired"
+        [errorStateMatcher]="matcher"
+        formControlName="time" />
+
+      <mat-timepicker-toggle
+        matIconSuffix
+        [for]="timepicker"></mat-timepicker-toggle>
+      <mat-timepicker #timepicker></mat-timepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="datetime-subscript">
+    @if (isInvalid && (control.touched || control.dirty || internalGroup.touched || internalGroup.dirty)) {
+      @for (validator of model().validators; track validator.name) {
+        @if (hasError(validator.name)) {
+          <div class="datetime-error">{{ validator.message }}</div>
+        }
+      }
+    } @else if (model().hint) {
+      <div class="datetime-hint">{{ model().hint }}</div>
+    }
+  </div>
+</div>

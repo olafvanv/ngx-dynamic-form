@@ -41,8 +41,12 @@ const REQUIRED_ACTION: DynamicRelationAction = {
   type: RelationActionType.REQUIRED,
   reversedType: RelationActionType.OPTIONAL,
   change(hasMatch, model, control, injector) {
-    const hasRequiredValidation = !!model.validators.find((f) => f.name === 'required');
+    const hasRequiredValidation = !!model.validators?.find((f) => f.name === 'required');
     let validators: DynamicFormValidator[];
+
+    if (!model.validators) {
+      model.validators = [];
+    }
 
     if (hasMatch) {
       // If the model already contains the required validator, return the model validators.
@@ -51,6 +55,8 @@ const REQUIRED_ACTION: DynamicRelationAction = {
     } else {
       validators = model.validators.filter((f) => f.name !== 'required');
     }
+
+    model.validators = validators;
 
     injector.get(DynamicFormValidationsService).updateValidators(validators, control);
   }

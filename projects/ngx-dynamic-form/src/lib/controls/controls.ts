@@ -10,3 +10,4 @@ export * from './select/dynamic-select.model';
 export * from './slide-toggle/dynamic-slide-toggle.model';
 export * from './static-text/dynamic-static-text.model';
 export * from './textarea/dynamic-textarea.model';
+export * from './datetimepicker/dynamic-datetimepicker.model';

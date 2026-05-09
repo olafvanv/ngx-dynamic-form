@@ -7,6 +7,7 @@ import {
   DynamicAutocomplete,
   DynamicCheckbox,
   DynamicDatepicker,
+  DynamicDatetimepicker,
   DynamicFormComponent,
   DynamicFormConfig,
   DynamicFormService,
@@ -125,6 +126,14 @@ export class ShowcaseComponent {
       label: 'Enable Push Notifications',
       value: true
     }),
+    new DynamicDatetimepicker({
+      name: 'reservationDate',
+      min: new Date(),
+      max: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
+      labelDate: 'Date',
+      labelTime: 'Time',
+      validators: [DynamicFormValidators.required()]
+    }),
 
     // 3. Advanced Options (Toggled by Checkbox)
     new DynamicCheckbox({
@@ -135,6 +144,7 @@ export class ShowcaseComponent {
     new DynamicDatepicker({
       name: 'birthDate',
       label: 'Date of Birth',
+      max: new Date(),
       relations: [
         {
           actionType: RelationActionType.VISIBLE,
@@ -189,6 +199,7 @@ export class ShowcaseComponent {
     'password',
     'preferences-header',
     'theme country enableNotifications',
+    'reservationDate',
     'language',
     'showAdvanced',
     'birthDate',

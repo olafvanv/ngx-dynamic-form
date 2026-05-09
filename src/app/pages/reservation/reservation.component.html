@@ -1,0 +1,35 @@
+<div class="showcase-container">
+  <mat-card class="showcase-card">
+    <mat-card-content>
+      <h3>Reservation 🚀</h3>
+      <form [formGroup]="formGroup">
+        <dynamic-form
+          [group]="formGroup"
+          [formConfig]="config"
+          [layout]="layout">
+        </dynamic-form>
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer class="showcase-footer">
+      <div class="buttons">
+        <button
+          matButton="filled"
+          (click)="onSubmit()"
+          [disabled]="!formGroup.valid">
+          Submit
+        </button>
+        <button
+          matButton="outlined"
+          (click)="formGroup.reset()">
+          Reset Form
+        </button>
+        <button
+          matButton="text"
+          (click)="logForm()">
+          Log Form
+        </button>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>
