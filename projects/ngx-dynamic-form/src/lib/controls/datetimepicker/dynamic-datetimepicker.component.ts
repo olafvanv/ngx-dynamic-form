@@ -42,8 +42,8 @@ export class DynamicDatetimepickerComponent extends DynamicFormFieldBase<Dynamic
   public isRequired = false;
 
   public internalGroup = new FormGroup({
-    date: new FormControl<Date | string | null>(null),
-    time: new FormControl<Date | string | null>(null)
+    date: new FormControl<Date | null>(null),
+    time: new FormControl<Date | null>(null)
   });
 
   private subs = new Subscription();
@@ -75,21 +75,19 @@ export class DynamicDatetimepickerComponent extends DynamicFormFieldBase<Dynamic
           const date = val.date;
           const time = val.time;
 
-          if (!date && !time) {
+          if (!date || !time) {
             parentControl.setValue(null, { emitEvent: false });
-          } else if (date && time) {
-            const d = new Date(date);
-            if (time instanceof Date) {
-              d.setHours(time.getHours(), time.getMinutes(), 0, 0);
-            } else if (typeof time === 'string') {
-              const [hours, minutes] = time.split(':');
-              d.setHours(parseInt(hours, 10));
-              d.setMinutes(parseInt(minutes, 10));
-            }
-            parentControl.setValue(d, { emitEvent: false });
           } else {
-            // If only one is filled, we don't set a valid combined date, or we could set null
-            parentControl.setValue(null, { emitEvent: false });
+            const isInvalidDate = isNaN(date.getTime());
+            const isInvalidTime = isNaN(time.getTime());
+
+            if (isInvalidDate || isInvalidTime) {
+              parentControl.setValue(new Date(NaN), { emitEvent: false });
+            } else {
+              const d = new Date(date);
+              d.setHours(time.getHours(), time.getMinutes(), 0, 0);
+              parentControl.setValue(d, { emitEvent: false });
+            }
           }
 
           // Trigger validation on parent
@@ -132,11 +130,21 @@ export class DynamicDatetimepickerComponent extends DynamicFormFieldBase<Dynamic
   private datetimeIncompleteValidator(): ValidationErrors | null {
     const date = this.internalGroup.get('date')?.value;
     const time = this.internalGroup.get('time')?.value;
+    const errors: ValidationErrors = {};
 
     // If only one is filled, it's incomplete
     if ((date && !time) || (!date && time)) {
-      return { required: true };
+      errors['required'] = true;
     }
-    return null;
+
+    // Check if either of the filled values is an Invalid Date
+    if (date && isNaN(date.getTime())) {
+      errors['matDatepickerParse'] = true;
+    }
+    if (time && isNaN(time.getTime())) {
+      errors['matTimepickerParse'] = true;
+    }
+
+    return Object.keys(errors).length > 0 ? errors : null;
   }
 }
